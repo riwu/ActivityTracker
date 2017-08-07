@@ -4,12 +4,13 @@ import { StackNavigator } from 'react-navigation';
 import IOSIcon from 'react-native-vector-icons/Ionicons';
 import DetailScreen from '../components/detail';
 import FastingChart from '../components/FastingChart';
+import CONSTANTS from '../CONSTANTS';
 
 const FastingChartNav = StackNavigator({
   Main: {
     screen: FastingChart,
     navigationOptions: ({ navigation }) => ({
-      title: 'My Fasting Chart',
+      title: CONSTANTS.FASTING_CHART,
       headerLeft: (
         <TouchableOpacity onPress={() => navigation.navigate('DrawerOpen')}>
           <IOSIcon name="ios-menu" size={30} />

@@ -1,37 +1,25 @@
 import { combineReducers } from 'redux';
 import { NavigationActions } from 'react-navigation';
-
 import AppNavigator from '../navigators/Drawer';
+import CONSTANTS from '../CONSTANTS';
 
-// Start with two routes: The Main screen, with the Login screen on top.
-const firstAction = AppNavigator.router.getActionForPathAndParams('Profiles');
-const tempNavState = AppNavigator.router.getStateForAction(firstAction);
+const firstAction = AppNavigator.router.getActionForPathAndParams(CONSTANTS.PROFILES);
 const initialNavState = AppNavigator.router.getStateForAction(
   firstAction,
-  tempNavState,
+  AppNavigator.router.getStateForAction(firstAction),
 );
 
 function nav(state = initialNavState, action) {
   let nextState;
-  switch (action.type) {
-    case 'Profiles':
-      nextState = AppNavigator.router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'Profiles' }),
-        state,
-      );
-      break;
-    case 'My Fasting Chart':
-      nextState = AppNavigator.router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'My Fasting Chart' }),
-        state,
-      );
-      break;
-    default:
-      nextState = AppNavigator.router.getStateForAction(action, state);
-      break;
+  if (CONSTANTS.DRAWER_ORDER.includes(action.type)) {
+    nextState = AppNavigator.router.getStateForAction(
+      NavigationActions.navigate({ routeName: action.type }),
+      state,
+    );
+  } else {
+    nextState = AppNavigator.router.getStateForAction(action, state);
   }
 
-  // Simply return the original `state` if `nextState` is null or undefined.
   return nextState || state;
 }
 
