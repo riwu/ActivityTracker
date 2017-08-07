@@ -2,13 +2,13 @@ import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import IOSIcon from 'react-native-vector-icons/Ionicons';
-import DetailScreen from '../components/detail';
-import MainScreen from '../components/main';
+import CreateProfile from '../components/CreateProfile';
+import Profiles from '../components/Profiles';
 import CONSTANTS from '../CONSTANTS';
 
 const ProfilesNav = StackNavigator({
   Main: {
-    screen: MainScreen,
+    screen: Profiles,
     navigationOptions: ({ navigation }) => ({
       title: CONSTANTS.PROFILES,
       headerLeft: (
@@ -20,9 +20,9 @@ const ProfilesNav = StackNavigator({
     }),
   },
   Detail: {
-    screen: DetailScreen,
+    screen: CreateProfile,
     navigationOptions: props => ({
-      title: 'Detail',
+      title: 'Create Profile',
     }),
   },
 });

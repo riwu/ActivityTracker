@@ -2,7 +2,7 @@ import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import IOSIcon from 'react-native-vector-icons/Ionicons';
-import DetailScreen from '../components/detail';
+import FastingDay from '../components/FastingDay';
 import FastingChart from '../components/FastingChart';
 import CONSTANTS from '../CONSTANTS';
 
@@ -20,7 +20,7 @@ const FastingChartNav = StackNavigator({
     }),
   },
   Detail: {
-    screen: DetailScreen,
+    screen: FastingDay,
     navigationOptions: props => ({
       title: 'Day 1',
     }),

@@ -1,16 +1,22 @@
-import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Button, TouchableOpacity } from 'react-native';
 
-export default class Profiles extends React.Component {
-
+class MainScreen extends Component {
   render() {
     return (
-      <View>
-        <Menu title="Profiles" />
-        <Button title="CREATE PROFILE" />
-        <Button title="CREATE PROFILE" />
-        <Button title="CREATE PROFILE" />
+      <View style={styles.container}>
+        <Button onPress={() => this.props.navigation.navigate('Detail')} title="CREATE PROFILE" />
+        <Button title="USE PROFILE" />
+        <Button title="REMOVE PROFILE" />
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
+
+export default MainScreen;

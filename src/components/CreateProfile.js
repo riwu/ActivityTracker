@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-class DetailScreen extends Component {
+class CreateProfile extends Component {
   render() {
     return (
       <View style={styles.container}>
@@ -19,4 +19,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DetailScreen;
+export default CreateProfile;
