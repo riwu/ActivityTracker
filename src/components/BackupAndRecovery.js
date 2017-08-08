@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Button, TouchableOpacity } from 'react-native';
 
-class CreateProfile extends Component {
+class FastingChart extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Button title="CREATE!" />
+        <Text>Fasting chart</Text>
       </View>
     );
   }
@@ -19,4 +19,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CreateProfile;
+export default FastingChart;
