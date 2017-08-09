@@ -7,7 +7,7 @@ import Profiles from '../components/Profiles';
 import CONSTANTS from '../CONSTANTS';
 
 const ProfilesNav = StackNavigator({
-  Main: {
+  AllProfiles: {
     screen: Profiles,
     navigationOptions: ({ navigation }) => ({
       title: CONSTANTS.PROFILES,
@@ -19,7 +19,7 @@ const ProfilesNav = StackNavigator({
       headerStyle: { paddingRight: 10, paddingLeft: 10 },
     }),
   },
-  Detail: {
+  CreateProfile: {
     screen: CreateProfile,
     navigationOptions: props => ({
       title: 'Create Profile',

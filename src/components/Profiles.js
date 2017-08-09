@@ -6,8 +6,8 @@ class MainScreen extends Component {
     return (
       <View style={styles.container}>
         <Button onPress={() => this.props.navigation.navigate('Detail')} title="CREATE PROFILE" />
-        <Button title="USE PROFILE" />
-        <Button title="REMOVE PROFILE" />
+        <Button title="USE PROFILE" onPress={() => this.props.navigation.navigate('Detail')} />
+        <Button title="REMOVE PROFILE" onPress={() => this.props.navigation.navigate('Detail')} />
       </View>
     );
   }

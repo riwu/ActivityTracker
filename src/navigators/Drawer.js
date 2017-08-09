@@ -4,24 +4,23 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import CONSTANTS from '../CONSTANTS';
 
+import DashBoard from '../components/DashBoard';
 import ProfilesNav from './ProfilesNav';
 import FastingChartNav from './FastingChartNav';
-import TarawihChart from './TarawihChart';
-import SurahChart from './SurahChart';
-import DuaList from './DuaList';
-import PrayerTimes from './PrayerTimes';
-import BackupAndRecovery from './BackupAndRecovery';
-import Credits from './Credits';
+import TarawihChartNav from './TarawihChartNav';
+import SurahChartNav from './SurahChartNav';
+import DuaList from '../components/DuaList';
+import PrayerTimes from '../components/PrayerTimes';
+import BackupAndRecovery from '../components/BackupAndRecovery';
+import Credits from '../components/Credits';
 
-
-const navs = [ProfilesNav, FastingChartNav, TarawihChart, SurahChart, DuaList, PrayerTimes, BackupAndRecovery, Credits];
+const navs = [DashBoard, ProfilesNav, FastingChartNav, TarawihChartNav, SurahChartNav, DuaList, PrayerTimes, BackupAndRecovery, Credits];
 const Drawer = DrawerNavigator(
   CONSTANTS.DRAWER_ORDER.reduce((obj, element, index) => ({ ...obj,
     [element]: {
       screen: navs[index],
       navigationOptions: {
         drawer: {
-          label: element,
           icon: ({ tintColor }) => <Icon name="rocket" size={24} />,
         },
       },

@@ -7,7 +7,7 @@ import FastingChart from '../components/FastingChart';
 import CONSTANTS from '../CONSTANTS';
 
 const FastingChartNav = StackNavigator({
-  Main: {
+  MainFastingChart: {
     screen: FastingChart,
     navigationOptions: ({ navigation }) => ({
       title: CONSTANTS.FASTING_CHART,
@@ -19,10 +19,10 @@ const FastingChartNav = StackNavigator({
       headerStyle: { paddingRight: 10, paddingLeft: 10 },
     }),
   },
-  Detail: {
+  FastingDay: {
     screen: FastingDay,
-    navigationOptions: props => ({
-      title: 'Day 1',
+    navigationOptions: ({ navigation }) => ({
+      title: `Day ${navigation.state.params.day}`,
     }),
   },
 });
