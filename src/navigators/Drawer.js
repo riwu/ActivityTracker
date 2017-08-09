@@ -28,6 +28,11 @@ const Drawer = DrawerNavigator(
   }), {}),
   {
     drawerWidth: 250,
+    contentOptions: {
+      style: {
+        marginTop: 24,
+      },
+    },
   },
 );
 

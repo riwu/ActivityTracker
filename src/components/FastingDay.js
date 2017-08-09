@@ -7,18 +7,21 @@ import FastingChartFailed from '../../Images/FastingChart/failed.png';
 class FastingDay extends Component {
   render() {
     return (
-      <View style={styles.container}>
+      <View>
         <View style={styles.images}>
           <Image style={styles.image} source={FastingChartPassed} />
           <Image style={styles.image} source={FastingChartTried} />
           <Image style={styles.image} source={FastingChartFailed} />
         </View>
+        <View style={styles.container}><View style={styles.box} /></View>
       </View>
     );
   }
 }
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    alignItems: 'center',
   },
   images: {
     marginTop: 20,
@@ -27,20 +30,18 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
   image: {
-    width: '26%',
+    width: '25%',
     height: 110,
     resizeMode: 'cover',
   },
   box: {
-    backgroundColor: 'red',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: 200,
-    height: 200,
-    flex: 1,
+    width: 180,
+    height: 180,
     borderWidth: 1,
-    borderColor: 'red',
-    borderStyle: 'dotted',
+    borderColor: 'black',
+    borderStyle: 'dashed',
+    borderRadius: 0.001,
+    marginTop: 250,
   },
 });
 

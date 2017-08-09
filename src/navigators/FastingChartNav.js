@@ -16,13 +16,14 @@ const FastingChartNav = StackNavigator({
           <IOSIcon name="ios-menu" size={30} />
         </TouchableOpacity>
             ),
-      headerStyle: { paddingRight: 10, paddingLeft: 10 },
+      headerStyle: { paddingRight: 10, paddingLeft: 10, marginTop: 24 },
     }),
   },
   FastingDay: {
     screen: FastingDay,
     navigationOptions: ({ navigation }) => ({
       title: `Day ${navigation.state.params.day}`,
+      headerStyle: { paddingRight: 10, paddingLeft: 10, marginTop: 24 },
     }),
   },
 });
