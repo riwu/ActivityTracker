@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, FlatList, Button, Image } from 'react-native';
+import { View, Text, StyleSheet, FlatList, Image } from 'react-native';
 import FastingChartImg from '../../Images/FastingChart/main.png';
 
 class FastingChart extends Component {
   renderSeparator = () => (
     <View
       style={{
-        backgroundColor: '#ffffff',
-        height: 0.1,
+        backgroundColor: 'white',
+        height: 0.5,
       }}
     />
   );
@@ -22,12 +22,14 @@ class FastingChart extends Component {
           numColumns={4}
           ItemSeparatorComponent={this.renderSeparator}
           renderItem={({ item }) => (
-            <Text
-              style={styles.text}
-              onPress={() => this.props.navigation.navigate('FastingDay', { day: item })}
-            >
-              {item}
-            </Text>
+            <View style={styles.view}>
+              <Text
+                style={styles.text}
+                onPress={() => this.props.navigation.navigate('FastingDay', { day: item })}
+              >
+                {item}
+              </Text>
+            </View>
           )}
         />
       </View>
@@ -43,8 +45,12 @@ const styles = StyleSheet.create({
     height: 250,
     resizeMode: 'cover',
   },
-  text: {
+  view: {
     width: '25%',
+    borderRightWidth: 0.5,
+    borderRightColor: 'white',
+  },
+  text: {
     fontSize: 50,
     textAlign: 'center',
   },
