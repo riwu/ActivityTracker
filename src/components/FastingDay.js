@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, Button } from 'react-native';
+import { View, StyleSheet, Image } from 'react-native';
 import FastingChartPassed from '../../Images/FastingChart/passed.png';
 import FastingChartTried from '../../Images/FastingChart/tried.png';
 import FastingChartFailed from '../../Images/FastingChart/failed.png';

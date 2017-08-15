@@ -34,6 +34,8 @@
     "redux": "^3.7.2"
   },
   "rnpm": {
-   "assets": ["./Lato"]
+    "assets": [
+      "./Lato"
+    ]
   }
 }
