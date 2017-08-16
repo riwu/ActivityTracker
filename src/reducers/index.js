@@ -7,11 +7,16 @@ const firstAction = AppNavigator.router.getActionForPathAndParams(CONSTANTS.FAST
 const initialNavState = AppNavigator.router.getStateForAction(firstAction);
 function nav(state = initialNavState, action) {
   let nextState;
-  if (CONSTANTS.DRAWER_ORDER.includes(action.type)) {
+  if (action.type === CONSTANTS.BACK) {
     nextState = AppNavigator.router.getStateForAction(
-      NavigationActions.navigate({ routeName: action.type }),
+      NavigationActions.back(),
       state,
     );
+  } else if (CONSTANTS.DRAWER_ORDER.includes(action.type)) {
+    nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.navigate({ routeName: action.type }),
+        state,
+      );
   } else {
     nextState = AppNavigator.router.getStateForAction(action, state);
   }

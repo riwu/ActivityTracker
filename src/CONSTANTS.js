@@ -18,6 +18,7 @@ const CONSTANTS = {
   PRAYER_TIMES: 'Prayer Times',
   BACKUP_AND_RECOVERY: 'Backup & Recovery',
   CREDITS: 'Credits',
+  BACK: 'backPress',
 };
 
 CONSTANTS.DRAWER_ORDER = [
