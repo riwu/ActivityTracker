@@ -4,20 +4,13 @@ import { StackNavigator } from 'react-navigation';
 import IOSIcon from 'react-native-vector-icons/Ionicons';
 import FastingDay from '../components/FastingDay';
 import SurahChart from '../components/SurahChart';
-import CONSTANTS from '../CONSTANTS';
+import CONSTANTS from '../Constants';
+import NavigationOptions from './NavigationOptions';
 
 const FastingChartNav = StackNavigator({
   Main: {
     screen: SurahChart,
-    navigationOptions: ({ navigation }) => ({
-      title: CONSTANTS.SURAH_CHART,
-      headerLeft: (
-        <TouchableOpacity onPress={() => navigation.navigate('DrawerOpen')}>
-          <IOSIcon name="ios-menu" size={30} />
-        </TouchableOpacity>
-            ),
-      headerStyle: { paddingRight: 10, paddingLeft: 10 },
-    }),
+    navigationOptions: ({ navigation }) => NavigationOptions(navigation, CONSTANTS.SURAH_CHART),
   },
   Detail: {
     screen: FastingDay,

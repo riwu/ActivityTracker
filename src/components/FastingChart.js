@@ -31,7 +31,7 @@ class FastingChart extends Component {
               {item}
             </Text>
           </View>
-          )}
+              )}
       />
     );
   }
@@ -51,7 +51,6 @@ const styles = StyleSheet.create({
     width: '25%',
     borderRightWidth: 0.5,
     borderRightColor: 'white',
-    backgroundColor: '#ecf0f1',
   },
   text: {
     fontSize: 50,

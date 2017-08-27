@@ -1,30 +1,22 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, Text } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import IOSIcon from 'react-native-vector-icons/Ionicons';
 import FastingDay from '../components/FastingDay';
 import FastingChart from '../components/FastingChart';
-import CONSTANTS from '../CONSTANTS';
+import CONSTANTS from '../Constants';
+import NavigationOptions from './NavigationOptions';
 
 const FastingChartNav = StackNavigator({
   MainFastingChart: {
     screen: FastingChart,
-    navigationOptions: ({ navigation }) => ({
-      title: CONSTANTS.FASTING_CHART,
-      headerLeft: (
-        <TouchableOpacity onPress={() => navigation.navigate('DrawerOpen')}>
-          <IOSIcon name="ios-menu" size={30} />
-        </TouchableOpacity>
-            ),
-      headerStyle: { paddingRight: 10, paddingLeft: 10, marginTop: 24 },
-    }),
+    navigationOptions: ({ navigation }) => NavigationOptions(navigation,
+      CONSTANTS.FASTING_CHART),
   },
   FastingDay: {
     screen: FastingDay,
-    navigationOptions: ({ navigation }) => ({
-      title: `Day ${navigation.state.params.day}`,
-      headerStyle: { paddingRight: 10, paddingLeft: 10, marginTop: 24 },
-    }),
+    navigationOptions: ({ navigation }) => NavigationOptions(navigation,
+      `Day ${navigation.state.params.day}`, false),
   },
 });
 

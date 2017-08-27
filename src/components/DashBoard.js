@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Button, TouchableOpacity } from 'react-native';
+import NavigationOptions from '../navigators/NavigationOptions';
+import CONSTANTS from '../Constants';
 
-class FastingChart extends Component {
+class DashBoard extends Component {
+  static navigationOptions = ({ navigation }) => NavigationOptions(navigation,
+    CONSTANTS.DASH_BOARD);
+
   render() {
     return (
       <View style={styles.container}>
@@ -19,4 +24,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FastingChart;
+export default DashBoard;

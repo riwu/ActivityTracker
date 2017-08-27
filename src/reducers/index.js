@@ -1,32 +1,15 @@
 import { combineReducers } from 'redux';
-import { NavigationActions } from 'react-navigation';
-import AppNavigator from '../navigators/Drawer';
-import CONSTANTS from '../CONSTANTS';
+import { FONT_LOADED } from '../ActionTypes';
+import navigation from './navigation';
 
-const firstAction = AppNavigator.router.getActionForPathAndParams(CONSTANTS.FASTING_CHART);
-const initialNavState = AppNavigator.router.getStateForAction(firstAction);
-function nav(state = initialNavState, action) {
-  let nextState;
-  if (action.type === CONSTANTS.BACK) {
-    nextState = AppNavigator.router.getStateForAction(
-      NavigationActions.back(),
-      state,
-    );
-  } else if (CONSTANTS.DRAWER_ORDER.includes(action.type)) {
-    nextState = AppNavigator.router.getStateForAction(
-        NavigationActions.navigate({ routeName: action.type }),
-        state,
-      );
-  } else {
-    nextState = AppNavigator.router.getStateForAction(action, state);
-  }
+const isFontLoaded = (state = false, action) => {
+  if (action.type !== FONT_LOADED) return state;
+  return true;
+};
 
-  return nextState || state;
-}
-
-
-const AppReducer = combineReducers({
-  nav,
+const reducer = combineReducers({
+  navigation,
+  isFontLoaded,
 });
 
-export default AppReducer;
+export default reducer;

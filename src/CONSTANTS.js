@@ -1,3 +1,6 @@
+import { Platform, NativeModules } from 'react-native';
+
+
 function deepFreeze(obj) {
   Object.values(obj).forEach((value) => {
     if (typeof value === 'object' && value !== null) {
@@ -18,7 +21,13 @@ const CONSTANTS = {
   PRAYER_TIMES: 'Prayer Times',
   BACKUP_AND_RECOVERY: 'Backup & Recovery',
   CREDITS: 'Credits',
+
   BACK: 'backPress',
+
+  STATUS_BAR_HEIGHT: (Platform.OS === 'ios')
+                   ? 20
+                   : NativeModules.StatusBarManager.HEIGHT,
+  NAV_BAR_HEIGHT: 55,
 };
 
 CONSTANTS.DRAWER_ORDER = [
