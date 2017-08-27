@@ -76,12 +76,10 @@ class FastingDay extends Component {
 const marginTop = 20;
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: 'center',
   },
   images: {
     marginTop,
-    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
@@ -101,7 +99,7 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     borderStyle: 'dashed',
     borderRadius: 0.001,
-    marginTop: 250,
+    marginTop: 150,
     padding: 7,
   },
 });

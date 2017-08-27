@@ -22,7 +22,7 @@ class App extends React.Component {
         backgroundColor: '#ecf0f1',
       },
     };
-    // setCustomView(customViewProps);
+    setCustomView(customViewProps);
 
     const customImageProps = {
       resizeMode: 'cover',

@@ -31,12 +31,12 @@ class FastingChart extends Component {
               {item}
             </Text>
           </View>
-              )}
+        )}
       />
     );
   }
 }
-//
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
