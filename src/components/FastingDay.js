@@ -6,6 +6,7 @@ import FastingChartFailed from '../../Images/FastingChart/failed.png';
 import CONSTANTS from '../Constants';
 
 const marginTop = 20;
+const imageHeight = 110;
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
@@ -17,7 +18,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: '25%',
-    height: 110,
+    height: imageHeight,
   },
   enlargedImage: {
     width: '100%',
@@ -35,6 +36,20 @@ const styles = StyleSheet.create({
   },
 });
 
+const objToStr = (obj) => {
+  const seen = [];
+  return JSON.stringify(obj, (key, val) => {
+    console.log(key);
+    if (val != null && typeof val === 'object') {
+      if (seen.includes(val) || key && key.startsWith('_')) {
+        return;
+      }
+      seen.push(val);
+    }
+    return val;
+  });
+};
+
 class FastingDay extends Component {
   constructor(props) {
     super(props);
@@ -43,7 +58,7 @@ class FastingDay extends Component {
       passed: new Animated.ValueXY(),
       tried: new Animated.ValueXY(),
       failed: new Animated.ValueXY(),
-      activeImage: null,
+      selectedImage: null,
     };
 
     const createPanResponder = (stateKey, selectedImage) => PanResponder.create({
@@ -54,7 +69,7 @@ class FastingDay extends Component {
       }]),
       onPanResponderRelease: (e, gesture) => {
         const box = this.dropZone;
-        const boxY = box.y + CONSTANTS.STATUS_BAR_HEIGHT + CONSTANTS.NAV_BAR_HEIGHT + marginTop;
+        const boxY = box.y + CONSTANTS.STATUS_BAR_HEIGHT + CONSTANTS.NAV_BAR_HEIGHT + marginTop + imageHeight;
         if (box.x <= gesture.moveX && gesture.moveX <= box.x + box.width &&
           boxY <= gesture.moveY && gesture.moveY <= boxY + box.height) {
           this.setState({ selectedImage });
@@ -78,8 +93,8 @@ class FastingDay extends Component {
     return (
       <View style={styles.container}>
         <View onLayout={(e) => { this.dropZone = e.nativeEvent.layout; }} style={styles.box}>
-          {this.state.activeImage
-            ? <Image style={styles.enlargedImage} source={this.state.activeImage} />
+          {this.state.selectedImage
+            ? <Image style={styles.enlargedImage} source={this.state.selectedImage} />
             : null}
         </View>
       </View>
@@ -90,18 +105,15 @@ class FastingDay extends Component {
     return (
       <View>
         <View style={styles.images}>
-          {this.panResponders.map(({ stateKey, imageSource, panResponder }) => {
-            console.log(stateKey);
-            return (
-              <Animated.Image
-                key={stateKey}
-                onLayout={(e) => { this.imageDim = e.nativeEvent.layout; }}
-                {...panResponder.panHandlers}
-                style={[this.state[stateKey].getLayout(), styles.image]}
-                source={imageSource}
-              />
-            );
-          },
+          {this.panResponders.map(({ stateKey, imageSource, panResponder }) => (
+            <Animated.Image
+              key={stateKey}
+              onLayout={(e) => { this.imageDim = e.nativeEvent.layout; }}
+              {...panResponder.panHandlers}
+              style={[this.state[stateKey].getLayout(), styles.image]}
+              source={imageSource}
+            />
+            ),
           )}
         </View>
         {this.renderContainer()}
