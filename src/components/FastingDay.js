@@ -5,8 +5,37 @@ import FastingChartTried from '../../Images/FastingChart/tried.png';
 import FastingChartFailed from '../../Images/FastingChart/failed.png';
 import CONSTANTS from '../Constants';
 
-class FastingDay extends Component {
+const marginTop = 20;
+const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+  },
+  images: {
+    marginTop,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  image: {
+    width: '25%',
+    height: 110,
+  },
+  enlargedImage: {
+    width: '100%',
+    height: '100%',
+  },
+  box: {
+    width: 180,
+    height: 180,
+    borderWidth: 1,
+    borderColor: 'black',
+    borderStyle: 'dashed',
+    borderRadius: 0.001,
+    marginTop: 150,
+    padding: 7,
+  },
+});
 
+class FastingDay extends Component {
   constructor(props) {
     super(props);
 
@@ -38,7 +67,11 @@ class FastingDay extends Component {
       },
     });
     this.panResponders = Object.entries({ passed: FastingChartPassed, tried: FastingChartTried, failed: FastingChartFailed })
-      .map(([key, img]) => [img, createPanResponder(key, img)]);
+      .map(([stateKey, imageSource]) => ({
+        stateKey,
+        imageSource,
+        panResponder: createPanResponder(stateKey, imageSource),
+      }));
   }
 
   renderContainer() {
@@ -57,15 +90,18 @@ class FastingDay extends Component {
     return (
       <View>
         <View style={styles.images}>
-          {this.panResponders.map(([img, panResponder]) => (
-            <Animated.Image
-              key={img}
-              onLayout={(e) => { this.imageDim = e.nativeEvent.layout; }}
-              {...panResponder.panHandlers}
-              style={[this.state.passed.getLayout(), styles.image]}
-              source={img}
-            />
-          ),
+          {this.panResponders.map(({ stateKey, imageSource, panResponder }) => {
+            console.log(stateKey);
+            return (
+              <Animated.Image
+                key={stateKey}
+                onLayout={(e) => { this.imageDim = e.nativeEvent.layout; }}
+                {...panResponder.panHandlers}
+                style={[this.state[stateKey].getLayout(), styles.image]}
+                source={imageSource}
+              />
+            );
+          },
           )}
         </View>
         {this.renderContainer()}
@@ -73,35 +109,5 @@ class FastingDay extends Component {
     );
   }
 }
-const marginTop = 20;
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-  },
-  images: {
-    marginTop,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-  },
-  image: {
-    width: '25%',
-    height: 110,
-    resizeMode: 'cover',
-  },
-  enlargedImage: {
-    width: '100%',
-    height: '100%',
-  },
-  box: {
-    width: 180,
-    height: 180,
-    borderWidth: 1,
-    borderColor: 'black',
-    borderStyle: 'dashed',
-    borderRadius: 0.001,
-    marginTop: 150,
-    padding: 7,
-  },
-});
 
 export default FastingDay;

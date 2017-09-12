@@ -20,12 +20,15 @@ class App extends React.Component {
     const customViewProps = {
       style: {
         backgroundColor: '#ecf0f1',
+        zIndex: -1,
       },
     };
-    setCustomView(customViewProps);
+    // setCustomView(customViewProps);
 
     const customImageProps = {
       resizeMode: 'cover',
+      zIndex: 1,
+
     };
     setCustomImage(customImageProps);
   }
