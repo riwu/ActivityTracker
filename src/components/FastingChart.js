@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, FlatList, Image, AsyncStorage } from 'react-native';
+import { View, Text, StyleSheet, FlatList, Image, Dimensions } from 'react-native';
 import { updateFastingChart } from '../actions';
 import FastingChartImg from '../../Images/FastingChart/main.png';
+import Constants from '../Constants';
 
-import FastingChartPassed from '../../Images/FastingChart/passed.png';
-import FastingChartTried from '../../Images/FastingChart/tried.png';
-import FastingChartFailed from '../../Images/FastingChart/failed.png';
-
-const images = [FastingChartPassed, FastingChartTried, FastingChartFailed];
+const width = Dimensions.get('window').width;
+console.log(width);
 
 class FastingChart extends Component {
   renderSeparator = () => (
@@ -20,6 +18,7 @@ class FastingChart extends Component {
   );
 
   render() {
+    console.log('data', this.props.data);
     return (
       <FlatList
         style={styles.container}
@@ -28,14 +27,16 @@ class FastingChart extends Component {
         keyExtractor={(item, index) => index}
         numColumns={4}
         ItemSeparatorComponent={this.renderSeparator}
-        renderItem={({ item, index }) => (
+        renderItem={({ item }) => (
           <View style={styles.view}>
-            {(typeof item === 'string')
+            {item.replace
               ?
+                <Image style={styles.dataImage} source={item.replace} />
+              :
                 <Text
                   style={styles.text}
                   onPress={() => this.props.navigation.navigate('FastingDay', {
-                    day: index,
+                    day: index + 1,
                     onChange: (img) => {
                       const newData = {
                         ...this.props.data,
@@ -48,8 +49,6 @@ class FastingChart extends Component {
                 >
                   {item}
                 </Text>
-              :
-                <Image style={styles.dataImage} source={item} />
             }
 
           </View>
@@ -79,7 +78,7 @@ const styles = StyleSheet.create({
     borderRightColor: 'white',
   },
   text: {
-    fontSize: 50,
+    fontSize: 40,
     textAlign: 'center',
     padding: 20,
   },

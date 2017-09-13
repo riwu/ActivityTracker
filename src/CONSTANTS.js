@@ -1,5 +1,7 @@
 import { Platform, NativeModules } from 'react-native';
-
+import FastingChartPassed from '../../Images/FastingChart/passed.png';
+import FastingChartTried from '../../Images/FastingChart/tried.png';
+import FastingChartFailed from '../../Images/FastingChart/failed.png';
 
 function deepFreeze(obj) {
   Object.values(obj).forEach((value) => {
@@ -12,6 +14,7 @@ function deepFreeze(obj) {
 }
 
 const CONSTANTS = {
+  FASTING_CHART_IMAGES: [FastingChartPassed, FastingChartTried, FastingChartFailed],
   DASH_BOARD: 'Dashboard',
   PROFILES: 'Profiles',
   FASTING_CHART: 'My Fasting Chart',

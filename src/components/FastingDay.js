@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Image, Animated, PanResponder } from 'react-native';
-import FastingChartPassed from '../../Images/FastingChart/passed.png';
-import FastingChartTried from '../../Images/FastingChart/tried.png';
-import FastingChartFailed from '../../Images/FastingChart/failed.png';
 import CONSTANTS from '../Constants';
 
 const marginTop = 20;
@@ -36,53 +33,39 @@ const styles = StyleSheet.create({
   },
 });
 
-const objToStr = (obj) => {
-  const seen = [];
-  return JSON.stringify(obj, (key, val) => {
-    console.log(key);
-    if (val != null && typeof val === 'object') {
-      if (seen.includes(val) || key && key.startsWith('_')) {
-        return;
-      }
-      seen.push(val);
-    }
-    return val;
-  });
-};
-
 class FastingDay extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      passed: new Animated.ValueXY(),
-      tried: new Animated.ValueXY(),
-      failed: new Animated.ValueXY(),
-      selectedImage: null,
+      ...this.props.images.reduce((obj, image, index) => ({
+        [index]: new Animated.ValueXY(),
+      }), {}),
+      selectedImageIndex: null,
     };
 
-    const createPanResponder = (stateKey, selectedImage) => PanResponder.create({
+    this.panResponders = this.props.images.map((image, imageIndex) => PanResponder.create({
       onStartShouldSetPanResponder: () => true,
       onPanResponderMove: Animated.event([null, {
-        dx: this.state[stateKey].x,
-        dy: this.state[stateKey].y,
+        dx: this.state[imageIndex].x,
+        dy: this.state[imageIndex].y,
       }]),
       onPanResponderRelease: (e, gesture) => {
         const box = this.dropZone;
         const boxY = box.y + CONSTANTS.STATUS_BAR_HEIGHT + CONSTANTS.NAV_BAR_HEIGHT + marginTop + imageHeight;
         if (box.x <= gesture.moveX && gesture.moveX <= box.x + box.width &&
           boxY <= gesture.moveY && gesture.moveY <= boxY + box.height) {
-          this.setState({ selectedImage });
-          this.props.navigation.state.params.onChange(selectedImage);
+          this.setState({ selectedImageIndex: imageIndex });
+          this.props.navigation.state.params.onChange(imageIndex);
         }
 
         Animated.decay(
-              this.state[stateKey],
+              this.state[imageIndex],
               { toValue: { x: 0, y: 0 } },
           ).start();
       },
     });
-    this.panResponders = Object.entries({ passed: FastingChartPassed, tried: FastingChartTried, failed: FastingChartFailed })
+    this.panResponders = Object.entries({ passed: 0, tried: 1, failed: 2 })
       .map(([stateKey, imageSource]) => ({
         stateKey,
         imageSource,

@@ -1,5 +1,10 @@
 const initialState = Array(...{ length: 30 }).map(Number.call, Number)
-  .reduce((obj, i) => ({ ...obj, [i + 1]: String(i + 1) }), {});
+  .reduce((obj, i) => ({
+    ...obj,
+    [i]: {
+      main: i + 1,
+    },
+  }), {});
 
 const fastingChart = (state = initialState, action) => {
   console.log('action', action, state);
