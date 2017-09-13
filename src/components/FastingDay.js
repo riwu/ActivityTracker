@@ -73,6 +73,7 @@ class FastingDay extends Component {
         if (box.x <= gesture.moveX && gesture.moveX <= box.x + box.width &&
           boxY <= gesture.moveY && gesture.moveY <= boxY + box.height) {
           this.setState({ selectedImage });
+          this.props.navigation.state.params.onChange(selectedImage);
         }
 
         Animated.decay(

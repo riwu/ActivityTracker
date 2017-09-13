@@ -1,15 +1,16 @@
 import { combineReducers } from 'redux';
-import { FONT_LOADED } from '../ActionTypes';
 import navigation from './navigation';
+import fastingChart from './fastingChart';
 
 const isFontLoaded = (state = false, action) => {
-  if (action.type !== FONT_LOADED) return state;
+  if (action.type !== 'FONT_LOADED') return state;
   return true;
 };
 
 const reducer = combineReducers({
   navigation,
   isFontLoaded,
+  fastingChart,
 });
 
 export default reducer;

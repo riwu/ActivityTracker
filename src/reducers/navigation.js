@@ -1,6 +1,5 @@
 import { NavigationActions } from 'react-navigation';
 import CONSTANTS from '../Constants';
-import { NAVIGATE_BACK } from '../ActionTypes';
 import AppNavigator from '../navigators/Drawer';
 
 const firstAction = AppNavigator.router.getActionForPathAndParams(CONSTANTS.FASTING_CHART);
@@ -8,7 +7,7 @@ const initialNavState = AppNavigator.router.getStateForAction(firstAction);
 
 const navigation = (state = initialNavState, action) => {
   let nextState;
-  if (action.type === NAVIGATE_BACK) {
+  if (action.type === 'NAVIGATE_BACK') {
     nextState = AppNavigator.router.getStateForAction(
       NavigationActions.back(),
       state,

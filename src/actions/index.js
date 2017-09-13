@@ -1,9 +1,13 @@
-import * as types from '../ActionTypes';
 
 export const fontLoaded = () => ({
-  type: types.FONT_LOADED,
+  type: 'FONT_LOADED',
 });
 
 export const navigateBack = () => ({
-  type: types.NAVIGATE_BACK,
+  type: 'NAVIGATE_BACK',
+});
+
+export const updateFastingChart = data => ({
+  type: 'UPDATE_FASTING_CHART',
+  data,
 });

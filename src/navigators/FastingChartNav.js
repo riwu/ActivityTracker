@@ -1,9 +1,6 @@
-import React from 'react';
-import { TouchableOpacity, Text } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-import IOSIcon from 'react-native-vector-icons/Ionicons';
 import FastingDay from '../components/FastingDay';
-import FastingChart from '../components/FastingChart';
+import FastingChart from '../containers/FastingChartContainer';
 import CONSTANTS from '../Constants';
 import NavigationOptions from './NavigationOptions';
 

@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, FlatList, Image } from 'react-native';
+import { View, Text, StyleSheet, FlatList, Image, AsyncStorage } from 'react-native';
+import { updateFastingChart } from '../actions';
 import FastingChartImg from '../../Images/FastingChart/main.png';
+
+import FastingChartPassed from '../../Images/FastingChart/passed.png';
+import FastingChartTried from '../../Images/FastingChart/tried.png';
+import FastingChartFailed from '../../Images/FastingChart/failed.png';
+
+const images = [FastingChartPassed, FastingChartTried, FastingChartFailed];
 
 class FastingChart extends Component {
   renderSeparator = () => (
@@ -17,19 +24,34 @@ class FastingChart extends Component {
       <FlatList
         style={styles.container}
         ListHeaderComponent={<Image style={styles.image} source={FastingChartImg} />}
-        data={['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15',
-          '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30']}
-        keyExtractor={item => item}
+        data={Object.values(this.props.data || {})}
+        keyExtractor={(item, index) => index}
         numColumns={4}
         ItemSeparatorComponent={this.renderSeparator}
-        renderItem={({ item }) => (
+        renderItem={({ item, index }) => (
           <View style={styles.view}>
-            <Text
-              style={styles.text}
-              onPress={() => this.props.navigation.navigate('FastingDay', { day: item })}
-            >
-              {item}
-            </Text>
+            {(typeof item === 'string')
+              ?
+                <Text
+                  style={styles.text}
+                  onPress={() => this.props.navigation.navigate('FastingDay', {
+                    day: index,
+                    onChange: (img) => {
+                      const newData = {
+                        ...this.props.data,
+                        [item]: img,
+                      };
+                      console.log('new', newData);
+                      updateFastingChart(newData);
+                    },
+                  })}
+                >
+                  {item}
+                </Text>
+              :
+                <Image style={styles.dataImage} source={item} />
+            }
+
           </View>
         )}
       />
@@ -45,9 +67,13 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: 250,
-    resizeMode: 'cover',
+  },
+  dataImage: {
+    width: '100%',
+    height: 100,
   },
   view: {
+    flex: 1,
     width: '25%',
     borderRightWidth: 0.5,
     borderRightColor: 'white',
@@ -55,6 +81,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 50,
     textAlign: 'center',
+    padding: 20,
   },
 });
 
