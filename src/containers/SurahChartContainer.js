@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, Text, Image } from 'react-native';
+import { StyleSheet, Image } from 'react-native';
 import Chart from '../components/Chart';
 import { updateSurahChart } from '../actions';
 import Constants from '../Constants';

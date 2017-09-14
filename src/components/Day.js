@@ -57,7 +57,6 @@ class FastingDay extends Component {
           {this.panResponders.map((panResponder, index) => (
             <Animated.Image
               key={index}
-              onLayout={(e) => { this.imageDim = e.nativeEvent.layout; }}
               {...panResponder.panHandlers}
               style={[this.state[index].getLayout(), this.props.styles.image]}
               source={this.props.images[index]}

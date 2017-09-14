@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     borderRightColor: 'white',
   },
   text: {
-    fontSize: Constants.WIDTH / 8.2,
+    fontSize: Constants.WIDTH / 8.5,
     textAlign: 'center',
     padding: 20,
   },

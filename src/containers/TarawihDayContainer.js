@@ -4,7 +4,7 @@ import Day from '../components/Day';
 import Constants from '../Constants';
 
 const marginTop = 20;
-const imageHeight = Constants.WIDTH / 4;
+const imageHeight = (Constants.WIDTH / 4) * 1.851;
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
@@ -15,21 +15,21 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
   image: {
-    width: imageHeight,
-    height: imageHeight * 1.851,
+    width: Constants.WIDTH / 4,
+    height: imageHeight,
   },
   enlargedImage: {
     width: '100%',
     height: '100%',
   },
   box: {
-    width: 180,
-    height: 180,
+    width: 120,
+    height: 230,
     borderWidth: 1,
     borderColor: 'black',
     borderStyle: 'dashed',
     borderRadius: 0.001,
-    marginTop: 150,
+    marginTop: 70,
     padding: 7,
   },
 });

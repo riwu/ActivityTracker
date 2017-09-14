@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import { StyleSheet } from 'react-native';
 import Day from '../components/Day';
-import { updateFastingChart } from '../actions';
 import Constants from '../Constants';
 
 const marginTop = 20;
@@ -24,13 +23,13 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   box: {
-    width: 180,
-    height: 180,
+    width: 200,
+    height: 100,
     borderWidth: 1,
     borderColor: 'black',
     borderStyle: 'dashed',
     borderRadius: 0.001,
-    marginTop: 150,
+    marginTop: 120,
     padding: 7,
   },
 });
@@ -39,7 +38,6 @@ const mapDispatchToProps = dispatch => ({
   images: Constants.SURAH_CHART_IMAGES,
   styles,
   extraHeight: marginTop + imageHeight,
-  updateChart: () => dispatch(updateFastingChart),
 });
 
 export default connect(
