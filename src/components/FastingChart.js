@@ -62,12 +62,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   image: {
-    width: '100%',
-    height: 250,
+    width,
+    height: width / 1.6543,
   },
   dataImage: {
-    width: '100%',
-    height: 100,
+    width: width / 4,
+    height: width / 4,
   },
   view: {
     flex: 1,

@@ -1,12 +1,12 @@
 import React from 'react';
-import { TouchableOpacity, Text } from 'react-native';
+import { TouchableOpacity, Text, Platform } from 'react-native';
 import IOSIcon from 'react-native-vector-icons/Ionicons';
 import CONSTANTS from '../Constants';
 
 const headerStyle = {
   paddingRight: 10,
   paddingLeft: 10,
-  marginTop: CONSTANTS.STATUS_BAR_HEIGHT,
+  marginTop: Platform.OS === 'ios' ? 0 : CONSTANTS.STATUS_BAR_HEIGHT,
   height: CONSTANTS.NAV_BAR_HEIGHT,
 };
 
