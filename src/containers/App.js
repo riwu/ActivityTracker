@@ -26,7 +26,7 @@ class App extends React.Component {
     // setCustomView(customViewProps);
 
     const customImageProps = {
-      resizeMode: 'contain',
+      resizeMode: 'cover',
       zIndex: 1,
 
     };

@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import navigation from './navigation';
-import fastingChart from './fastingChart';
+import chart from './chart';
 
 const isFontLoaded = (state = false, action) => {
   if (action.type !== 'FONT_LOADED') return state;
@@ -10,7 +10,7 @@ const isFontLoaded = (state = false, action) => {
 const reducer = combineReducers({
   navigation,
   isFontLoaded,
-  fastingChart,
+  chart,
 });
 
 export default reducer;

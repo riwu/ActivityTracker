@@ -1,6 +1,6 @@
 import { StackNavigator } from 'react-navigation';
-import FastingDay from '../components/FastingDay';
-import TarawihChart from '../components/TarawihChart';
+import Day from '../components/Day';
+import TarawihChart from '../containers/TarawihChartContainer';
 import CONSTANTS from '../Constants';
 import NavigationOptions from './NavigationOptions';
 
@@ -10,8 +10,8 @@ const FastingChartNav = StackNavigator({
     navigationOptions: ({ navigation }) => NavigationOptions(navigation, CONSTANTS.TARAWIH_CHART),
   },
   Detail: {
-    screen: FastingDay,
-    navigationOptions: props => ({
+    screen: Day,
+    navigationOptions: () => ({
       title: 'Day 1',
     }),
   },

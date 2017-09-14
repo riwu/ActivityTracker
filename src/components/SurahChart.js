@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, FlatList, Image } from 'react-native';
-import FastingChartImg from '../../Images/FastingChart/main.png';
+import FastingChartImg from '../../Images/Fasting/main.png';
 
 class SurahChart extends Component {
   renderSeparator = () => (
@@ -36,7 +36,7 @@ class SurahChart extends Component {
     );
   }
 }
-//
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
