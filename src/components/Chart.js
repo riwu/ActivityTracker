@@ -1,51 +1,47 @@
 import React from 'react';
-import { View, Text, FlatList, Image } from 'react-native';
+import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native';
 
-const FastingChart = ({ mainImage, images, data, updateChart, navigation, styles }) => (
-  <FlatList
-    style={styles.container}
-    ListHeaderComponent={<Image style={styles.image} source={mainImage} />}
-    data={Object.values(data || {})}
-    keyExtractor={(item, index) => index}
-    numColumns={4}
-    ItemSeparatorComponent={() => (
-      <View
-        style={{
-          backgroundColor: 'white',
-          height: 0.5,
-        }}
-      />
+const FastingChart = ({ mainImage, images, data, updateChart, navigation, styles,
+  DefaultItem, navPath }) => (
+    <FlatList
+      style={styles.container}
+      ListHeaderComponent={<Image style={styles.image} source={mainImage} />}
+      data={Object.values(data || {})}
+      keyExtractor={(item, index) => index}
+      numColumns={4}
+      ItemSeparatorComponent={() => (
+        <View
+          style={{
+            backgroundColor: 'white',
+            height: 0.5,
+          }}
+        />
         )}
-    renderItem={({ item, index }) => (
-      <View style={styles.view}>
-        {item.replace === undefined
-          ?
-            <Text
-              style={styles.text}
-              onPress={() => navigation.navigate('FastingDay', {
-                day: item.main,
-                images,
-                onChange: (replaceIndex) => {
-                  const newData = {
-                    ...data,
-                    [index]: {
-                      ...data[index],
-                      replace: replaceIndex,
-                    },
-                  };
-                  updateChart(newData);
+      renderItem={({ item, index }) => (
+        <TouchableOpacity
+          style={styles.view}
+          onPress={() => navigation.navigate(navPath, {
+            day: item.main,
+            images,
+            onChange: (replaceIndex) => {
+              const newData = {
+                ...data,
+                [index]: {
+                  ...data[index],
+                  replace: replaceIndex,
                 },
-              })}
-            >
-              {item.main}
-            </Text>
-          :
-            <Image style={styles.dataImage} source={images[item.replace]} />
+              };
+              updateChart(newData);
+            },
+          })}
+        >
+          {item.replace === undefined
+          ? <DefaultItem main={item.main} />
+          : <Image style={styles.dataImage} source={images[item.replace]} />
         }
-
-      </View>
+        </TouchableOpacity>
         )}
-  />
+    />
 );
 
 export default FastingChart;

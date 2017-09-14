@@ -1,45 +1,48 @@
 import { connect } from 'react-redux';
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 import Day from '../components/Day';
 import { updateFastingChart } from '../actions';
 import Constants from '../Constants';
-import FastingChartImg from '../../Images/Fasting/main.png';
 
-const width = Dimensions.get('window').width;
+const marginTop = 20;
+const imageHeight = Constants.WIDTH / 4;
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: 'white',
+    alignItems: 'center',
+  },
+  images: {
+    marginTop,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
   },
   image: {
-    width,
-    height: width / 1.6543,
+    width: imageHeight,
+    height: imageHeight,
   },
-  dataImage: {
-    width: width / 4,
-    height: width / 4,
+  enlargedImage: {
+    width: '100%',
+    height: '100%',
   },
-  view: {
-    flex: 1,
-    width: '25%',
-    borderRightWidth: 0.5,
-    borderRightColor: 'white',
-  },
-  text: {
-    fontSize: width / 8.2,
-    textAlign: 'center',
-    padding: 20,
+  box: {
+    width: 180,
+    height: 180,
+    borderWidth: 1,
+    borderColor: 'black',
+    borderStyle: 'dashed',
+    borderRadius: 0.001,
+    marginTop: 150,
+    padding: 7,
   },
 });
 
-const mapStateToProps = state => ({
-  data: state.chart.fasting,
+const mapDispatchToProps = dispatch => ({
   images: Constants.FASTING_CHART_IMAGES,
-  mainImage: FastingChartImg,
   styles,
+  extraHeight: marginTop + imageHeight,
+  updateChart: () => dispatch(updateFastingChart),
 });
 
 export default connect(
-  mapStateToProps,
-  { updateFastingChart },
+  null,
+  mapDispatchToProps,
 )(Day);

@@ -1,5 +1,5 @@
 import { StackNavigator } from 'react-navigation';
-import Day from '../components/Day';
+import FastingDay from '../containers/FastingDayContainer';
 import FastingChart from '../containers/FastingChartContainer';
 import Constants from '../Constants';
 import NavigationOptions from './NavigationOptions';
@@ -11,7 +11,7 @@ const FastingChartNav = StackNavigator({
       Constants.FASTING_CHART),
   },
   FastingDay: {
-    screen: Day,
+    screen: FastingDay,
     navigationOptions: ({ navigation }) => NavigationOptions(navigation,
       `Day ${navigation.state.params.day}`, false),
   },

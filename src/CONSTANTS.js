@@ -1,4 +1,4 @@
-import { Platform, NativeModules } from 'react-native';
+import { Platform, NativeModules, Dimensions } from 'react-native';
 
 import FastingChartPassed from '../Images/Fasting/passed.png';
 import FastingChartTried from '../Images/Fasting/tried.png';
@@ -21,6 +21,7 @@ function deepFreeze(obj) {
 }
 
 const CONSTANTS = {
+  WIDTH: Dimensions.get('window').width,
   FASTING_CHART_IMAGES: [FastingChartPassed, FastingChartTried, FastingChartFailed],
   TARAWIH_CHART_IMAGES: [TarawihChartPassed, TarawihChartFailed],
   SURAH_CHART_IMAGES: [SurahChartRead, SurahChartMemorized],
