@@ -1,9 +1,7 @@
-import React from 'react';
-import { TouchableOpacity } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import IOSIcon from 'react-native-vector-icons/Ionicons';
 import Day from '../components/Day';
-import SurahChart from '../components/SurahChart';
+import SurahChart from '../containers/SurahChartContainer';
 import CONSTANTS from '../Constants';
 import NavigationOptions from './NavigationOptions';
 

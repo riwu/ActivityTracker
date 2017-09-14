@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width,
-    height: width / 1.336,
+    height: width / 1.453,
   },
   dataImage: {
     width: width / 4,
