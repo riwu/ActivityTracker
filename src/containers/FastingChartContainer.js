@@ -37,6 +37,7 @@ const mapStateToProps = state => ({
   images: Constants.FASTING_CHART_IMAGES,
   mainImage: FastingChartImg,
   styles,
+  updateChart: updateFastingChart,
 });
 
 export default connect(

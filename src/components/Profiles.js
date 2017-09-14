@@ -5,9 +5,9 @@ class MainScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Button onPress={() => this.props.navigation.navigate('Detail')} title="CREATE PROFILE" />
-        <Button title="USE PROFILE" onPress={() => this.props.navigation.navigate('Detail')} />
-        <Button title="REMOVE PROFILE" onPress={() => this.props.navigation.navigate('Detail')} />
+        <Button onPress={() => this.props.navigation.navigate('CreateProfile')} title="CREATE PROFILE" />
+        <Button title="USE PROFILE" onPress={() => {}} />
+        <Button title="REMOVE PROFILE" onPress={() => {}} />
       </View>
     );
   }

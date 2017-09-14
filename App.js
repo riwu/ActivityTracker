@@ -7,7 +7,7 @@ import { persistStore, autoRehydrate } from 'redux-persist';
 import reducer from './src/reducers';
 import MainApp from './src/containers/App';
 
-const store = createStore(reducer, undefined, autoRehydrate());
+const store = createStore(reducer, undefined); // autoRehydrate()
 
 persistStore(store, { storage: AsyncStorage });
 

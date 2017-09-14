@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import { StyleSheet, Dimensions } from 'react-native';
 import Chart from '../components/Chart';
-import { updateTarawihChart } from '../actions';
+import { updateSurahChart } from '../actions';
 import Constants from '../Constants';
-import TarawihChartImg from '../../Images/Tarawih/main.png';
+import SurahChartImg from '../../Images/Surah/main.png';
 
 const width = Dimensions.get('window').width;
 const styles = StyleSheet.create({
@@ -32,14 +32,14 @@ const styles = StyleSheet.create({
   },
 });
 const mapStateToProps = state => ({
-  data: state.chart.tarawih,
-  images: Constants.TARAWIH_CHART_IMAGES,
-  mainImage: TarawihChartImg,
+  data: state.chart.surah,
+  images: Constants.SURAH_CHART_IMAGES,
+  mainImage: SurahChartImg,
   styles,
-  updateChart: updateTarawihChart,
+  updateChart: updateSurahChart,
 });
 
 export default connect(
   mapStateToProps,
-  { updateTarawihChart },
+  { updateSurahChart },
 )(Chart);

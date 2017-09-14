@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import { StyleSheet, Dimensions } from 'react-native';
-import Chart from '../components/Chart';
-import { updateTarawihChart } from '../actions';
+import Day from '../components/Day';
+import { updateFastingChart } from '../actions';
 import Constants from '../Constants';
-import TarawihChartImg from '../../Images/Tarawih/main.png';
+import FastingChartImg from '../../Images/Fasting/main.png';
 
 const width = Dimensions.get('window').width;
 const styles = StyleSheet.create({
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width,
-    height: width / 1.336,
+    height: width / 1.6543,
   },
   dataImage: {
     width: width / 4,
@@ -31,15 +31,15 @@ const styles = StyleSheet.create({
     padding: 20,
   },
 });
+
 const mapStateToProps = state => ({
-  data: state.chart.tarawih,
-  images: Constants.TARAWIH_CHART_IMAGES,
-  mainImage: TarawihChartImg,
+  data: state.chart.fasting,
+  images: Constants.FASTING_CHART_IMAGES,
+  mainImage: FastingChartImg,
   styles,
-  updateChart: updateTarawihChart,
 });
 
 export default connect(
   mapStateToProps,
-  { updateTarawihChart },
-)(Chart);
+  { updateFastingChart },
+)(Day);

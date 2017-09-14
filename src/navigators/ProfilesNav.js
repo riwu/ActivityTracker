@@ -11,7 +11,7 @@ const ProfilesNav = StackNavigator({
   },
   CreateProfile: {
     screen: CreateProfile,
-    navigationOptions: ({ navigation }) => NavigationOptions(navigation, 'Create Profile'),
+    navigationOptions: ({ navigation }) => NavigationOptions(navigation, 'Create Profile', false),
   },
 });
 

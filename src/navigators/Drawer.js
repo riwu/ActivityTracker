@@ -1,18 +1,18 @@
 import React from 'react';
-import { DrawerNavigator, DrawerItems } from 'react-navigation';
+import { DrawerNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import CONSTANTS from '../Constants';
 
-import DashBoard from '../components/DashBoard';
+import DashBoard from './DashBoardNav';
 import ProfilesNav from './ProfilesNav';
 import FastingChartNav from './FastingChartNav';
 import TarawihChartNav from './TarawihChartNav';
 import SurahChartNav from './SurahChartNav';
-import DuaList from '../components/DuaList';
-import PrayerTimes from '../components/PrayerTimes';
-import BackupAndRecovery from '../components/BackupAndRecovery';
-import Credits from '../components/Credits';
+import DuaList from './DuaListNav';
+import PrayerTimes from './PrayerTimesNav';
+import BackupAndRecovery from './BackupAndRecoveryNav';
+import Credits from './CreditsNav';
 
 const navs = [DashBoard, ProfilesNav, FastingChartNav, TarawihChartNav,
   SurahChartNav, DuaList, PrayerTimes, BackupAndRecovery, Credits];
