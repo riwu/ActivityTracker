@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, FlatList, Image, Dimensions } from 'react-native';
-import FastingChartImg from '../../Images/FastingChart/main.png';
+import FastingChartImg from '../../Images/Fasting/main.png';
 
 
 class FastingChart extends Component {

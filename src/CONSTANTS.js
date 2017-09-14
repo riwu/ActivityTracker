@@ -1,7 +1,7 @@
 import { Platform, NativeModules } from 'react-native';
-import FastingChartPassed from '../Images/FastingChart/passed.png';
-import FastingChartTried from '../Images/FastingChart/tried.png';
-import FastingChartFailed from '../Images/FastingChart/failed.png';
+import FastingChartPassed from '../Images/Fasting/passed.png';
+import FastingChartTried from '../Images/Fasting/tried.png';
+import FastingChartFailed from '../Images/Fasting/failed.png';
 
 function deepFreeze(obj) {
   Object.values(obj).forEach((value) => {

@@ -4,7 +4,7 @@ import { updateFastingChart } from '../actions';
 import Constants from '../Constants';
 
 const mapStateToProps = state => ({
-  data: state.fastingChart,
+  data: state.chart.fasting,
   images: Constants.FASTING_CHART_IMAGES,
 });
 
