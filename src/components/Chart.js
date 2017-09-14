@@ -22,7 +22,6 @@ const FastingChart = ({ mainImage, images, data, updateChart, navigation, styles
           style={styles.view}
           onPress={() => navigation.navigate(navPath, {
             day: item.main,
-            images,
             onChange: (replaceIndex) => {
               const newData = {
                 ...data,

@@ -1,5 +1,6 @@
+import React from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Text, Image } from 'react-native';
 import Chart from '../components/Chart';
 import { updateSurahChart } from '../actions';
 import Constants from '../Constants';
@@ -30,15 +31,23 @@ const styles = StyleSheet.create({
     padding: 20,
   },
 });
+
 const mapStateToProps = state => ({
   data: state.chart.surah,
   images: Constants.SURAH_CHART_IMAGES,
   mainImage: SurahChartImg,
   styles,
-  updateChart: updateSurahChart,
+  navPath: 'FastingDay',
+  DefaultItem: ({ main }) => (
+    <Text
+      style={styles.text}
+    >
+      {main}
+    </Text>
+  ),
 });
 
 export default connect(
   mapStateToProps,
-  { updateSurahChart },
+  { updateChart: updateSurahChart },
 )(Chart);

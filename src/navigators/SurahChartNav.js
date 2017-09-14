@@ -1,21 +1,19 @@
 import { StackNavigator } from 'react-navigation';
-import IOSIcon from 'react-native-vector-icons/Ionicons';
 import Day from '../components/Day';
 import SurahChart from '../containers/SurahChartContainer';
 import CONSTANTS from '../Constants';
 import NavigationOptions from './NavigationOptions';
 
-const FastingChartNav = StackNavigator({
-  Main: {
+const SurahChartNav = StackNavigator({
+  MainSurahChart: {
     screen: SurahChart,
     navigationOptions: ({ navigation }) => NavigationOptions(navigation, CONSTANTS.SURAH_CHART),
   },
-  Detail: {
+  SurahDay: {
     screen: Day,
-    navigationOptions: props => ({
-      title: 'Day 1',
-    }),
+    navigationOptions: ({ navigation }) => NavigationOptions(navigation,
+      null, false),
   },
 });
 
-export default FastingChartNav;
+export default SurahChartNav;
