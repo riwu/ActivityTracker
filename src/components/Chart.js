@@ -2,13 +2,13 @@ import React from 'react';
 import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native';
 
 const FastingChart = ({ mainImage, images, data, updateChart, navigation, styles,
-  DefaultItem, navPath }) => (
+  DefaultItem, navPath, numColumns = 4 }) => (
     <FlatList
       style={styles.container}
       ListHeaderComponent={<Image style={styles.image} source={mainImage} />}
       data={Object.values(data || {})}
       keyExtractor={(item, index) => index}
-      numColumns={4}
+      numColumns={numColumns}
       ItemSeparatorComponent={() => (
         <View
           style={{

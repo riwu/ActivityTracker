@@ -1,5 +1,5 @@
 import { StackNavigator } from 'react-navigation';
-import Day from '../components/Day';
+import SurahDay from '../containers/SurahDayContainer';
 import SurahChart from '../containers/SurahChartContainer';
 import CONSTANTS from '../Constants';
 import NavigationOptions from './NavigationOptions';
@@ -10,7 +10,7 @@ const SurahChartNav = StackNavigator({
     navigationOptions: ({ navigation }) => NavigationOptions(navigation, CONSTANTS.SURAH_CHART),
   },
   SurahDay: {
-    screen: Day,
+    screen: SurahDay,
     navigationOptions: ({ navigation }) => NavigationOptions(navigation,
       null, false),
   },

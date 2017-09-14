@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, Image } from 'react-native';
 import Chart from '../components/Chart';
 import { updateTarawihChart } from '../actions';
 import Constants from '../Constants';
 import TarawihChartImg from '../../Images/Tarawih/main.png';
+import TarawihGreyImg from '../../Images/Tarawih/grey.png';
 
 const styles = StyleSheet.create({
   container: {
@@ -17,7 +18,8 @@ const styles = StyleSheet.create({
   },
   dataImage: {
     width: Constants.WIDTH / 4,
-    height: Constants.WIDTH / 4,
+    height: (Constants.WIDTH / 4) * 1.851,
+    justifyContent: 'center',
   },
   view: {
     flex: 1,
@@ -29,6 +31,8 @@ const styles = StyleSheet.create({
     fontSize: Constants.WIDTH / 8.2,
     textAlign: 'center',
     padding: 20,
+    backgroundColor: 'transparent',
+    color: 'white',
   },
 });
 
@@ -39,11 +43,13 @@ const mapStateToProps = state => ({
   styles,
   navPath: 'TarawihDay',
   DefaultItem: ({ main }) => (
-    <Text
-      style={styles.text}
-    >
-      {main}
-    </Text>
+    <Image source={TarawihGreyImg} style={styles.dataImage}>
+      <Text
+        style={styles.text}
+      >
+        {main}
+      </Text>
+    </Image>
   ),
 });
 

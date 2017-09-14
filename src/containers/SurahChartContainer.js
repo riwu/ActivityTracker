@@ -5,6 +5,7 @@ import Chart from '../components/Chart';
 import { updateSurahChart } from '../actions';
 import Constants from '../Constants';
 import SurahChartImg from '../../Images/Surah/main.png';
+import Grey from '../../Images/Surah/grey/divided_17.gif';
 
 const styles = StyleSheet.create({
   container: {
@@ -16,8 +17,8 @@ const styles = StyleSheet.create({
     height: Constants.WIDTH / 1.453,
   },
   dataImage: {
-    width: Constants.WIDTH / 4,
-    height: Constants.WIDTH / 4,
+    width: Constants.WIDTH / 3,
+    height: Constants.WIDTH / 3 / 1.98,
   },
   view: {
     flex: 1,
@@ -37,13 +38,10 @@ const mapStateToProps = state => ({
   images: Constants.SURAH_CHART_IMAGES,
   mainImage: SurahChartImg,
   styles,
-  navPath: 'FastingDay',
+  navPath: 'SurahDay',
+  numColumns: 3,
   DefaultItem: ({ main }) => (
-    <Text
-      style={styles.text}
-    >
-      {main}
-    </Text>
+    <Image source={Grey} style={styles.dataImage} />
   ),
 });
 
