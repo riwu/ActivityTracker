@@ -36,50 +36,46 @@ const styles = StyleSheet.create({
 class FastingDay extends Component {
   constructor(props) {
     super(props);
-
+    const images = this.props.navigation.state.params.images;
     this.state = {
-      ...this.props.images.reduce((obj, image, index) => ({
+      ...images.reduce((obj, image, index) => ({
+        ...obj,
         [index]: new Animated.ValueXY(),
       }), {}),
-      selectedImageIndex: null,
+      selectedImageIndex: undefined,
     };
 
-    this.panResponders = this.props.images.map((image, imageIndex) => PanResponder.create({
+    this.panResponders = images.map((image, index) => PanResponder.create({
       onStartShouldSetPanResponder: () => true,
       onPanResponderMove: Animated.event([null, {
-        dx: this.state[imageIndex].x,
-        dy: this.state[imageIndex].y,
+        dx: this.state[index].x,
+        dy: this.state[index].y,
       }]),
       onPanResponderRelease: (e, gesture) => {
         const box = this.dropZone;
         const boxY = box.y + CONSTANTS.STATUS_BAR_HEIGHT + CONSTANTS.NAV_BAR_HEIGHT + marginTop + imageHeight;
         if (box.x <= gesture.moveX && gesture.moveX <= box.x + box.width &&
           boxY <= gesture.moveY && gesture.moveY <= boxY + box.height) {
-          this.setState({ selectedImageIndex: imageIndex });
-          this.props.navigation.state.params.onChange(imageIndex);
+          this.setState({ selectedImageIndex: index });
+          this.props.navigation.state.params.onChange(index);
         }
 
         Animated.decay(
-              this.state[imageIndex],
+              this.state[index],
               { toValue: { x: 0, y: 0 } },
           ).start();
       },
-    });
-    this.panResponders = Object.entries({ passed: 0, tried: 1, failed: 2 })
-      .map(([stateKey, imageSource]) => ({
-        stateKey,
-        imageSource,
-        panResponder: createPanResponder(stateKey, imageSource),
-      }));
+    }));
   }
 
   renderContainer() {
     return (
       <View style={styles.container}>
         <View onLayout={(e) => { this.dropZone = e.nativeEvent.layout; }} style={styles.box}>
-          {this.state.selectedImage
-            ? <Image style={styles.enlargedImage} source={this.state.selectedImage} />
-            : null}
+          {
+            this.state.selectedImageIndex === undefined ? null :
+            <Image style={styles.enlargedImage} source={this.props.navigation.state.params.images[this.state.selectedImageIndex]} />
+          }
         </View>
       </View>
     );
@@ -89,13 +85,13 @@ class FastingDay extends Component {
     return (
       <View>
         <View style={styles.images}>
-          {this.panResponders.map(({ stateKey, imageSource, panResponder }) => (
+          {this.panResponders.map((panResponder, index) => (
             <Animated.Image
-              key={stateKey}
+              key={index}
               onLayout={(e) => { this.imageDim = e.nativeEvent.layout; }}
               {...panResponder.panHandlers}
-              style={[this.state[stateKey].getLayout(), styles.image]}
-              source={imageSource}
+              style={[this.state[index].getLayout(), styles.image]}
+              source={this.props.navigation.state.params.images[index]}
             />
             ),
           )}

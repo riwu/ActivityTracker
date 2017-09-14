@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, FlatList, Image, Dimensions } from 'react-native';
-import { updateFastingChart } from '../actions';
 import FastingChartImg from '../../Images/FastingChart/main.png';
-import Constants from '../Constants';
 
-const width = Dimensions.get('window').width;
-console.log(width);
 
 class FastingChart extends Component {
   renderSeparator = () => (
@@ -18,7 +14,6 @@ class FastingChart extends Component {
   );
 
   render() {
-    console.log('data', this.props.data);
     return (
       <FlatList
         style={styles.container}
@@ -27,28 +22,31 @@ class FastingChart extends Component {
         keyExtractor={(item, index) => index}
         numColumns={4}
         ItemSeparatorComponent={this.renderSeparator}
-        renderItem={({ item }) => (
+        renderItem={({ item, index }) => (
           <View style={styles.view}>
-            {item.replace
+            {item.replace === undefined
               ?
-                <Image style={styles.dataImage} source={item.replace} />
-              :
                 <Text
                   style={styles.text}
                   onPress={() => this.props.navigation.navigate('FastingDay', {
-                    day: index + 1,
-                    onChange: (img) => {
+                    day: item.main,
+                    images: this.props.images,
+                    onChange: (replaceIndex) => {
                       const newData = {
                         ...this.props.data,
-                        [item]: img,
+                        [index]: {
+                          ...this.props.data[index],
+                          replace: replaceIndex,
+                        },
                       };
-                      console.log('new', newData);
-                      updateFastingChart(newData);
+                      this.props.updateFastingChart(newData);
                     },
                   })}
                 >
-                  {item}
+                  {item.main}
                 </Text>
+              :
+                <Image style={styles.dataImage} source={this.props.images[item.replace]} />
             }
 
           </View>
@@ -57,7 +55,7 @@ class FastingChart extends Component {
     );
   }
 }
-
+const width = Dimensions.get('window').width;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -78,7 +76,7 @@ const styles = StyleSheet.create({
     borderRightColor: 'white',
   },
   text: {
-    fontSize: 40,
+    fontSize: width / 8.2,
     textAlign: 'center',
     padding: 20,
   },

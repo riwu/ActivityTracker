@@ -7,7 +7,6 @@ const initialState = Array(...{ length: 30 }).map(Number.call, Number)
   }), {});
 
 const fastingChart = (state = initialState, action) => {
-  console.log('action', action, state);
   switch (action.type) {
     case 'UPDATE_FASTING_CHART':
       return action.data;
