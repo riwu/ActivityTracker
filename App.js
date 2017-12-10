@@ -4,6 +4,7 @@ import { createStore } from 'redux';
 import devToolsEnhancer from 'remote-redux-devtools';
 import { AsyncStorage } from 'react-native';
 import { persistStore, persistReducer } from 'redux-persist';
+import { PersistGate } from 'redux-persist/es/integration/react';
 
 import reducer from './src/reducers';
 import MainApp from './src/containers/App';
@@ -16,7 +17,9 @@ const persistor = persistStore(store);
 
 const App = () => (
   <Provider store={store}>
-    <MainApp />
+    <PersistGate persistor={persistor} >
+      <MainApp />
+    </PersistGate>
   </Provider>
 );
 

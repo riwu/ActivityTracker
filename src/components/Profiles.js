@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { lifecycle } from 'recompose';
 import { View, Text, StyleSheet, FlatList, Alert } from 'react-native';
 import Button from './Button';
 import { deleteProfile, setActiveProfile } from '../actions';
@@ -20,6 +21,14 @@ const styles = StyleSheet.create({
   },
   profileButton: {
     backgroundColor: 'orange',
+  },
+});
+
+const addLifecycle = lifecycle({
+  componentWillMount() {
+    if (this.props.profiles.length === 0) {
+      this.props.navigation.navigate('CreateProfile');
+    }
   },
 });
 
@@ -79,4 +88,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { deleteProfile, setActiveProfile },
-)(MainScreen);
+)(addLifecycle(MainScreen));
