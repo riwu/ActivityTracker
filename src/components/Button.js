@@ -7,13 +7,17 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
   },
+  button: {
+    margin: 10,
+    padding: 10,
+  },
 });
 
 const Button = ({
   title, onPress, disabled, style,
 }) => (
   <TouchableHighlight
-    style={[style, { opacity: disabled ? 0.5 : 1 }]}
+    style={[styles.button, style, { opacity: disabled ? 0.5 : 1 }]}
     onPress={onPress}
     disabled={disabled}
   >

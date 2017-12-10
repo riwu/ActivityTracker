@@ -1,22 +1,82 @@
-import React, { Component } from 'react';
-import { View, Text, StyleSheet, Button, TouchableOpacity } from 'react-native';
-
-class MainScreen extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Button onPress={() => this.props.navigation.navigate('CreateProfile')} title="CREATE PROFILE" />
-        <Button title="USE PROFILE" onPress={() => {}} />
-        <Button title="REMOVE PROFILE" onPress={() => {}} />
-      </View>
-    );
-  }
-}
+import React from 'react';
+import { connect } from 'react-redux';
+import { View, Text, StyleSheet, FlatList, Alert } from 'react-native';
+import Button from './Button';
+import { deleteProfile, setActiveProfile } from '../actions';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  text: {
+    textAlign: 'center',
+  },
+  buttons: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  createButton: {
+    backgroundColor: '#ff8080',
+  },
+  profileButton: {
+    backgroundColor: 'orange',
+  },
 });
 
-export default MainScreen;
+const MainScreen = props => (
+  <View style={styles.container}>
+    <Button
+      style={styles.createButton}
+      onPress={() => props.navigation.navigate('CreateProfile')}
+      title="CREATE PROFILE"
+    />
+    <FlatList
+      data={props.profiles}
+      extraData={props.activeProfile}
+      keyExtractor={item => item.name}
+      renderItem={({ item, index }) => {
+        console.log('index', item, index);
+        const isActive = item.name === props.activeProfile;
+        return (
+          <View>
+            <Text style={styles.text}>Profile: {item.name}</Text>
+            <Text style={styles.text}>
+                Status: {isActive ? 'Active' : 'Inactive'}
+            </Text>
+            <View style={styles.buttons}>
+              <Button
+                style={styles.profileButton}
+                title="USE PROFILE"
+                onPress={() => {
+                  Alert.alert('Success!', `You are using ${item.name} profile now`);
+                  props.setActiveProfile(item.name);
+                }}
+              />
+              <Button
+                style={styles.profileButton}
+                title="REMOVE PROFILE"
+                onPress={() => {
+                  if (isActive) {
+                    Alert.alert('Oops!', `Please change your active profile first before removing ${item.name}`);
+                    return;
+                  }
+                  props.deleteProfile(index);
+                }}
+              />
+            </View>
+          </View>
+        );
+      }}
+    />
+  </View>
+);
+
+const mapStateToProps = state => ({
+  profiles: state.profile.profiles,
+  activeProfile: state.profile.activeProfile,
+});
+
+export default connect(
+  mapStateToProps,
+  { deleteProfile, setActiveProfile },
+)(MainScreen);

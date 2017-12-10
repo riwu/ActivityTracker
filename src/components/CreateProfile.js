@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { View, TextInput, StyleSheet } from 'react-native';
+import { View, TextInput, StyleSheet, Alert } from 'react-native';
 import { withStateHandlers } from 'recompose';
 import { createProfile } from '../actions';
 import Button from './Button';
@@ -12,8 +12,6 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: '#ff8080',
-    margin: 20,
-    padding: 10,
   },
   input: {
     textAlign: 'center',
@@ -35,29 +33,35 @@ const addState = withStateHandlers(
   },
 );
 
-const CreateProfile = (props) => {
-  console.log('props', props);
-  return (
-    <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        placeholder="What's your name"
-        autoFocus
-        onChangeText={(name) => {
+const CreateProfile = props => (
+  <View style={styles.container}>
+    <TextInput
+      style={styles.input}
+      placeholder="What's your name"
+      autoFocus
+      onChangeText={(name) => {
           props.setName(name);
         }}
-      />
-      <Button
-        style={styles.button}
-        title="CREATE!"
-        disabled={props.name.trim() === ''}
-        onPress={() => {
-          props.createProfile(props.name);
-          props.navigation.navigate('AllProfiles');
-        }}
-      />
-    </View>
-  );
-};
+    />
+    <Button
+      style={styles.button}
+      title="CREATE!"
+      disabled={props.name.trim() === ''}
+      onPress={() => {
+        const name = props.name.trim();
+        if (props.profiles.some(profile => profile.name === name)) {
+          Alert.alert('Oops!', 'That name is already taken, please use a different name');
+          return;
+        }
+        props.createProfile(props.name);
+        props.navigation.navigate('AllProfiles');
+      }}
+    />
+  </View>
+);
 
-export default connect(null, { createProfile })(addState(CreateProfile));
+const mapStateToProps = state => ({
+  profiles: state.profile.profiles,
+});
+
+export default connect(mapStateToProps, { createProfile })(addState(CreateProfile));
