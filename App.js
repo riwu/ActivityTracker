@@ -11,7 +11,8 @@ import MainApp from './src/containers/App';
 const config = { key: 'root', storage: AsyncStorage };
 const store = createStore(persistReducer(config, reducer), devToolsEnhancer());
 
-persistStore(store);
+const persistor = persistStore(store);
+// persistor.purge();
 
 const App = () => (
   <Provider store={store}>

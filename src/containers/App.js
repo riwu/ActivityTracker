@@ -15,7 +15,6 @@ import CONSTANTS from '../Constants';
 import { fontLoaded, navigateBack } from '../actions';
 
 class App extends React.Component {
-
   static setGlobalProps() {
     const customViewProps = {
       style: {
@@ -30,14 +29,14 @@ class App extends React.Component {
       zIndex: 1,
 
     };
-    setCustomImage(customImageProps);
+    // setCustomImage(customImageProps);
   }
 
   constructor(props) {
     super(props);
 
     this.loadFont();
-    App.setGlobalProps();
+    // App.setGlobalProps();
     this.addBackHandler();
   }
 

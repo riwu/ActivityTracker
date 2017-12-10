@@ -5,7 +5,7 @@ import CONSTANTS from '../Constants';
 class FastingDay extends Component {
   constructor(props) {
     super(props);
-    const images = this.props.images;
+    const { images } = this.props;
     this.state = {
       ...images.reduce((obj, image, index) => ({
         ...obj,
@@ -30,9 +30,9 @@ class FastingDay extends Component {
         }
 
         Animated.decay(
-              this.state[index],
-              { toValue: { x: 0, y: 0 } },
-          ).start();
+          this.state[index],
+          { toValue: { x: 0, y: 0 } },
+        ).start();
       },
     }));
   }
@@ -61,8 +61,7 @@ class FastingDay extends Component {
               style={[this.state[index].getLayout(), this.props.styles.image]}
               source={this.props.images[index]}
             />
-            ),
-          )}
+            ))}
         </View>
         {this.renderContainer()}
       </View>

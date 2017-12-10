@@ -38,8 +38,8 @@ const CONSTANTS = {
   BACK: 'backPress',
 
   STATUS_BAR_HEIGHT: (Platform.OS === 'ios')
-                   ? 0
-                   : NativeModules.StatusBarManager.HEIGHT,
+    ? 0
+    : NativeModules.StatusBarManager.HEIGHT,
   NAV_BAR_HEIGHT: 55,
 };
 

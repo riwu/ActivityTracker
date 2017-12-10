@@ -21,3 +21,8 @@ export const updateSurahChart = data => ({
   type: 'UPDATE_SURAH_CHART',
   data,
 });
+
+export const createProfile = name => ({
+  type: 'CREATE_PROFILE',
+  name,
+});
