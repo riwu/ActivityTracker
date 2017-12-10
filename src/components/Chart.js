@@ -27,6 +27,7 @@ const Chart = ({
           style={styles.view}
           onPress={() => navigation.navigate(navPath, {
               day: item.main,
+              replace: item.replace,
               onChange: (replaceIndex) => {
                 updateChart({ chart: navPath, index, replaceIndex });
               },

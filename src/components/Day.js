@@ -2,16 +2,17 @@ import React, { Component } from 'react';
 import { View, Image, Animated, PanResponder } from 'react-native';
 import CONSTANTS from '../Constants';
 
-class FastingDay extends Component {
+class Day extends Component {
   constructor(props) {
     super(props);
-    const { images } = this.props;
+    const { images } = props;
+    console.log('replace', props); // TODO: find out why it has updateChart props
     this.state = {
       ...images.reduce((obj, image, index) => ({
         ...obj,
         [index]: new Animated.ValueXY(),
       }), {}),
-      selectedImageIndex: undefined,
+      selectedImageIndex: props.navigation.state.params.replace,
     };
 
     this.panResponders = images.map((image, index) => PanResponder.create({
@@ -22,11 +23,11 @@ class FastingDay extends Component {
       }]),
       onPanResponderRelease: (e, gesture) => {
         const box = this.dropZone;
-        const boxY = box.y + CONSTANTS.STATUS_BAR_HEIGHT + CONSTANTS.NAV_BAR_HEIGHT + this.props.extraHeight;
+        const boxY = box.y + CONSTANTS.STATUS_BAR_HEIGHT + CONSTANTS.NAV_BAR_HEIGHT + props.extraHeight;
         if (box.x <= gesture.moveX && gesture.moveX <= box.x + box.width &&
           boxY <= gesture.moveY && gesture.moveY <= boxY + box.height) {
           this.setState({ selectedImageIndex: index });
-          this.props.navigation.state.params.onChange(index);
+          props.navigation.state.params.onChange(index);
         }
 
         Animated.decay(
@@ -69,4 +70,4 @@ class FastingDay extends Component {
   }
 }
 
-export default FastingDay;
+export default Day;
