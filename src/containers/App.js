@@ -1,10 +1,10 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { BackHandler, Platform } from 'react-native';
+import { BackHandler, Platform, Image } from 'react-native';
 
 import { setCustomText, setCustomView, setCustomImage } from 'react-native-global-props';
-import { Font } from 'expo';
+import { Asset, Font } from 'expo';
 import Lato from '../../Lato/Lato.ttf';
 
 import AppWithNavigationState from '../navigators/AppNavigator';
@@ -13,6 +13,19 @@ import Drawer from '../navigators/Drawer';
 import CONSTANTS from '../Constants';
 
 import { fontLoaded, navigateBack } from '../actions';
+
+function cacheImages(images) {
+  return images.map((image) => {
+    if (typeof image === 'string') {
+      return Image.prefetch(image);
+    }
+    return Asset.fromModule(image).downloadAsync();
+  });
+}
+
+cacheImages([require('../../Images/Fasting/main.png'),
+  require('../../Images/Surah/main.png'),
+  require('../../Images/Tarawih/main.png')]);
 
 class App extends React.Component {
   static setGlobalProps() {
