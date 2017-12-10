@@ -42,7 +42,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateChart: () => dispatch(updateChart()),
+  updateChart: data => dispatch(updateChart(data)),
   images: Constants.SURAH_CHART_IMAGES,
   mainImage: SurahChartImg,
   styles,

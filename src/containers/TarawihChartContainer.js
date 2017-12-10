@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, Text, ImageBackground } from 'react-native';
 import Chart from '../components/Chart';
-import { updateTarawihChart } from '../actions';
+import { updateChart } from '../actions';
 import Constants from '../Constants';
 import TarawihChartImg from '../../Images/Tarawih/main.png';
 import TarawihGreyImg from '../../Images/Tarawih/grey.png';
@@ -51,7 +51,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateChart: () => dispatch(updateTarawihChart()),
+  updateChart: data => dispatch(updateChart(data)),
   images: Constants.TARAWIH_CHART_IMAGES,
   mainImage: TarawihChartImg,
   styles,
