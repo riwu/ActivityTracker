@@ -1,8 +1,12 @@
 import React from 'react';
-import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native';
+import { View, FlatList, Image, TouchableOpacity } from 'react-native';
 
-const FastingChart = ({ mainImage, images, data, updateChart, navigation, styles,
-  DefaultItem, navPath, numColumns = 4 }) => (
+const FastingChart = ({
+  mainImage, images, data, updateChart, navigation, styles,
+  DefaultItem, navPath, numColumns = 4,
+}) => {
+  console.log('rendered chart'); // getting rendered 3x for FastingChart
+  return (
     <FlatList
       style={styles.container}
       ListHeaderComponent={<Image style={styles.image} source={mainImage} />}
@@ -16,7 +20,7 @@ const FastingChart = ({ mainImage, images, data, updateChart, navigation, styles
             height: 0.5,
           }}
         />
-        )}
+      )}
       renderItem={({ item, index }) => (
         <TouchableOpacity
           style={styles.view}
@@ -35,12 +39,13 @@ const FastingChart = ({ mainImage, images, data, updateChart, navigation, styles
           })}
         >
           {item.replace === undefined
-          ? <DefaultItem main={item.main} />
-          : <Image style={styles.dataImage} source={images[item.replace]} />
-        }
+            ? <DefaultItem main={item.main} />
+            : <Image style={styles.dataImage} source={images[item.replace]} />
+          }
         </TouchableOpacity>
-        )}
+      )}
     />
-);
+  );
+};
 
 export default FastingChart;

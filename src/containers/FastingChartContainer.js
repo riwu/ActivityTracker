@@ -32,22 +32,28 @@ const styles = StyleSheet.create({
   },
 });
 
+const DefaultItem = ({ main }) => (
+  <Text
+    style={styles.text}
+  >
+    {main}
+  </Text>
+);
+
 const mapStateToProps = state => ({
   data: state.chart.fasting,
+});
+
+const mapDispatchToProps = dispatch => ({
+  updateChart: () => dispatch(updateFastingChart()),
   images: Constants.FASTING_CHART_IMAGES,
   mainImage: FastingChartImg,
   styles,
   navPath: 'FastingDay',
-  DefaultItem: ({ main }) => (
-    <Text
-      style={styles.text}
-    >
-      {main}
-    </Text>
-  ),
+  DefaultItem,
 });
 
 export default connect(
   mapStateToProps,
-  { updateChart: updateFastingChart },
+  mapDispatchToProps,
 )(Chart);

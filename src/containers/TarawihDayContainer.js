@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = () => ({
   images: Constants.TARAWIH_CHART_IMAGES,
   styles,
   extraHeight: marginTop + imageHeight,

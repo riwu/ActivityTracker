@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, Text, Image } from 'react-native';
+import { StyleSheet, Text, ImageBackground } from 'react-native';
 import Chart from '../components/Chart';
 import { updateTarawihChart } from '../actions';
 import Constants from '../Constants';
@@ -36,24 +36,26 @@ const styles = StyleSheet.create({
   },
 });
 
+const DefaultItem = ({ main }) => (
+  <ImageBackground source={TarawihGreyImg} style={styles.dataImage}>
+    <Text
+      style={styles.text}
+    >
+      {main}
+    </Text>
+  </ImageBackground>
+);
+
 const mapStateToProps = state => ({
   data: state.chart.tarawih,
+});
+
+const mapDispatchToProps = dispatch => ({
+  updateChart: () => dispatch(updateTarawihChart()),
   images: Constants.TARAWIH_CHART_IMAGES,
   mainImage: TarawihChartImg,
   styles,
   navPath: 'TarawihDay',
-  DefaultItem: ({ main }) => (
-    <Image source={TarawihGreyImg} style={styles.dataImage}>
-      <Text
-        style={styles.text}
-      >
-        {main}
-      </Text>
-    </Image>
-  ),
+  DefaultItem,
 });
-
-export default connect(
-  mapStateToProps,
-  { updateChart: updateTarawihChart },
-)(Chart);
+export default connect(mapStateToProps, mapDispatchToProps)(Chart);

@@ -33,19 +33,25 @@ const styles = StyleSheet.create({
   },
 });
 
+const DefaultItem = ({ main }) => (
+  <Image source={Grey} style={styles.dataImage} />
+);
+
 const mapStateToProps = state => ({
   data: state.chart.surah,
+});
+
+const mapDispatchToProps = dispatch => ({
+  updateChart: () => dispatch(updateSurahChart()),
   images: Constants.SURAH_CHART_IMAGES,
   mainImage: SurahChartImg,
   styles,
   navPath: 'SurahDay',
   numColumns: 3,
-  DefaultItem: ({ main }) => (
-    <Image source={Grey} style={styles.dataImage} />
-  ),
+  DefaultItem,
 });
 
 export default connect(
   mapStateToProps,
-  { updateChart: updateSurahChart },
+  mapDispatchToProps,
 )(Chart);
