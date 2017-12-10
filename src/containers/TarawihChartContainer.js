@@ -47,7 +47,7 @@ const DefaultItem = ({ main }) => (
 );
 
 const mapStateToProps = state => ({
-  data: state.chart.tarawih,
+  data: state.profile.profiles[state.profile.activeProfile].TarawihDay,
 });
 
 const mapDispatchToProps = dispatch => ({

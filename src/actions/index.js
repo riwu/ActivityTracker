@@ -7,14 +7,9 @@ export const navigateBack = () => ({
   type: 'NAVIGATE_BACK',
 });
 
-export const updateFastingChart = data => ({
-  type: 'UPDATE_FASTING_CHART',
-  data,
-});
-
-export const updateTarawihChart = data => ({
-  type: 'UPDATE_TARAWIH_CHART',
-  data,
+export const updateChart = data => ({
+  type: 'UPDATE_CHART',
+  ...data,
 });
 
 export const updateSurahChart = data => ({
@@ -27,9 +22,9 @@ export const createProfile = name => ({
   name,
 });
 
-export const deleteProfile = index => ({
+export const deleteProfile = name => ({
   type: 'DELETE_PROFILE',
-  index,
+  name,
 });
 
 export const setActiveProfile = name => ({

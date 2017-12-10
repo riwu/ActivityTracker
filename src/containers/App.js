@@ -42,14 +42,14 @@ class App extends React.Component {
       zIndex: 1,
 
     };
-    // setCustomImage(customImageProps);
+    setCustomImage(customImageProps);
   }
 
   constructor(props) {
     super(props);
 
     this.loadFont();
-    // App.setGlobalProps();
+    App.setGlobalProps();
     this.addBackHandler();
   }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, Image } from 'react-native';
 import Chart from '../components/Chart';
-import { updateSurahChart } from '../actions';
+import { updateChart } from '../actions';
 import Constants from '../Constants';
 import SurahChartImg from '../../Images/Surah/main.png';
 import Grey from '../../Images/Surah/grey/divided_17.gif';
@@ -38,11 +38,11 @@ const DefaultItem = ({ main }) => (
 );
 
 const mapStateToProps = state => ({
-  data: state.chart.surah,
+  data: state.profile.profiles[state.profile.activeProfile].SurahDay,
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateChart: () => dispatch(updateSurahChart()),
+  updateChart: () => dispatch(updateChart()),
   images: Constants.SURAH_CHART_IMAGES,
   mainImage: SurahChartImg,
   styles,

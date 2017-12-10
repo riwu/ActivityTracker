@@ -49,11 +49,11 @@ const CreateProfile = props => (
       disabled={props.name.trim() === ''}
       onPress={() => {
         const name = props.name.trim();
-        if (props.profiles.some(profile => profile.name === name)) {
+        if (props.profiles[name]) {
           Alert.alert('Oops!', 'That name is already taken, please use a different name');
           return;
         }
-        props.createProfile(props.name);
+        props.createProfile(name);
         props.navigation.navigate('AllProfiles');
       }}
     />

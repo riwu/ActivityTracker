@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, Text } from 'react-native';
 import Chart from '../components/Chart';
-import { updateFastingChart } from '../actions';
+import { updateChart } from '../actions';
 import Constants from '../Constants';
 import FastingChartImg from '../../Images/Fasting/main.png';
 
@@ -41,11 +41,11 @@ const DefaultItem = ({ main }) => (
 );
 
 const mapStateToProps = state => ({
-  data: state.chart.fasting,
+  data: state.profile.profiles[state.profile.activeProfile].FastingDay,
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateChart: () => dispatch(updateFastingChart()),
+  updateChart: data => dispatch(updateChart(data)),
   images: Constants.FASTING_CHART_IMAGES,
   mainImage: FastingChartImg,
   styles,

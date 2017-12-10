@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
 
 const addLifecycle = lifecycle({
   componentWillMount() {
-    if (this.props.profiles.length === 0) {
+    if (this.props.activeProfile === '') {
       this.props.navigation.navigate('CreateProfile');
     }
   },
@@ -40,15 +40,15 @@ const MainScreen = props => (
       title="CREATE PROFILE"
     />
     <FlatList
-      data={props.profiles}
+      data={Object.entries(props.profiles)}
       extraData={props.activeProfile}
-      keyExtractor={item => item.name}
-      renderItem={({ item, index }) => {
-        console.log('index', item, index);
-        const isActive = item.name === props.activeProfile;
+      keyExtractor={([name]) => name}
+      renderItem={({ item: [name, obj] }) => {
+        console.log('index', name, obj);
+        const isActive = name === props.activeProfile;
         return (
           <View>
-            <Text style={styles.text}>Profile: {item.name}</Text>
+            <Text style={styles.text}>Profile: {name}</Text>
             <Text style={styles.text}>
                 Status: {isActive ? 'Active' : 'Inactive'}
             </Text>
@@ -57,8 +57,8 @@ const MainScreen = props => (
                 style={styles.profileButton}
                 title="USE PROFILE"
                 onPress={() => {
-                  Alert.alert('Success!', `You are using ${item.name} profile now`);
-                  props.setActiveProfile(item.name);
+                  Alert.alert('Success!', `You are using ${name} profile now`);
+                  props.setActiveProfile(name);
                 }}
               />
               <Button
@@ -66,10 +66,10 @@ const MainScreen = props => (
                 title="REMOVE PROFILE"
                 onPress={() => {
                   if (isActive) {
-                    Alert.alert('Oops!', `Please change your active profile first before removing ${item.name}`);
+                    Alert.alert('Oops!', `Please change your active profile first before removing ${name}`);
                     return;
                   }
-                  props.deleteProfile(index);
+                  props.deleteProfile(name);
                 }}
               />
             </View>
