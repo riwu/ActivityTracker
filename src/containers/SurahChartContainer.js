@@ -20,6 +20,12 @@ const styles = StyleSheet.create({
     width: Constants.WIDTH / 3,
     height: Constants.WIDTH / 3 / 1.98,
   },
+  fittedImage: {
+    width: '50%',
+    height: '100%',
+    marginLeft: '50%',
+    position: 'absolute',
+  },
   view: {
     flex: 1,
     width: '25%',
@@ -44,6 +50,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   updateChart: data => dispatch(updateChart(data)),
   images: Constants.SURAH_CHART_IMAGES,
+  defaultItemImage: Grey,
   mainImage: SurahChartImg,
   styles,
   navPath: 'SurahDay',

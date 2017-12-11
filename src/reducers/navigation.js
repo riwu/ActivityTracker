@@ -2,7 +2,7 @@ import { NavigationActions } from 'react-navigation';
 import CONSTANTS from '../Constants';
 import AppNavigator from '../navigators/Drawer';
 
-const firstAction = AppNavigator.router.getActionForPathAndParams(CONSTANTS.FASTING_CHART);
+const firstAction = AppNavigator.router.getActionForPathAndParams(CONSTANTS.PROFILES);
 const initialNavState = AppNavigator.router.getStateForAction(firstAction);
 
 const navigation = (state = initialNavState, action) => {
@@ -14,9 +14,9 @@ const navigation = (state = initialNavState, action) => {
     );
   } else if (CONSTANTS.DRAWER_ORDER.includes(action.type)) {
     nextState = AppNavigator.router.getStateForAction(
-        NavigationActions.navigate({ routeName: action.type }),
-        state,
-      );
+      NavigationActions.navigate({ routeName: action.type }),
+      state,
+    );
   } else {
     nextState = AppNavigator.router.getStateForAction(action, state);
   }

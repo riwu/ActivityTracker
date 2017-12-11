@@ -1,11 +1,35 @@
 import React from 'react';
-import { View, FlatList, Image, TouchableOpacity } from 'react-native';
+import { View, FlatList, Image, TouchableOpacity, ImageBackground } from 'react-native';
 
 const Chart = ({
   mainImage, images, data, updateChart, navigation, styles,
-  DefaultItem, navPath, numColumns = 4,
+  DefaultItem, navPath, numColumns = 4, defaultItemImage,
 }) => {
-  console.log('rendered chart', data); // getting rendered 3x for FastingChart
+  console.log('rendered chart'); // getting rendered 3x for FastingChart
+
+  const getItem = (item) => {
+    let Item;
+    console.log('replac', item.replace, typeof item.replace);
+    if (item.replace === undefined || (typeof item.replace === 'object' && item.replace.length === 0)) {
+      Item = <DefaultItem main={item.main} />;
+    } else if (typeof item.replace === 'object') {
+      Item = (
+        <ImageBackground source={defaultItemImage} style={styles.dataImage}>
+          {item.replace.map(index => (
+            <Image
+              key={index}
+              style={styles.fittedImage}
+              source={images[index]}
+            />
+          ))}
+        </ImageBackground>
+      );
+    } else {
+      Item = <ImageBackground style={styles.dataImage} source={images[item.replace]} />;
+    }
+    return Item;
+  };
+
   return (
     <FlatList
       style={styles.container}
@@ -33,10 +57,7 @@ const Chart = ({
               },
             })}
         >
-          {item.replace === undefined
-              ? <DefaultItem main={item.main} />
-              : <Image style={styles.dataImage} source={images[item.replace]} />
-            }
+          {getItem(item)}
         </TouchableOpacity>
       )}
     />

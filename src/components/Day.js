@@ -6,7 +6,7 @@ class Day extends Component {
   constructor(props) {
     super(props);
     const { images } = props;
-    console.log('replace', props); // TODO: find out why it has updateChart props
+    console.log('replace'); // TODO: find out why it has updateChart props
     this.state = {
       ...images.reduce((obj, image, index) => ({
         ...obj,
@@ -28,14 +28,24 @@ class Day extends Component {
         if ((box.x <= gesture.moveX && gesture.moveX <= box.x + box.width &&
              boxY <= gesture.moveY && gesture.moveY <= boxY + box.height)
              === (index !== undefined)) {
-          this.setState({ selectedImageIndex: index });
+          console.log('ani', this.state.selectedImagePos, index);
+          this.setState({
+            selectedImageIndex: index,
+            // selectedImagePos: new Animated.ValueXY(), // TODO: this makes animation disappear
+          });
           props.navigation.state.params.onChange(index);
         }
 
         Animated.decay(
-          index === undefined ? this.state.selectedImagePos : this.state[index],
+          this.state.selectedImagePos,
           { toValue: { x: 0, y: 0 } },
         ).start();
+        if (index !== undefined) {
+          Animated.decay(
+            this.state[index],
+            { toValue: { x: 0, y: 0 } },
+          ).start();
+        }
       },
     });
 
@@ -61,6 +71,7 @@ class Day extends Component {
   }
 
   render() {
+    console.log('ani2', this.state.selectedImagePos);
     return (
       <View>
         <View style={this.props.styles.images}>

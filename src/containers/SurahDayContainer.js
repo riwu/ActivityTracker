@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { StyleSheet } from 'react-native';
-import Day from '../components/Day';
+import Day from '../components/SurahDay';
 import Constants from '../Constants';
 
 const marginTop = 20;
@@ -21,6 +21,12 @@ const styles = StyleSheet.create({
   enlargedImage: {
     width: '100%',
     height: '100%',
+  },
+  fittedImage: {
+    width: '50%',
+    height: '100%',
+    marginLeft: '50%',
+    position: 'absolute',
   },
   box: {
     width: 200,

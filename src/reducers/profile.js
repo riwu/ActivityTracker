@@ -71,11 +71,6 @@ const profile = (state = initialState, action) => {
         },
       };
     }
-    case 'UPDATE_SURAH_CHART':
-      return {
-        ...state,
-        surah: action.data,
-      };
     default:
       return state;
   }
