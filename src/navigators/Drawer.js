@@ -1,5 +1,7 @@
 import React from 'react';
-import { DrawerNavigator } from 'react-navigation';
+import { DrawerNavigator, DrawerItems } from 'react-navigation';
+import { View, Platform, StyleSheet } from 'react-native';
+import { Constants } from 'expo';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import CONSTANTS from '../Constants';
@@ -14,22 +16,53 @@ import PrayerTimes from './PrayerTimesNav';
 import BackupAndRecovery from './BackupAndRecoveryNav';
 import Credits from './CreditsNav';
 
-const navs = [DashBoard, ProfilesNav, FastingChartNav, TarawihChartNav,
-  SurahChartNav, DuaList, PrayerTimes, BackupAndRecovery, Credits];
+const styles = StyleSheet.create({
+  navigationPadding: {
+    ...Platform.select({
+      ios: {
+        // pass
+      },
+      android: {
+        paddingTop: Constants.statusBarHeight,
+      },
+    }),
+  },
+});
+
+const navs = [
+  DashBoard,
+  ProfilesNav,
+  FastingChartNav,
+  TarawihChartNav,
+  SurahChartNav,
+  DuaList,
+  PrayerTimes,
+  BackupAndRecovery,
+  Credits,
+];
 
 const Drawer = DrawerNavigator(
-  CONSTANTS.DRAWER_ORDER.reduce((obj, element, index) => ({ ...obj,
-    [element]: {
-      screen: navs[index],
-      navigationOptions: {
-        drawer: {
-          icon: ({ tintColor }) => <Icon name="rocket" size={24} />,
+  CONSTANTS.DRAWER_ORDER.reduce(
+    (obj, element, index) => ({
+      ...obj,
+      [element]: {
+        screen: navs[index],
+        navigationOptions: {
+          drawer: {
+            icon: ({ tintColor }) => <Icon name="rocket" size={24} />,
+          },
         },
       },
-    },
-  }), {}),
+    }),
+    {},
+  ),
   {
     drawerWidth: 250,
+    contentComponent: props => (
+      <View style={styles.navigationPadding}>
+        <DrawerItems {...props} />
+      </View>
+    ),
     contentOptions: {
       style: {
         marginTop: 24,
