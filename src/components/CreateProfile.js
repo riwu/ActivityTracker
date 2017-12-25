@@ -6,6 +6,7 @@ import { withStateHandlers } from 'recompose';
 import { createProfile } from '../actions';
 import Button from './Button';
 import commonStyles from './styles';
+import defaultPhoto from '../../Images/photo.jpg';
 
 const styles = StyleSheet.create({
   container: {
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
 const addState = withStateHandlers(
   () => ({
     name: '',
-    photo: 'https://i.imgur.com/1d30mj5.jpg',
+    photo: defaultPhoto,
   }),
   {
     setName: () => name => ({
@@ -55,7 +56,7 @@ const addState = withStateHandlers(
 
 const CreateProfile = props => (
   <View style={styles.container}>
-    <Image style={commonStyles.photo} source={props.photo && { uri: props.photo }} />
+    <Image style={commonStyles.photo} source={props.photo} />
     <View style={styles.photoButtons}>
       <Button
         title="Select a photo"
@@ -67,7 +68,7 @@ const CreateProfile = props => (
           }).then((result) => {
             console.log('data', result);
             if (!result.cancelled) {
-              props.setPhoto(result.uri);
+              props.setPhoto({ url: result.uri });
             }
           })
         }
@@ -82,7 +83,7 @@ const CreateProfile = props => (
           }).then((result) => {
             console.log('data', result);
             if (!result.cancelled) {
-              props.setPhoto(result.uri);
+              props.setPhoto({ url: result.uri });
             }
           })
         }

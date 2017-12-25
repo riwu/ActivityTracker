@@ -49,7 +49,7 @@ const MainScreen = props => (
         const isActive = name === props.activeProfile;
         return (
           <View>
-            <Image style={commonStyles.photo} source={obj.photo && { uri: obj.photo }} />
+            <Image style={commonStyles.photo} source={obj.photo} />
             <Text style={[styles.text, { marginTop: 10 }]}>Profile: {name}</Text>
             <Text style={styles.text}>Status: {isActive ? 'Active' : 'Inactive'}</Text>
             <View style={styles.buttons}>

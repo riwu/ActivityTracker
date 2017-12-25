@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { connect } from 'react-redux';
 import { BackHandler, Platform, Image } from 'react-native';
@@ -23,7 +22,8 @@ function cacheImages(images) {
   });
 }
 
-cacheImages([require('../../Images/Fasting/main.png'),
+cacheImages([
+  require('../../Images/Fasting/main.png'),
   require('../../Images/Fasting/failed.png'),
   require('../../Images/Fasting/passed.png'),
   require('../../Images/Fasting/tried.png'),
@@ -37,6 +37,7 @@ cacheImages([require('../../Images/Fasting/main.png'),
   require('../../Images/Tarawih/passed.png'),
   require('../../Images/Tarawih/grey.png'),
   require('../../Images/Tarawih/failed.png'),
+  require('../../Images/photo.jpg'),
 ]);
 
 class App extends React.Component {
@@ -52,7 +53,6 @@ class App extends React.Component {
     const customImageProps = {
       resizeMode: 'cover',
       zIndex: 1,
-
     };
     setCustomImage(customImageProps);
   }
@@ -92,9 +92,7 @@ class App extends React.Component {
 
   render() {
     if (!this.props.isFontLoaded) return null;
-    return (
-      <AppWithNavigationState />
-    );
+    return <AppWithNavigationState />;
   }
 }
 
