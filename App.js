@@ -17,7 +17,7 @@ const persistor = persistStore(store);
 
 const App = () => (
   <Provider store={store}>
-    <PersistGate persistor={persistor} >
+    <PersistGate persistor={persistor}>
       <MainApp />
     </PersistGate>
   </Provider>
