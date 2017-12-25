@@ -1,10 +1,13 @@
-const getState = length => Array(...{ length }).map(Number.call, Number)
-  .reduce((obj, i) => {
-    obj[i] = { // eslint-disable-line no-param-reassign
-      main: i + 1,
-    };
-    return obj;
-  }, {});
+const getState = length =>
+  Array(...{ length })
+    .map(Number.call, Number)
+    .reduce((obj, i) => {
+      obj[i] = {
+        // eslint-disable-line no-param-reassign
+        main: i + 1,
+      };
+      return obj;
+    }, {});
 
 const initialProfileState = {
   FastingDay: getState(30),
@@ -22,11 +25,15 @@ const initialState = {
 const profile = (state = initialState, action) => {
   switch (action.type) {
     case 'CREATE_PROFILE': {
-      if (state.activeProfile === '') { // replace with default user
+      if (state.activeProfile === '') {
+        // replace with default user
         return {
           activeProfile: action.name,
           profiles: {
-            [action.name]: state.profiles[''],
+            [action.name]: {
+              ...state.profiles[''],
+              photo: action.photo,
+            },
           },
         };
       }
@@ -34,7 +41,10 @@ const profile = (state = initialState, action) => {
         ...state,
         profiles: {
           ...state.profiles,
-          [action.name]: initialProfileState,
+          [action.name]: {
+            ...initialProfileState,
+            photo: action.photo,
+          },
         },
       };
     }

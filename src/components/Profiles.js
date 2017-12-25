@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { lifecycle } from 'recompose';
-import { View, Text, StyleSheet, FlatList, Alert } from 'react-native';
+import { View, Text, StyleSheet, FlatList, Alert, Image } from 'react-native';
 import Button from './Button';
 import { deleteProfile, setActiveProfile } from '../actions';
+import commonStyles from './styles';
 
 const styles = StyleSheet.create({
   container: {
@@ -48,10 +49,9 @@ const MainScreen = props => (
         const isActive = name === props.activeProfile;
         return (
           <View>
-            <Text style={styles.text}>Profile: {name}</Text>
-            <Text style={styles.text}>
-                Status: {isActive ? 'Active' : 'Inactive'}
-            </Text>
+            <Image style={commonStyles.photo} source={obj.photo && { uri: obj.photo }} />
+            <Text style={[styles.text, { marginTop: 10 }]}>Profile: {name}</Text>
+            <Text style={styles.text}>Status: {isActive ? 'Active' : 'Inactive'}</Text>
             <View style={styles.buttons}>
               <Button
                 style={styles.profileButton}
@@ -66,7 +66,10 @@ const MainScreen = props => (
                 title="REMOVE PROFILE"
                 onPress={() => {
                   if (isActive) {
-                    Alert.alert('Oops!', `Please change your active profile first before removing ${name}`);
+                    Alert.alert(
+                      'Oops!',
+                      `Please change your active profile first before removing ${name}`,
+                    );
                     return;
                   }
                   props.deleteProfile(name);
@@ -85,7 +88,4 @@ const mapStateToProps = state => ({
   activeProfile: state.profile.activeProfile,
 });
 
-export default connect(
-  mapStateToProps,
-  { deleteProfile, setActiveProfile },
-)(addLifecycle(MainScreen));
+export default connect(mapStateToProps, { deleteProfile, setActiveProfile })(addLifecycle(MainScreen));

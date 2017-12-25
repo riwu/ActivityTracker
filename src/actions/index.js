@@ -1,4 +1,3 @@
-
 export const fontLoaded = () => ({
   type: 'FONT_LOADED',
 });
@@ -12,9 +11,10 @@ export const updateChart = data => ({
   ...data,
 });
 
-export const createProfile = name => ({
+export const createProfile = (name, photo) => ({
   type: 'CREATE_PROFILE',
   name,
+  photo,
 });
 
 export const deleteProfile = name => ({
