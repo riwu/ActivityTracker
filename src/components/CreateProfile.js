@@ -68,7 +68,7 @@ const CreateProfile = props => (
           }).then((result) => {
             console.log('data', result);
             if (!result.cancelled) {
-              props.setPhoto({ url: result.uri });
+              props.setPhoto({ uri: result.uri });
             }
           })
         }
@@ -83,7 +83,7 @@ const CreateProfile = props => (
           }).then((result) => {
             console.log('data', result);
             if (!result.cancelled) {
-              props.setPhoto({ url: result.uri });
+              props.setPhoto({ uri: result.uri });
             }
           })
         }
