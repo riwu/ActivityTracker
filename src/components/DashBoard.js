@@ -87,7 +87,7 @@ const CircularProgress = (props) => (
         width={10}
         fill={(chart.completed / chart.total) * 100 /* prettier-ignore */}
         tintColor="#1E90FF"
-        backgroundColor="#3d5875"
+        backgroundColor="white"
       >
         {(fill) => (
           <View style={styles.textBox}>
