@@ -45,16 +45,16 @@ const addState = withStateHandlers(
     photo: defaultPhoto,
   }),
   {
-    setName: () => name => ({
+    setName: () => (name) => ({
       name,
     }),
-    setPhoto: () => photo => ({
+    setPhoto: () => (photo) => ({
       photo,
     }),
   },
 );
 
-const CreateProfile = props => (
+const CreateProfile = (props) => (
   <View style={styles.container}>
     <Image style={commonStyles.photo} source={props.photo} />
     <View style={styles.photoButtons}>
@@ -104,7 +104,10 @@ const CreateProfile = props => (
       onPress={() => {
         const name = props.name.trim();
         if (props.profiles[name]) {
-          Alert.alert('Oops!', 'That name is already taken, please use a different name');
+          Alert.alert(
+            'Oops!',
+            'That name is already taken, please use a different name',
+          );
           return;
         }
         props.createProfile(name, props.photo);
@@ -114,8 +117,10 @@ const CreateProfile = props => (
   </View>
 );
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   profiles: state.profile.profiles,
 });
 
-export default connect(mapStateToProps, { createProfile })(addState(CreateProfile));
+export default connect(mapStateToProps, { createProfile })(
+  addState(CreateProfile),
+);

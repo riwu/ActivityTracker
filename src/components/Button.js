@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 const styles = StyleSheet.create({
   buttonText: {
@@ -13,16 +13,14 @@ const styles = StyleSheet.create({
   },
 });
 
-const Button = ({
-  title, onPress, disabled, style,
-}) => (
-  <TouchableHighlight
+const Button = ({ title, onPress, disabled, style }) => (
+  <TouchableOpacity
     style={[styles.button, style, { opacity: disabled ? 0.5 : 1 }]}
     onPress={onPress}
     disabled={disabled}
   >
     <Text style={styles.buttonText}>{title}</Text>
-  </TouchableHighlight>
+  </TouchableOpacity>
 );
 
 export default Button;

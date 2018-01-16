@@ -2,7 +2,9 @@ import { NavigationActions } from 'react-navigation';
 import CONSTANTS from '../Constants';
 import AppNavigator from '../navigators/Drawer';
 
-const firstAction = AppNavigator.router.getActionForPathAndParams(CONSTANTS.PROFILES);
+const firstAction = AppNavigator.router.getActionForPathAndParams(
+  CONSTANTS.PROFILES,
+);
 const initialNavState = AppNavigator.router.getStateForAction(firstAction);
 
 const navigation = (state = initialNavState, action) => {

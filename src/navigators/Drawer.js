@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   navigationPadding: {
     ...Platform.select({
       ios: {
-        // pass
+        paddingTop: Constants.statusBarHeight,
       },
       android: {
         paddingTop: Constants.statusBarHeight,
@@ -54,7 +54,7 @@ const Drawer = DrawerNavigator(
         },
       },
     }),
-    {},
+    {}
   ),
   {
     drawerWidth: 250,
@@ -69,7 +69,7 @@ const Drawer = DrawerNavigator(
         flex: 1,
       },
     },
-  },
+  }
 );
 
 export default Drawer;
