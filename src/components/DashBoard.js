@@ -63,14 +63,11 @@ const styles = StyleSheet.create({
 const TextProgress = connect(null, {
   navigate: (routeName) => NavigationActions.navigate({ routeName }),
 })(({ chart, Circular, navigate }) => (
-  <View style={styles.chart}>
-    <TouchableOpacity
-      style={styles.chartTitleContainer}
-      onPress={() => navigate(chart.route)}
-    >
+  <TouchableOpacity style={styles.chart} onPress={() => navigate(chart.route)}>
+    <View style={styles.chartTitleContainer}>
       <Text style={styles.chartTitle}>{chart.name}</Text>
       <EvilIcons name="chevron-right" size={30} color="orange" />
-    </TouchableOpacity>
+    </View>
     <View style={styles.progressContainer}>
       <View>
         <Text style={styles.completedCount}>{chart.completed}</Text>
@@ -78,7 +75,7 @@ const TextProgress = connect(null, {
       </View>
       {Circular && <Circular chart={chart} />}
     </View>
-  </View>
+  </TouchableOpacity>
 ));
 
 const CircularProgress = (props) => (
