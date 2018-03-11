@@ -6,9 +6,14 @@ export const navigateBack = () => ({
   type: 'NAVIGATE_BACK',
 });
 
-export const updateChart = data => ({
+export const updateChart = (data) => ({
   type: 'UPDATE_CHART',
   ...data,
+});
+
+export const resetChart = (chart) => ({
+  type: 'RESET_CHART',
+  chart,
 });
 
 export const createProfile = (name, photo) => ({
@@ -17,12 +22,12 @@ export const createProfile = (name, photo) => ({
   photo,
 });
 
-export const deleteProfile = name => ({
+export const deleteProfile = (name) => ({
   type: 'DELETE_PROFILE',
   name,
 });
 
-export const setActiveProfile = name => ({
+export const setActiveProfile = (name) => ({
   type: 'SET_ACTIVE_PROFILE',
   name,
 });

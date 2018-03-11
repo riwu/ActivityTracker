@@ -1,12 +1,9 @@
-const getState = length =>
+const getState = (length) =>
   Array(...{ length })
     .map(Number.call, Number)
-    .reduce((obj, i) => {
-      obj[i] = {
-        // eslint-disable-line no-param-reassign
-        main: i + 1,
-      };
-      return obj;
+    .reduce((acc, i) => {
+      acc[i] = { main: i + 1 };
+      return acc;
     }, {});
 
 const initialProfileState = {
@@ -81,6 +78,17 @@ const profile = (state = initialState, action) => {
         },
       };
     }
+    case 'RESET_CHART':
+      return {
+        ...state,
+        profiles: {
+          ...state.profiles,
+          [state.activeProfile]: {
+            ...state.profiles[state.activeProfile],
+            [action.chart]: initialProfileState[action.chart],
+          },
+        },
+      };
     default:
       return state;
   }
