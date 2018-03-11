@@ -22,23 +22,24 @@ function cacheImages(images) {
   });
 }
 
-// cacheImages([
-//   require('../../Images/Fasting/main.png'),
-//   require('../../Images/Fasting/failed.jpg'),
-//   require('../../Images/Fasting/passed.jpg'),
-//   require('../../Images/Fasting/tried.jpg'),
-//
-//   require('../../Images/Surah/main.png'),
-//   require('../../Images/Surah/memorized.png'),
-//   require('../../Images/Surah/read.png'),
-//   require('../../Images/Surah/grey/divided_17.gif'),
-//
-//   require('../../Images/Tarawih/main.png'),
-//   require('../../Images/Tarawih/passed.png'),
-//   require('../../Images/Tarawih/grey.png'),
-//   require('../../Images/Tarawih/failed.png'),
-//   require('../../Images/photo.jpg'),
-// ]);
+cacheImages([
+  require('../../Images/Fasting/main.jpg'),
+  require('../../Images/Fasting/failed.jpg'),
+  require('../../Images/Fasting/passed.jpg'),
+  require('../../Images/Fasting/tried.jpg'),
+
+  require('../../Images/Surah/main.jpg'),
+  require('../../Images/Surah/failed.jpg'),
+  require('../../Images/Surah/passed.jpg'),
+  require('../../Images/Surah/tried.jpg'),
+
+  require('../../Images/Tarawih/main.jpg'),
+  require('../../Images/Tarawih/failed.jpg'),
+  require('../../Images/Tarawih/passed.jpg'),
+  require('../../Images/Tarawih/tried.jpg'),
+
+  require('../../Images/photo.jpg'),
+]);
 
 class App extends React.Component {
   static setGlobalProps() {
