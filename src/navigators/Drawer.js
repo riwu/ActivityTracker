@@ -2,7 +2,7 @@ import React from 'react';
 import { DrawerNavigator, DrawerItems } from 'react-navigation';
 import { View, Platform, StyleSheet } from 'react-native';
 import { Constants } from 'expo';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { FontAwesome } from '@expo/vector-icons';
 
 import CONSTANTS from '../constants';
 
@@ -49,16 +49,16 @@ const Drawer = DrawerNavigator(
         screen: navs[index],
         navigationOptions: {
           drawer: {
-            icon: ({ tintColor }) => <Icon name="rocket" size={24} />,
+            icon: ({ tintColor }) => <FontAwesome name="rocket" size={24} />,
           },
         },
       },
     }),
-    {}
+    {},
   ),
   {
     drawerWidth: 250,
-    contentComponent: props => (
+    contentComponent: (props) => (
       <View style={styles.navigationPadding}>
         <DrawerItems {...props} />
       </View>
@@ -69,7 +69,7 @@ const Drawer = DrawerNavigator(
         flex: 1,
       },
     },
-  }
+  },
 );
 
 export default Drawer;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Text } from 'react-native';
-import IOSIcon from 'react-native-vector-icons/Ionicons';
+import { Ionicons } from '@expo/vector-icons';
 import CONSTANTS from '../constants';
 
 const headerStyle = {
@@ -23,7 +23,7 @@ const NavigationOptions = (navigation, title, isDrawerComponent = true) => {
     options.drawerLabel = <Text style={textStyle}>{title}</Text>;
     options.headerLeft = (
       <TouchableOpacity onPress={() => navigation.navigate('DrawerOpen')}>
-        <IOSIcon name="ios-menu" size={30} />
+        <Ionicons name="ios-menu" size={30} />
       </TouchableOpacity>
     );
   }
