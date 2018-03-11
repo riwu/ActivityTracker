@@ -8,14 +8,7 @@ import Day from '../components/Day';
 
 const SurahChartNav = StackNavigator({
   MainSurahChart: {
-    screen: (props) => (
-      <Chart
-        images={CONSTANTS.SURAH_CHART_IMAGES}
-        mainImage={SurahChartImg}
-        navPath="SurahDay"
-        {...props}
-      />
-    ),
+    screen: Chart,
     navigationOptions: ({ navigation }) => NavigationOptions(navigation, CONSTANTS.SURAH_CHART),
   },
   SurahDay: {
@@ -25,4 +18,12 @@ const SurahChartNav = StackNavigator({
   },
 });
 
-export default SurahChartNav;
+export default () => (
+  <SurahChartNav
+    screenProps={{
+      images: CONSTANTS.SURAH_CHART_IMAGES,
+      mainImage: SurahChartImg,
+      navPath: 'SurahDay',
+    }}
+  />
+);

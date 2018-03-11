@@ -8,14 +8,7 @@ import Day from '../components/Day';
 
 const TarawihChartNav = StackNavigator({
   MainTarawihChart: {
-    screen: (props) => (
-      <Chart
-        images={CONSTANTS.TARAWIH_CHART_IMAGES}
-        mainImage={TarawihChartImg}
-        navPath="TarawihDay"
-        {...props}
-      />
-    ),
+    screen: Chart,
     navigationOptions: ({ navigation }) => NavigationOptions(navigation, CONSTANTS.TARAWIH_CHART),
   },
   TarawihDay: {
@@ -25,4 +18,12 @@ const TarawihChartNav = StackNavigator({
   },
 });
 
-export default TarawihChartNav;
+export default () => (
+  <TarawihChartNav
+    screenProps={{
+      images: CONSTANTS.TARAWIH_CHART_IMAGES,
+      mainImage: TarawihChartImg,
+      navPath: 'TarawihDay',
+    }}
+  />
+);

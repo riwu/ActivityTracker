@@ -8,14 +8,7 @@ import Day from '../components/Day';
 
 const FastingChartNav = StackNavigator({
   MainFastingChart: {
-    screen: (props) => (
-      <Chart
-        images={CONSTANTS.FASTING_CHART_IMAGES}
-        mainImage={FastingChartImg}
-        navPath="FastingDay"
-        {...props}
-      />
-    ),
+    screen: Chart,
     navigationOptions: ({ navigation }) => NavigationOptions(navigation, CONSTANTS.FASTING_CHART),
   },
   FastingDay: {
@@ -25,4 +18,12 @@ const FastingChartNav = StackNavigator({
   },
 });
 
-export default FastingChartNav;
+export default () => (
+  <FastingChartNav
+    screenProps={{
+      images: CONSTANTS.FASTING_CHART_IMAGES,
+      mainImage: FastingChartImg,
+      navPath: 'FastingDay',
+    }}
+  />
+);

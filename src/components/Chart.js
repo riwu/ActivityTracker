@@ -64,7 +64,7 @@ class Chart extends React.Component {
           {
             text: 'Reset',
             style: 'destructive',
-            onPress: () => this.props.resetChart(this.props.navPath),
+            onPress: () => this.props.resetChart(this.props.screenProps.navPath),
           },
         ]),
     });
@@ -73,8 +73,10 @@ class Chart extends React.Component {
   render() {
     const { props } = this;
     const {
-      mainImage, images, data, navigation, navPath, numColumns, defaultItemImage,
+      data, navigation, numColumns, defaultItemImage,
     } = props;
+
+    const { images, mainImage, navPath } = props.screenProps;
 
     const getItem = (item) => {
       let Item;
@@ -137,7 +139,7 @@ class Chart extends React.Component {
 
 export default connect(
   (state, ownProps) => ({
-    data: state.profile.profiles[state.profile.activeProfile][ownProps.navPath],
+    data: state.profile.profiles[state.profile.activeProfile][ownProps.screenProps.navPath],
   }),
   { resetChart, updateChart },
 )(Chart);
