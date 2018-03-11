@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, Image } from 'react-native';
 import Chart from '../components/Chart';
-import { updateChart } from '../actions';
 import Constants from '../Constants';
 import SurahChartImg from '../../Images/Surah/main.png';
 import Grey from '../../Images/Surah/grey/divided_17.gif';

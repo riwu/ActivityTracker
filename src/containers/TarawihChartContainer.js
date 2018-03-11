@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, Text, ImageBackground } from 'react-native';
 import Chart from '../components/Chart';
-import { updateChart } from '../actions';
 import Constants from '../Constants';
 import TarawihChartImg from '../../Images/Tarawih/main.png';
 import TarawihGreyImg from '../../Images/Tarawih/grey.png';

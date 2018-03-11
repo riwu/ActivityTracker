@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, Text } from 'react-native';
 import Chart from '../components/Chart';
-import { updateChart } from '../actions';
 import Constants from '../Constants';
 import FastingChartImg from '../../Images/Fasting/main.png';
 
