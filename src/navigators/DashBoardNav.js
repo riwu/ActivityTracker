@@ -1,6 +1,6 @@
 import { StackNavigator } from 'react-navigation';
 import DashBoard from '../components/DashBoard';
-import Constants from '../Constants';
+import Constants from '../constants';
 import NavigationOptions from './NavigationOptions';
 
 const DashBoardNav = StackNavigator({

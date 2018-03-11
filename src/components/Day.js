@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Animated, PanResponder } from 'react-native';
-import CONSTANTS from '../Constants';
+import CONSTANTS from '../constants';
 
 const marginTop = 20;
 const imageHeight = CONSTANTS.WIDTH / 4;

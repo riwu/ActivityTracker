@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { EvilIcons } from '@expo/vector-icons';
 import { NavigationActions } from 'react-navigation';
-import CONSTANTS from '../Constants';
+import CONSTANTS from '../constants';
 
 const styles = StyleSheet.create({
   container: {

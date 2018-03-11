@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, Text } from 'react-native';
 import IOSIcon from 'react-native-vector-icons/Ionicons';
-import CONSTANTS from '../Constants';
+import CONSTANTS from '../constants';
 
 const headerStyle = {
   paddingRight: 10,

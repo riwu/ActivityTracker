@@ -1,7 +1,7 @@
 import { StackNavigator } from 'react-navigation';
 import CreateProfile from '../components/CreateProfile';
 import Profiles from '../components/Profiles';
-import CONSTANTS from '../Constants';
+import CONSTANTS from '../constants';
 import NavigationOptions from './NavigationOptions';
 
 const ProfilesNav = StackNavigator({

@@ -1,6 +1,6 @@
 import { StackNavigator } from 'react-navigation';
 import BackupAndRecovery from '../components/BackupAndRecovery';
-import Constants from '../Constants';
+import Constants from '../constants';
 import NavigationOptions from './NavigationOptions';
 
 const BackupAndRecoveryNav = StackNavigator({

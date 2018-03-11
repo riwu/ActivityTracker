@@ -1,5 +1,5 @@
 import { NavigationActions } from 'react-navigation';
-import CONSTANTS from '../Constants';
+import CONSTANTS from '../constants';
 import AppNavigator from '../navigators/Drawer';
 
 const firstAction = AppNavigator.router.getActionForPathAndParams(

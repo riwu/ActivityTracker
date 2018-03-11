@@ -9,7 +9,7 @@ import Lato from '../../Lato/Lato.ttf';
 import AppWithNavigationState from '../navigators/AppNavigator';
 import Drawer from '../navigators/Drawer';
 
-import CONSTANTS from '../Constants';
+import CONSTANTS from '../constants';
 
 import { fontLoaded, navigateBack } from '../actions';
 

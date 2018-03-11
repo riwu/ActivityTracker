@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Button, TouchableOpacity } from 'react-native';
-import CONSTANTS from '../Constants';
+import CONSTANTS from '../constants';
 
 class PrayerTimes extends Component {
   render() {

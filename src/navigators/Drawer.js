@@ -4,7 +4,7 @@ import { View, Platform, StyleSheet } from 'react-native';
 import { Constants } from 'expo';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import CONSTANTS from '../Constants';
+import CONSTANTS from '../constants';
 
 import DashBoard from './DashBoardNav';
 import ProfilesNav from './ProfilesNav';

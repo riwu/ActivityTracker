@@ -1,7 +1,7 @@
 import React from 'react';
 import { StackNavigator } from 'react-navigation';
 import Chart from '../components/Chart';
-import CONSTANTS from '../Constants';
+import CONSTANTS from '../constants';
 import NavigationOptions from './NavigationOptions';
 import TarawihChartImg from '../../Images/Tarawih/main.jpg';
 import Day from '../components/Day';

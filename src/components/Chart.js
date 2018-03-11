@@ -12,7 +12,7 @@ import {
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { connect } from 'react-redux';
 import { resetChart, updateChart } from '../actions';
-import Constants from '../Constants';
+import Constants from '../constants';
 
 const styles = StyleSheet.create({
   container: {

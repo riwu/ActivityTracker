@@ -1,6 +1,6 @@
 import { StackNavigator } from 'react-navigation';
 import DuaList from '../components/DuaList';
-import Constants from '../Constants';
+import Constants from '../constants';
 import NavigationOptions from './NavigationOptions';
 
 const DuaListNav = StackNavigator({

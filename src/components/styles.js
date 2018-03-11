@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import Constants from '../Constants';
+import Constants from '../constants';
 
 const styles = StyleSheet.create({
   photo: {

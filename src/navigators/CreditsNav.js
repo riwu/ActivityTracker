@@ -1,6 +1,6 @@
 import { StackNavigator } from 'react-navigation';
 import Credits from '../components/Credits';
-import Constants from '../Constants';
+import Constants from '../constants';
 import NavigationOptions from './NavigationOptions';
 
 const CreditsNav = StackNavigator({
