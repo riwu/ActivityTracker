@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   },
   dataImage: {
     width: Constants.WIDTH / 4,
-    height: (Constants.WIDTH / 4) * 1.851,
+    height: Constants.WIDTH / 4 * 1.851,
     justifyContent: 'center',
   },
   view: {
@@ -38,20 +38,15 @@ const styles = StyleSheet.create({
 
 const DefaultItem = ({ main }) => (
   <ImageBackground source={TarawihGreyImg} style={styles.dataImage}>
-    <Text
-      style={styles.text}
-    >
-      {main}
-    </Text>
+    <Text style={styles.text}>{main}</Text>
   </ImageBackground>
 );
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   data: state.profile.profiles[state.profile.activeProfile].TarawihDay,
 });
 
-const mapDispatchToProps = dispatch => ({
-  updateChart: data => dispatch(updateChart(data)),
+const mapDispatchToProps = () => ({
   images: Constants.TARAWIH_CHART_IMAGES,
   mainImage: TarawihChartImg,
   styles,

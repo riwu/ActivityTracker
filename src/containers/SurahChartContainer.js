@@ -39,16 +39,13 @@ const styles = StyleSheet.create({
   },
 });
 
-const DefaultItem = ({ main }) => (
-  <Image source={Grey} style={styles.dataImage} />
-);
+const DefaultItem = ({ main }) => <Image source={Grey} style={styles.dataImage} />;
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   data: state.profile.profiles[state.profile.activeProfile].SurahDay,
 });
 
-const mapDispatchToProps = dispatch => ({
-  updateChart: data => dispatch(updateChart(data)),
+const mapDispatchToProps = () => ({
   images: Constants.SURAH_CHART_IMAGES,
   defaultItemImage: Grey,
   mainImage: SurahChartImg,
@@ -58,7 +55,4 @@ const mapDispatchToProps = dispatch => ({
   DefaultItem,
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Chart);
+export default connect(mapStateToProps, mapDispatchToProps)(Chart);

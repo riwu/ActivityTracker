@@ -32,20 +32,13 @@ const styles = StyleSheet.create({
   },
 });
 
-const DefaultItem = ({ main }) => (
-  <Text
-    style={styles.text}
-  >
-    {main}
-  </Text>
-);
+const DefaultItem = ({ main }) => <Text style={styles.text}>{main}</Text>;
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   data: state.profile.profiles[state.profile.activeProfile].FastingDay,
 });
 
-const mapDispatchToProps = dispatch => ({
-  updateChart: data => dispatch(updateChart(data)),
+const mapDispatchToProps = () => ({
   images: Constants.FASTING_CHART_IMAGES,
   mainImage: FastingChartImg,
   styles,
@@ -53,7 +46,4 @@ const mapDispatchToProps = dispatch => ({
   DefaultItem,
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Chart);
+export default connect(mapStateToProps, mapDispatchToProps)(Chart);

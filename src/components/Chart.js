@@ -2,7 +2,7 @@ import React from 'react';
 import { View, FlatList, Image, TouchableOpacity, ImageBackground, Alert } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { connect } from 'react-redux';
-import { resetChart } from '../actions';
+import { resetChart, updateChart } from '../actions';
 
 class Chart extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -105,4 +105,4 @@ class Chart extends React.Component {
   }
 }
 
-export default connect(null, { resetChart })(Chart);
+export default connect(null, { resetChart, updateChart })(Chart);
