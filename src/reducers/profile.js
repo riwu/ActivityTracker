@@ -7,9 +7,9 @@ const getState = (length) =>
     }, {});
 
 const initialProfileState = {
-  FastingDay: getState(30),
-  SurahDay: getState(30),
-  TarawihDay: getState(38),
+  FastingDay: getState(31),
+  SurahDay: getState(31),
+  TarawihDay: getState(31),
 };
 
 const initialState = {

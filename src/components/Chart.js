@@ -1,8 +1,46 @@
 import React from 'react';
-import { View, FlatList, Image, TouchableOpacity, ImageBackground, Alert } from 'react-native';
+import {
+  View,
+  FlatList,
+  Image,
+  TouchableOpacity,
+  ImageBackground,
+  Alert,
+  StyleSheet,
+  Text,
+} from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { connect } from 'react-redux';
 import { resetChart, updateChart } from '../actions';
+import Constants from '../Constants';
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  image: {
+    width: Constants.WIDTH,
+    height: Constants.WIDTH / 1.6543,
+  },
+  dataImage: {
+    width: Constants.WIDTH / 4,
+    height: Constants.WIDTH / 4,
+  },
+  view: {
+    flex: 1,
+    width: '25%',
+    borderRightWidth: 0.5,
+    borderRightColor: 'white',
+  },
+  text: {
+    fontSize: Constants.WIDTH / 8.5,
+    textAlign: 'center',
+    padding: 20,
+  },
+});
+
+const DefaultItem = ({ main }) => <Text style={styles.text}>{main}</Text>;
 
 class Chart extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -33,18 +71,10 @@ class Chart extends React.Component {
   }
 
   render() {
+    const { props } = this;
     const {
-      mainImage,
-      images,
-      data,
-      updateChart,
-      navigation,
-      styles,
-      DefaultItem,
-      navPath,
-      numColumns,
-      defaultItemImage,
-    } = this.props;
+      mainImage, images, data, navigation, navPath, numColumns, defaultItemImage,
+    } = props;
 
     const getItem = (item) => {
       let Item;
@@ -92,7 +122,7 @@ class Chart extends React.Component {
                 day: item.main,
                 replace: item.replace,
                 onChange: (replaceIndex) => {
-                  updateChart({ chart: navPath, index, replaceIndex });
+                  props.updateChart({ chart: navPath, index, replaceIndex });
                 },
               })
             }
@@ -105,4 +135,9 @@ class Chart extends React.Component {
   }
 }
 
-export default connect(null, { resetChart, updateChart })(Chart);
+export default connect(
+  (state, ownProps) => ({
+    data: state.profile.profiles[state.profile.activeProfile][ownProps.navPath],
+  }),
+  { resetChart, updateChart },
+)(Chart);

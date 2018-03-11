@@ -1,12 +1,42 @@
 import React, { Component } from 'react';
-import { View, Image, Animated, PanResponder } from 'react-native';
+import { View, StyleSheet, Animated, PanResponder } from 'react-native';
 import CONSTANTS from '../Constants';
+
+const marginTop = 20;
+const imageHeight = CONSTANTS.WIDTH / 4;
+const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+  },
+  images: {
+    marginTop,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  image: {
+    width: imageHeight,
+    height: imageHeight,
+  },
+  enlargedImage: {
+    width: '100%',
+    height: '100%',
+  },
+  box: {
+    width: 180,
+    height: 180,
+    borderWidth: 1,
+    borderColor: 'black',
+    borderStyle: 'dashed',
+    borderRadius: 0.001,
+    marginTop: 150,
+    padding: 7,
+  },
+});
 
 class Day extends Component {
   constructor(props) {
     super(props);
     const { images } = props;
-    console.log('replace'); // TODO: find out why it has updateChart props
     this.state = {
       ...images.reduce(
         (obj, image, index) => ({
@@ -19,7 +49,7 @@ class Day extends Component {
       selectedImagePos: new Animated.ValueXY(),
     };
 
-    const createPanResponder = index =>
+    const createPanResponder = (index) =>
       PanResponder.create({
         onStartShouldSetPanResponder: () => true,
         onPanResponderMove: Animated.event([
@@ -32,7 +62,11 @@ class Day extends Component {
         onPanResponderRelease: (e, gesture) => {
           const box = this.dropZone;
           const boxY =
-            box.y + CONSTANTS.STATUS_BAR_HEIGHT + CONSTANTS.NAV_BAR_HEIGHT + props.extraHeight;
+            box.y +
+            CONSTANTS.STATUS_BAR_HEIGHT +
+            CONSTANTS.NAV_BAR_HEIGHT +
+            marginTop +
+            imageHeight;
           if (
             (box.x <= gesture.moveX &&
               gesture.moveX <= box.x + box.width &&
@@ -40,7 +74,6 @@ class Day extends Component {
               gesture.moveY <= boxY + box.height) ===
             (index !== undefined)
           ) {
-            console.log('ani', this.state.selectedImagePos, index);
             this.setState({
               selectedImageIndex: index,
               // selectedImagePos: new Animated.ValueXY(), // TODO: this makes animation disappear
@@ -61,17 +94,17 @@ class Day extends Component {
 
   renderContainer() {
     return (
-      <View style={this.props.styles.container}>
+      <View style={styles.container}>
         <View
           onLayout={(e) => {
             this.dropZone = e.nativeEvent.layout;
           }}
-          style={this.props.styles.box}
+          style={styles.box}
         >
           {this.state.selectedImageIndex === undefined ? null : (
             <Animated.Image
               {...this.selectedImagePanResponder.panHandlers}
-              style={[this.state.selectedImagePos.getLayout(), this.props.styles.enlargedImage]}
+              style={[this.state.selectedImagePos.getLayout(), styles.enlargedImage]}
               source={this.props.images[this.state.selectedImageIndex]}
             />
           )}
@@ -81,15 +114,14 @@ class Day extends Component {
   }
 
   render() {
-    console.log('ani2', this.state.selectedImagePos);
     return (
       <View>
-        <View style={this.props.styles.images}>
+        <View style={styles.images}>
           {this.panResponders.map((panResponder, index) => (
             <Animated.Image
               key={index}
               {...panResponder.panHandlers}
-              style={[this.state[index].getLayout(), this.props.styles.image]}
+              style={[this.state[index].getLayout(), styles.image]}
               source={this.props.images[index]}
             />
           ))}

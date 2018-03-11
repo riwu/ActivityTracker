@@ -104,10 +104,7 @@ const CreateProfile = (props) => (
       onPress={() => {
         const name = props.name.trim();
         if (props.profiles[name]) {
-          Alert.alert(
-            'Oops!',
-            'That name is already taken, please use a different name',
-          );
+          Alert.alert('Oops!', 'That name is already taken, please use a different name');
           return;
         }
         props.createProfile(name, props.photo);
@@ -121,6 +118,4 @@ const mapStateToProps = (state) => ({
   profiles: state.profile.profiles,
 });
 
-export default connect(mapStateToProps, { createProfile })(
-  addState(CreateProfile),
-);
+export default connect(mapStateToProps, { createProfile })(addState(CreateProfile));

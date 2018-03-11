@@ -22,23 +22,23 @@ function cacheImages(images) {
   });
 }
 
-cacheImages([
-  require('../../Images/Fasting/main.png'),
-  require('../../Images/Fasting/failed.png'),
-  require('../../Images/Fasting/passed.png'),
-  require('../../Images/Fasting/tried.png'),
-
-  require('../../Images/Surah/main.png'),
-  require('../../Images/Surah/memorized.png'),
-  require('../../Images/Surah/read.png'),
-  require('../../Images/Surah/grey/divided_17.gif'),
-
-  require('../../Images/Tarawih/main.png'),
-  require('../../Images/Tarawih/passed.png'),
-  require('../../Images/Tarawih/grey.png'),
-  require('../../Images/Tarawih/failed.png'),
-  require('../../Images/photo.jpg'),
-]);
+// cacheImages([
+//   require('../../Images/Fasting/main.png'),
+//   require('../../Images/Fasting/failed.jpg'),
+//   require('../../Images/Fasting/passed.jpg'),
+//   require('../../Images/Fasting/tried.jpg'),
+//
+//   require('../../Images/Surah/main.png'),
+//   require('../../Images/Surah/memorized.png'),
+//   require('../../Images/Surah/read.png'),
+//   require('../../Images/Surah/grey/divided_17.gif'),
+//
+//   require('../../Images/Tarawih/main.png'),
+//   require('../../Images/Tarawih/passed.png'),
+//   require('../../Images/Tarawih/grey.png'),
+//   require('../../Images/Tarawih/failed.png'),
+//   require('../../Images/photo.jpg'),
+// ]);
 
 class App extends React.Component {
   static setGlobalProps() {
@@ -96,7 +96,7 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isFontLoaded: state.isFontLoaded,
   navigation: state.navigation,
 });

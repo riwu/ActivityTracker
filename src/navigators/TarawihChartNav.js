@@ -1,18 +1,27 @@
+import React from 'react';
 import { StackNavigator } from 'react-navigation';
-import TarawihDay from '../containers/TarawihDayContainer';
-import TarawihChart from '../containers/TarawihChartContainer';
+import Chart from '../components/Chart';
 import CONSTANTS from '../Constants';
 import NavigationOptions from './NavigationOptions';
+import TarawihChartImg from '../../Images/Tarawih/main.jpg';
+import Day from '../components/Day';
 
 const TarawihChartNav = StackNavigator({
   MainTarawihChart: {
-    screen: TarawihChart,
+    screen: (props) => (
+      <Chart
+        images={CONSTANTS.TARAWIH_CHART_IMAGES}
+        mainImage={TarawihChartImg}
+        navPath="TarawihDay"
+        {...props}
+      />
+    ),
     navigationOptions: ({ navigation }) => NavigationOptions(navigation, CONSTANTS.TARAWIH_CHART),
   },
   TarawihDay: {
-    screen: TarawihDay,
-    navigationOptions: ({ navigation }) => NavigationOptions(navigation,
-      `Day ${navigation.state.params.day}`, false),
+    screen: (props) => <Day images={CONSTANTS.TARAWIH_CHART_IMAGES} {...props} />,
+    navigationOptions: ({ navigation }) =>
+      NavigationOptions(navigation, `Day ${navigation.state.params.day}`, false),
   },
 });
 

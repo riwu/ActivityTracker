@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
   chart: {
     margin: 5,
     backgroundColor: '#F0F8FF',
+    height: CONSTANTS.HEIGHT / 3.5,
   },
   chartTitleContainer: {
     flexDirection: 'row',
@@ -83,7 +84,7 @@ const CircularProgress = (props) => (
     chart={props.chart}
     Circular={({ chart }) => (
       <AnimatedCircularProgress
-        size={120}
+        size={CONSTANTS.HEIGHT / 5.5}
         width={10}
         fill={(chart.completed / chart.total) * 100 /* prettier-ignore */}
         tintColor="#1E90FF"
@@ -102,44 +103,38 @@ const CircularProgress = (props) => (
 
 const DashBoard = (props) => (
   <View style={styles.container}>
-    <CircularProgress chart={props.fasting} />
-    <View style={styles.charts}>
-      {[props.tarawih, props.surahRead].map((chart) => (
-        <TextProgress key={chart.name} chart={chart} />
-      ))}
-    </View>
+    {[props.fasting, props.tarawih, props.surahRead].map((chart) => (
+      <CircularProgress chart={chart} key={chart.name} />
+    ))}
   </View>
 );
 
 const mapStateToProps = (state) => {
   const profile = state.profile.profiles[state.profile.activeProfile];
-  const getCompleted = ({ name, chartKey, route, predicate }) => {
+  const getCompleted = ({ name, chartKey, route }) => {
     const values = Object.values(profile[chartKey]);
     return {
       name,
       route,
-      completed: values.filter((obj) => predicate(obj.replace)).length,
+      completed: values.filter((obj) => obj.replace !== undefined).length,
       total: values.length,
     };
   };
   return {
     fasting: getCompleted({
-      name: 'Fasting Chart',
+      name: 'Read',
       route: CONSTANTS.FASTING_CHART,
       chartKey: 'FastingDay',
-      predicate: (replace) => replace !== undefined,
     }),
     tarawih: getCompleted({
-      name: 'Tarawih Chart',
+      name: 'Speak',
       route: CONSTANTS.TARAWIH_CHART,
       chartKey: 'TarawihDay',
-      predicate: (replace) => replace !== undefined,
     }),
     surahRead: getCompleted({
-      name: 'Surah Chart',
+      name: 'Write',
       route: CONSTANTS.SURAH_CHART,
       chartKey: 'SurahDay',
-      predicate: (replace) => replace && replace.includes(0),
     }),
   };
 };
