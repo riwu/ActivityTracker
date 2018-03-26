@@ -80,7 +80,6 @@ class Chart extends React.Component {
 
     const getItem = (item) => {
       let Item;
-      console.log('replac', item.replace, typeof item.replace);
       if (
         item.replace === undefined ||
         (typeof item.replace === 'object' && item.replace.length === 0)
