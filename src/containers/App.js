@@ -22,25 +22,6 @@ function cacheImages(images) {
   });
 }
 
-cacheImages([
-  require('../../Images/Fasting/main.jpg'),
-  require('../../Images/Fasting/failed.jpg'),
-  require('../../Images/Fasting/passed.jpg'),
-  require('../../Images/Fasting/tried.jpg'),
-
-  require('../../Images/Surah/main.jpg'),
-  require('../../Images/Surah/failed.jpg'),
-  require('../../Images/Surah/passed.jpg'),
-  require('../../Images/Surah/tried.jpg'),
-
-  require('../../Images/Tarawih/main.jpg'),
-  require('../../Images/Tarawih/failed.jpg'),
-  require('../../Images/Tarawih/passed.jpg'),
-  require('../../Images/Tarawih/tried.jpg'),
-
-  require('../../Images/photo.jpg'),
-]);
-
 class App extends React.Component {
   static setGlobalProps() {
     const customViewProps = {

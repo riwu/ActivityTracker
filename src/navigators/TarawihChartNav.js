@@ -3,7 +3,7 @@ import { StackNavigator } from 'react-navigation';
 import Chart from '../components/Chart';
 import CONSTANTS from '../constants';
 import NavigationOptions from './NavigationOptions';
-import TarawihChartImg from '../../Images/Tarawih/main.jpg';
+import TarawihChartImg from '../../assets/Tarawih/main.jpg';
 import Day from '../components/Day';
 
 const TarawihChartNav = StackNavigator({

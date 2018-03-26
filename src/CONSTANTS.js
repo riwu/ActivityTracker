@@ -1,16 +1,16 @@
 import { Platform, NativeModules, Dimensions } from 'react-native';
 
-import FastingChartPassed from '../Images/Fasting/passed.jpg';
-import FastingChartTried from '../Images/Fasting/tried.jpg';
-import FastingChartFailed from '../Images/Fasting/failed.jpg';
+import FastingChartPassed from '../assets/Fasting/passed.jpg';
+import FastingChartTried from '../assets/Fasting/tried.jpg';
+import FastingChartFailed from '../assets/Fasting/failed.jpg';
 
-import TarawihChartPassed from '../Images/Tarawih/passed.jpg';
-import TarawihChartTried from '../Images/Tarawih/tried.jpg';
-import TarawihChartFailed from '../Images/Tarawih/failed.jpg';
+import TarawihChartPassed from '../assets/Tarawih/passed.jpg';
+import TarawihChartTried from '../assets/Tarawih/tried.jpg';
+import TarawihChartFailed from '../assets/Tarawih/failed.jpg';
 
-import SurahChartPassed from '../Images/Surah/passed.jpg';
-import SurahChartTried from '../Images/Surah/tried.jpg';
-import SurahChartFailed from '../Images/Surah/failed.jpg';
+import SurahChartPassed from '../assets/Surah/passed.jpg';
+import SurahChartTried from '../assets/Surah/tried.jpg';
+import SurahChartFailed from '../assets/Surah/failed.jpg';
 
 function deepFreeze(obj) {
   Object.values(obj).forEach((value) => {

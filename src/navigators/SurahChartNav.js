@@ -3,7 +3,7 @@ import { StackNavigator } from 'react-navigation';
 import Chart from '../components/Chart';
 import CONSTANTS from '../constants';
 import NavigationOptions from './NavigationOptions';
-import SurahChartImg from '../../Images/Surah/main.jpg';
+import SurahChartImg from '../../assets/Surah/main.jpg';
 import Day from '../components/Day';
 
 const SurahChartNav = StackNavigator({

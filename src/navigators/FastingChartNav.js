@@ -3,7 +3,7 @@ import { StackNavigator } from 'react-navigation';
 import Chart from '../components/Chart';
 import CONSTANTS from '../constants';
 import NavigationOptions from './NavigationOptions';
-import FastingChartImg from '../../Images/Fasting/main.jpg';
+import FastingChartImg from '../../assets/Fasting/main.jpg';
 import Day from '../components/Day';
 
 const FastingChartNav = StackNavigator({

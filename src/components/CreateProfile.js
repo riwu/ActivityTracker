@@ -6,7 +6,7 @@ import { withStateHandlers } from 'recompose';
 import { createProfile } from '../actions';
 import Button from './Button';
 import commonStyles from './styles';
-import defaultPhoto from '../../Images/photo.jpg';
+import defaultPhoto from '../../assets/photo.jpg';
 
 const styles = StyleSheet.create({
   container: {
