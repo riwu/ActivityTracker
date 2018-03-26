@@ -2,6 +2,7 @@ import React from 'react';
 import { TouchableOpacity, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import CONSTANTS from '../constants';
+import { store } from '../../App';
 
 const headerStyle = {
   paddingRight: 10,
@@ -22,7 +23,9 @@ const NavigationOptions = (navigation, title, isDrawerComponent = true) => {
   if (isDrawerComponent) {
     options.drawerLabel = <Text style={textStyle}>{title}</Text>;
     options.headerLeft = (
-      <TouchableOpacity onPress={() => navigation.navigate('DrawerOpen')}>
+      <TouchableOpacity
+        onPress={() => store.dispatch({ type: 'Navigation/NAVIGATE', routeName: 'DrawerOpen' })}
+      >
         <Ionicons name="ios-menu" size={30} />
       </TouchableOpacity>
     );

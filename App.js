@@ -19,7 +19,7 @@ const config = {
   version: 0,
   migrate: createMigrate(migrations, { debug: process.env.NODE_ENV === 'development' }),
 };
-const store = createStore(persistReducer(config, reducer), devToolsEnhancer());
+export const store = createStore(persistReducer(config, reducer), devToolsEnhancer());
 
 const persistor = persistStore(store);
 // persistor.purge();
