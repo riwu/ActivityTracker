@@ -47,11 +47,6 @@ const Drawer = DrawerNavigator(
       ...obj,
       [element]: {
         screen: navs[index],
-        navigationOptions: {
-          drawer: {
-            icon: ({ tintColor }) => <FontAwesome name="rocket" size={24} />,
-          },
-        },
       },
     }),
     {},

@@ -9,6 +9,7 @@ import commonStyles from './styles';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: 'white',
   },
   text: {
     textAlign: 'center',
@@ -23,6 +24,11 @@ const styles = StyleSheet.create({
   profileButton: {
     backgroundColor: 'orange',
   },
+  separator: {
+    height: 1,
+    backgroundColor: 'lightgrey',
+    marginBottom: 20,
+  },
 });
 
 const addLifecycle = lifecycle({
@@ -33,7 +39,7 @@ const addLifecycle = lifecycle({
   },
 });
 
-const MainScreen = props => (
+const MainScreen = (props) => (
   <View style={styles.container}>
     <Button
       style={styles.createButton}
@@ -44,6 +50,7 @@ const MainScreen = props => (
       data={Object.entries(props.profiles)}
       extraData={props.activeProfile}
       keyExtractor={([name]) => name}
+      ItemSeparatorComponent={() => <View style={styles.separator} />}
       renderItem={({ item: [name, obj] }) => {
         console.log('index', name, obj);
         const isActive = name === props.activeProfile;
@@ -83,7 +90,7 @@ const MainScreen = props => (
   </View>
 );
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   profiles: state.profile.profiles,
   activeProfile: state.profile.activeProfile,
 });
