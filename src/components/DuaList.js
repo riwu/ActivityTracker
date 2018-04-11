@@ -1,23 +1,32 @@
-import React, { Component } from 'react';
-import { View, Text, StyleSheet, Button, TouchableOpacity } from 'react-native';
-import CONSTANTS from '../constants';
-
-class DuaList extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Du a list</Text>
-      </View>
-    );
-  }
-}
+import React from 'react';
+import { Text, StyleSheet, SectionList } from 'react-native';
+import proverbs from '../data/proverbs.json';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    marginLeft: 10,
+    marginTop: 10,
+  },
+  header: {
+    fontWeight: 'bold',
+    backgroundColor: 'green',
+    fontSize: 20,
+    padding: 10,
+  },
+  item: {
+    marginBottom: 10,
+    fontSize: 15,
   },
 });
+
+const DuaList = () => (
+  <SectionList
+    style={styles.container}
+    sections={proverbs}
+    renderItem={({ item, index }) => <Text style={styles.item}>{`${index + 1}. ${item}`}</Text>}
+    renderSectionHeader={({ section: { title } }) => <Text style={styles.header}>{title}</Text>}
+    keyExtractor={(item) => item}
+  />
+);
 
 export default DuaList;
