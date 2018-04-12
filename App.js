@@ -13,7 +13,7 @@ const config = {
   key: 'root',
   storage: AsyncStorage,
 };
-export const store = createStore(persistReducer(config, reducer), devToolsEnhancer());
+export const store = createStore(persistReducer(config, reducer), devToolsEnhancer({ port: 8000 }));
 
 const persistor = persistStore(store);
 // persistor.purge();
