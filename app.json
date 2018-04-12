@@ -8,7 +8,7 @@
       "infoPlist": {
         "NSCameraUsageDescription": "Take a photo to use it as your profile picture"
       },
-      "buildNumber": "2"
+      "buildNumber": "3"
     },
     "android": {
       "package": "riwu.tamil",
