@@ -22,8 +22,8 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   box: {
-    width: 180,
-    height: 180,
+    width: CONSTANTS.WIDTH / 2,
+    height: CONSTANTS.WIDTH / 2,
     borderWidth: 1,
     borderColor: 'black',
     borderStyle: 'dashed',
@@ -61,12 +61,7 @@ class Day extends Component {
         ]),
         onPanResponderRelease: (e, gesture) => {
           const box = this.dropZone;
-          const boxY =
-            box.y +
-            CONSTANTS.STATUS_BAR_HEIGHT +
-            CONSTANTS.NAV_BAR_HEIGHT +
-            marginTop +
-            imageHeight;
+          const boxY = box.y + CONSTANTS.NAV_BAR_HEIGHT + marginTop + imageHeight;
           if (
             (box.x <= gesture.moveX &&
               gesture.moveX <= box.x + box.width &&

@@ -57,12 +57,6 @@ const Drawer = DrawerNavigator(
         <DrawerItems {...props} />
       </View>
     ),
-    contentOptions: {
-      style: {
-        marginTop: 24,
-        flex: 1,
-      },
-    },
   },
 );
 

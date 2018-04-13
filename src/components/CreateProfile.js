@@ -1,7 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { ImagePicker } from 'expo';
-import { View, TextInput, StyleSheet, Alert, Image, Text } from 'react-native';
+import {
+  View,
+  TextInput,
+  StyleSheet,
+  Alert,
+  Image,
+  Text,
+  KeyboardAvoidingView,
+} from 'react-native';
 import { withStateHandlers } from 'recompose';
 import { createProfile } from '../actions';
 import Button from './Button';
@@ -10,13 +18,13 @@ import defaultPhoto from '../../assets/photo.jpg';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
+    marginTop: 20,
   },
   photoButtons: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
+    marginTop: 10,
   },
   pickButton: {
     backgroundColor: 'lightblue',
@@ -55,7 +63,7 @@ const addState = withStateHandlers(
 );
 
 const CreateProfile = (props) => (
-  <View style={styles.container}>
+  <KeyboardAvoidingView behavior="position" style={styles.container}>
     <Image style={commonStyles.photo} source={props.photo} />
     <View style={styles.photoButtons}>
       <Button
@@ -91,6 +99,7 @@ const CreateProfile = (props) => (
     </View>
     <TextInput
       style={styles.input}
+      underlineColorAndroid="transparent"
       placeholder="What's your name"
       autoFocus
       onChangeText={(name) => {
@@ -111,7 +120,7 @@ const CreateProfile = (props) => (
         props.navigation.navigate('AllProfiles');
       }}
     />
-  </View>
+  </KeyboardAvoidingView>
 );
 
 const mapStateToProps = (state) => ({
