@@ -1,7 +1,4 @@
-import React from 'react';
-import { DrawerNavigator, DrawerItems } from 'react-navigation';
-import { View, Platform, StyleSheet } from 'react-native';
-import { Constants } from 'expo';
+import { DrawerNavigator } from 'react-navigation';
 
 import CONSTANTS from '../constants';
 
@@ -15,19 +12,6 @@ import PrayerTimes from './PrayerTimesNav';
 import BackupAndRecovery from './BackupAndRecoveryNav';
 import Credits from './CreditsNav';
 
-const styles = StyleSheet.create({
-  navigationPadding: {
-    ...Platform.select({
-      ios: {
-        paddingTop: Constants.statusBarHeight,
-      },
-      android: {
-        paddingTop: Constants.statusBarHeight,
-      },
-    }),
-  },
-});
-
 const navs = [
   DashBoard,
   ProfilesNav,
@@ -40,24 +24,9 @@ const navs = [
   Credits,
 ];
 
-const Drawer = DrawerNavigator(
-  CONSTANTS.DRAWER_ORDER.reduce(
-    (obj, element, index) => ({
-      ...obj,
-      [element]: {
-        screen: navs[index],
-      },
-    }),
-    {},
-  ),
-  {
-    drawerWidth: 250,
-    contentComponent: (props) => (
-      <View style={styles.navigationPadding}>
-        <DrawerItems {...props} />
-      </View>
-    ),
-  },
-);
+const Drawer = DrawerNavigator(CONSTANTS.DRAWER_ORDER.reduce((acc, element, index) => {
+  acc[element] = { screen: navs[index] };
+  return acc;
+}, {}));
 
 export default Drawer;

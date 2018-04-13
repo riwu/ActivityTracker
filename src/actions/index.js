@@ -1,11 +1,3 @@
-export const fontLoaded = () => ({
-  type: 'FONT_LOADED',
-});
-
-export const navigateBack = () => ({
-  type: 'NAVIGATE_BACK',
-});
-
 export const updateChart = (data) => ({
   type: 'UPDATE_CHART',
   ...data,

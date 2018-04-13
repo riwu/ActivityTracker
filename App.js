@@ -38,11 +38,13 @@ const App = () => (
   </Provider>
 );
 
-AppState.addEventListener('change', async () => {
-  const { isAvailable } = await Updates.checkForUpdateAsync();
-  if (!isAvailable) return;
-  await Updates.fetchUpdateAsync();
-  Updates.reload();
-});
+if (process.env.NODE_ENV !== 'development') {
+  AppState.addEventListener('change', async () => {
+    const { isAvailable } = await Updates.checkForUpdateAsync();
+    if (!isAvailable) return;
+    await Updates.fetchUpdateAsync();
+    Updates.reload();
+  });
+}
 
 export default App;
