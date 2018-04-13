@@ -8,7 +8,7 @@
       "infoPlist": {
         "NSCameraUsageDescription": "Take a photo to use it as your profile picture"
       },
-      "buildNumber": "4"
+      "buildNumber": "5"
     },
     "android": {
       "package": "riwu.tamil",
@@ -17,6 +17,10 @@
     "name": "tamil",
     "slug": "tamil",
     "version": "0.0.1",
-    "assetBundlePatterns": ["assets/**", "node_modules/@expo/vector-icons/fonts/*.ttf"]
+    "assetBundlePatterns": ["assets/**", "node_modules/@expo/vector-icons/fonts/*.ttf"],
+    "updates": {
+      "checkAutomatically": "ON_ERROR_RECOVERY",
+      "fallbackToCacheTimeout": 0
+    }
   }
 }
