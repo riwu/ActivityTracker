@@ -1,16 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet, Button, TouchableOpacity } from 'react-native';
-import CONSTANTS from '../constants';
-
-class BackupAndRecovery extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Backup</Text>
-      </View>
-    );
-  }
-}
 
 const styles = StyleSheet.create({
   container: {
@@ -19,5 +8,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
+
+const BackupAndRecovery = (props) => (
+  <View style={styles.container}>
+    <Text>Backup is not yet available</Text>
+  </View>
+);
 
 export default BackupAndRecovery;

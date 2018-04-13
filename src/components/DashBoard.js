@@ -122,17 +122,17 @@ const mapStateToProps = (state) => {
   };
   return {
     fasting: getCompleted({
-      name: 'Read',
+      name: 'வாசிப்பு',
       route: CONSTANTS.FASTING_CHART,
       chartKey: 'FastingDay',
     }),
     tarawih: getCompleted({
-      name: 'Speak',
+      name: 'எழுதுதல்',
       route: CONSTANTS.TARAWIH_CHART,
       chartKey: 'TarawihDay',
     }),
     surahRead: getCompleted({
-      name: 'Write',
+      name: 'பேசுதல்',
       route: CONSTANTS.SURAH_CHART,
       chartKey: 'SurahDay',
     }),

@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Button, TouchableOpacity } from 'react-native';
-import CONSTANTS from '../constants';
 
 class PrayerTimes extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Prayer Times</Text>
+        <Text>Activitiy is not available yet</Text>
       </View>
     );
   }

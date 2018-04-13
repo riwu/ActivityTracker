@@ -24,6 +24,9 @@ const styles = StyleSheet.create({
   top: {
     marginBottom: 50,
   },
+  icon: {
+    fontSize: 20,
+  },
 });
 
 const Credits = () => (
@@ -34,7 +37,7 @@ const Credits = () => (
       onPress={() => Linking.openURL('https://wangriwu.com/Contact')}
     >
       <Text style={styles.link}>Wang Riwu</Text>
-      <Feather name="external-link" />
+      <Feather style={styles.icon} name="external-link" />
     </TouchableOpacity>
 
     <Text style={styles.label}>Services and concept provided by:</Text>
@@ -43,7 +46,7 @@ const Credits = () => (
       onPress={() => Linking.openURL('mailto:wfervin@gmail.com')}
     >
       <Text style={styles.link}>Wahidah Fervin</Text>
-      <MaterialCommunityIcons name="email-outline" />
+      <MaterialCommunityIcons style={styles.icon} name="email-outline" />
     </TouchableOpacity>
   </View>
 );
