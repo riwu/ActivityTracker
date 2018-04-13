@@ -11,7 +11,7 @@ import {
 } from 'react-navigation-redux-helpers';
 
 import reducer from './src/reducers';
-import MainApp from './src/containers/App';
+import AppWithNavigationState from './src/navigators/AppNavigator';
 
 const config = {
   key: 'root',
@@ -32,7 +32,7 @@ const persistor = persistStore(store);
 const App = () => (
   <Provider store={store}>
     <PersistGate persistor={persistor}>
-      <MainApp />
+      <AppWithNavigationState />
     </PersistGate>
   </Provider>
 );
