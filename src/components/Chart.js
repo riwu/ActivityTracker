@@ -14,22 +14,21 @@ import { connect } from 'react-redux';
 import { resetChart, updateChart } from '../actions';
 import Constants from '../constants';
 
+const ITEMS_PER_ROW = 4;
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
   image: {
     width: Constants.WIDTH,
     height: Constants.WIDTH / 1.6543,
   },
   dataImage: {
-    width: Constants.WIDTH / 4,
-    height: Constants.WIDTH / 4,
+    width: Constants.WIDTH / ITEMS_PER_ROW,
+    height: Constants.WIDTH / ITEMS_PER_ROW,
   },
   view: {
-    flex: 1,
     width: '25%',
+  },
+  borderRight: {
     borderRightWidth: 0.5,
     borderRightColor: 'white',
   },
@@ -101,7 +100,6 @@ class Chart extends React.Component {
 
     return (
       <FlatList
-        style={styles.container}
         ListHeaderComponent={<Image style={styles.image} source={mainImage} />}
         data={Object.values(data || {})}
         extraData={data}
@@ -117,7 +115,7 @@ class Chart extends React.Component {
         )}
         renderItem={({ item, index }) => (
           <TouchableOpacity
-            style={styles.view}
+            style={[styles.view, (index + 1) % ITEMS_PER_ROW > 0 && styles.borderRight]}
             onPress={() =>
               navigation.navigate(navPath, {
                 day: item.main,
