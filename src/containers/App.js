@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { BackHandler, Platform, Image } from 'react-native';
 
-import { setCustomText, setCustomView, setCustomImage } from 'react-native-global-props';
-import { Asset, Font } from 'expo';
+import { setCustomText } from 'react-native-global-props';
+import { Font } from 'expo';
 import Lato from '../../Lato/Lato.ttf';
 
 import AppWithNavigationState from '../navigators/AppNavigator';
@@ -13,37 +13,11 @@ import CONSTANTS from '../constants';
 
 import { fontLoaded, navigateBack } from '../actions';
 
-function cacheImages(images) {
-  return images.map((image) => {
-    if (typeof image === 'string') {
-      return Image.prefetch(image);
-    }
-    return Asset.fromModule(image).downloadAsync();
-  });
-}
-
 class App extends React.Component {
-  static setGlobalProps() {
-    const customViewProps = {
-      style: {
-        backgroundColor: '#ecf0f1',
-        zIndex: -1,
-      },
-    };
-    // setCustomView(customViewProps);
-
-    const customImageProps = {
-      resizeMode: 'cover',
-      zIndex: 1,
-    };
-    setCustomImage(customImageProps);
-  }
-
   constructor(props) {
     super(props);
 
     this.loadFont();
-    App.setGlobalProps();
     this.addBackHandler();
   }
 

@@ -2,7 +2,6 @@ import React from 'react';
 import { DrawerNavigator, DrawerItems } from 'react-navigation';
 import { View, Platform, StyleSheet } from 'react-native';
 import { Constants } from 'expo';
-import { FontAwesome } from '@expo/vector-icons';
 
 import CONSTANTS from '../constants';
 
