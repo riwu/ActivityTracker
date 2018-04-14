@@ -24,9 +24,19 @@ const navs = [
   Credits,
 ];
 
-const Drawer = DrawerNavigator(CONSTANTS.DRAWER_ORDER.reduce((acc, element, index) => {
-  acc[element] = { screen: navs[index] };
-  return acc;
-}, {}));
+const Drawer = DrawerNavigator(
+  CONSTANTS.DRAWER_ORDER.reduce((acc, element, index) => {
+    acc[element] = { screen: navs[index] };
+    return acc;
+  }, {}),
+  {
+    contentOptions: {
+      itemStyle: {
+        borderBottomWidth: 0.5,
+        borderBottomColor: 'lightgrey',
+      },
+    },
+  },
+);
 
 export default Drawer;
