@@ -111,9 +111,12 @@ const CreateProfile = (props) => (
       title="CREATE!"
       disabled={props.name.trim() === ''}
       onPress={() => {
+        if (this.pressed) return;
+        this.pressed = true;
         const name = props.name.trim();
         if (props.profiles[name]) {
           Alert.alert('Oops!', 'That name is already taken, please use a different name');
+          this.pressed = false;
           return;
         }
         props.createProfile(name, props.photo);
