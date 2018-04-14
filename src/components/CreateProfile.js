@@ -62,69 +62,74 @@ const addState = withStateHandlers(
   },
 );
 
-const CreateProfile = (props) => (
-  <KeyboardAvoidingView behavior="position" style={styles.container}>
-    <Image style={commonStyles.photo} source={props.photo} />
-    <View style={styles.photoButtons}>
-      <Button
-        title="Select a photo"
-        style={styles.pickButton}
-        onPress={() =>
-          ImagePicker.launchImageLibraryAsync({
-            mediaType: ImagePicker.MediaTypeOptions.Images,
-            allowsEditing: true,
-          }).then((result) => {
-            console.log('data', result);
-            if (!result.cancelled) {
-              props.setPhoto({ uri: result.uri });
+class CreateProfile extends React.Component {
+  render() {
+    const { props } = this;
+    return (
+      <KeyboardAvoidingView behavior="position" style={styles.container}>
+        <Image style={commonStyles.photo} source={props.photo} />
+        <View style={styles.photoButtons}>
+          <Button
+            title="Select a photo"
+            style={styles.pickButton}
+            onPress={() =>
+              ImagePicker.launchImageLibraryAsync({
+                mediaType: ImagePicker.MediaTypeOptions.Images,
+                allowsEditing: true,
+              }).then((result) => {
+                console.log('data', result);
+                if (!result.cancelled) {
+                  props.setPhoto({ uri: result.uri });
+                }
+              })
             }
-          })
-        }
-      />
-      <Text style={styles.orText}>OR</Text>
-      <Button
-        title="Take a picture"
-        style={styles.pickButton}
-        onPress={() =>
-          ImagePicker.launchCameraAsync({
-            allowsEditing: true,
-          }).then((result) => {
-            console.log('data', result);
-            if (!result.cancelled) {
-              props.setPhoto({ uri: result.uri });
+          />
+          <Text style={styles.orText}>OR</Text>
+          <Button
+            title="Take a picture"
+            style={styles.pickButton}
+            onPress={() =>
+              ImagePicker.launchCameraAsync({
+                allowsEditing: true,
+              }).then((result) => {
+                console.log('data', result);
+                if (!result.cancelled) {
+                  props.setPhoto({ uri: result.uri });
+                }
+              })
             }
-          })
-        }
-      />
-    </View>
-    <TextInput
-      style={styles.input}
-      underlineColorAndroid="transparent"
-      placeholder="What's your name"
-      autoFocus
-      onChangeText={(name) => {
-        props.setName(name);
-      }}
-    />
-    <Button
-      style={styles.button}
-      title="CREATE!"
-      disabled={props.name.trim() === ''}
-      onPress={() => {
-        if (this.pressed) return;
-        this.pressed = true;
-        const name = props.name.trim();
-        if (props.profiles[name]) {
-          Alert.alert('Oops!', 'That name is already taken, please use a different name');
-          this.pressed = false;
-          return;
-        }
-        props.createProfile(name, props.photo);
-        props.navigation.navigate('AllProfiles');
-      }}
-    />
-  </KeyboardAvoidingView>
-);
+          />
+        </View>
+        <TextInput
+          style={styles.input}
+          underlineColorAndroid="transparent"
+          placeholder="What's your name"
+          autoFocus
+          onChangeText={(name) => {
+            props.setName(name);
+          }}
+        />
+        <Button
+          style={styles.button}
+          title="CREATE!"
+          disabled={props.name.trim() === ''}
+          onPress={() => {
+            if (this.pressed) return;
+            this.pressed = true;
+            const name = props.name.trim();
+            if (props.profiles[name]) {
+              Alert.alert('Oops!', 'That name is already taken, please use a different name');
+              this.pressed = false;
+              return;
+            }
+            props.createProfile(name, props.photo);
+            props.navigation.goBack();
+          }}
+        />
+      </KeyboardAvoidingView>
+    );
+  }
+}
 
 const mapStateToProps = (state) => ({
   profiles: state.profile.profiles,

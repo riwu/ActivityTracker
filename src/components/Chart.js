@@ -102,7 +102,6 @@ class Chart extends React.Component {
       <FlatList
         ListHeaderComponent={<Image style={styles.image} source={mainImage} />}
         data={Object.values(data || {})}
-        extraData={data}
         keyExtractor={(item, index) => index}
         numColumns={numColumns}
         ItemSeparatorComponent={() => (
