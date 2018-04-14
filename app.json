@@ -12,11 +12,12 @@
     },
     "android": {
       "package": "riwu.tamil",
-      "permissions": ["com.android.launcher.permission.INSTALL_SHORTCUT"]
+      "permissions": ["com.android.launcher.permission.INSTALL_SHORTCUT"],
+      "versionCode": 2
     },
     "name": "tamil",
     "slug": "tamil",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "assetBundlePatterns": ["assets/**", "node_modules/@expo/vector-icons/fonts/*.ttf"],
     "updates": {
       "checkAutomatically": "ON_ERROR_RECOVERY",

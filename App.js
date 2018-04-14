@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'remote-redux-devtools';
-import { AsyncStorage, AppState } from 'react-native';
+import { AsyncStorage, AppState, Alert } from 'react-native';
 import { persistStore, persistReducer } from 'redux-persist';
 import { PersistGate } from 'redux-persist/es/integration/react';
 import {
@@ -12,7 +12,7 @@ import {
 import { Updates } from 'expo';
 
 import reducer from './src/reducers';
-import AppWithNavigationState from './src/navigators/AppNavigator';
+import AppNavigator from './src/navigators/AppNavigator';
 
 const config = {
   key: 'root',
@@ -33,17 +33,23 @@ const persistor = persistStore(store);
 const App = () => (
   <Provider store={store}>
     <PersistGate persistor={persistor}>
-      <AppWithNavigationState />
+      <AppNavigator />
     </PersistGate>
   </Provider>
 );
 
 if (process.env.NODE_ENV !== 'development') {
-  AppState.addEventListener('change', async () => {
+  AppState.addEventListener('change', async (newState) => {
+    if (newState === 'inactive') return; // avoid repeated calls
     const { isAvailable } = await Updates.checkForUpdateAsync();
     if (!isAvailable) return;
     await Updates.fetchUpdateAsync();
-    Updates.reload();
+    if (newState !== 'active') return;
+    Alert.alert(
+      'Update available',
+      "It's adviced to reload now to get the latest bug fixes and improvements",
+      [{ text: 'Cancel', style: 'cancel' }, { text: 'Reload', onPress: () => Updates.reload() }],
+    );
   });
 }
 
