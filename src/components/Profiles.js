@@ -9,9 +9,6 @@ import commonStyles from './styles';
 const MARGIN = 10;
 
 const styles = StyleSheet.create({
-  container: {
-    margin: MARGIN,
-  },
   text: {
     textAlign: 'center',
     color: '#505050',
@@ -24,6 +21,7 @@ const styles = StyleSheet.create({
   createButtonContainer: {
     borderBottomColor: 'lightgrey',
     borderBottomWidth: 1,
+    marginTop: MARGIN,
     marginBottom: MARGIN,
     paddingBottom: MARGIN,
   },
@@ -33,10 +31,12 @@ const styles = StyleSheet.create({
   profileButton: {
     backgroundColor: '#fdd58f',
   },
+  listItem: {
+    paddingBottom: MARGIN,
+  },
   separator: {
     height: 1,
     backgroundColor: 'lightgrey',
-    marginTop: MARGIN,
     marginBottom: MARGIN,
   },
 });
@@ -51,13 +51,12 @@ const addLifecycle = lifecycle({
 
 const MainScreen = (props) => (
   <FlatList
-    style={styles.container}
     ListHeaderComponent={
       <View style={styles.createButtonContainer}>
         <Button
           style={styles.createButton}
           onPress={() => props.navigation.navigate('CreateProfile')}
-          title="CREATE PROFILE"
+          title="CREATE NEW PROFILE"
         />
       </View>
     }
@@ -66,36 +65,40 @@ const MainScreen = (props) => (
     keyExtractor={([name]) => name}
     ItemSeparatorComponent={() => <View style={styles.separator} />}
     renderItem={({ item: [name, obj] }) => {
-      console.log('index', name, obj);
       const isActive = name === props.activeProfile;
       return (
-        <View>
+        <View style={styles.listItem}>
           <Image style={commonStyles.photo} source={obj.photo} />
           <Text style={[styles.text, { marginTop: 10 }]}>Profile: {name}</Text>
           <Text style={styles.text}>Status: {isActive ? 'Active' : 'Inactive'}</Text>
           <View style={styles.buttons}>
-            <Button
-              title="USE PROFILE"
-              style={styles.profileButton}
-              onPress={() => {
-                Alert.alert('Success!', `You are using ${name} profile now`);
-                props.setActiveProfile(name);
-              }}
-            />
-            <Button
-              title="REMOVE PROFILE"
-              style={styles.profileButton}
-              onPress={() => {
-                if (isActive) {
-                  Alert.alert(
-                    'Oops!',
-                    `Please change your active profile first before removing ${name}`,
-                  );
-                  return;
-                }
-                props.deleteProfile(name);
-              }}
-            />
+            <View style={{ flex: 1 }}>
+              <Button
+                title="USE PROFILE"
+                style={styles.profileButton}
+                onPress={() => {
+                  Alert.alert('Success!', `You are using ${name} profile now`);
+                  props.setActiveProfile(name);
+                }}
+              />
+            </View>
+
+            <View style={{ flex: 1 }}>
+              <Button
+                title="REMOVE PROFILE"
+                style={styles.profileButton}
+                onPress={() => {
+                  if (isActive) {
+                    Alert.alert(
+                      'Oops!',
+                      `Please change your active profile first before removing ${name}`,
+                    );
+                    return;
+                  }
+                  props.deleteProfile(name);
+                }}
+              />
+            </View>
           </View>
         </View>
       );
