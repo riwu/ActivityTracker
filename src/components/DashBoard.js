@@ -27,37 +27,38 @@ const styles = StyleSheet.create({
   },
   chart: {
     margin: 5,
-    backgroundColor: '#F0F8FF',
-    height: CONSTANTS.HEIGHT / 3.5,
+    backgroundColor: '#e3f0f6',
+    shadowOpacity: 0.3,
+    elevation: 10,
   },
   chartTitleContainer: {
     flexDirection: 'row',
     backgroundColor: 'white',
-    padding: 10,
+    padding: 5,
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   chartTitle: {
+    fontWeight: 'bold',
     textAlign: 'center',
-    fontSize: 20,
-    color: 'orange',
-  },
-  textBox: {
-    position: 'absolute',
-    alignSelf: 'center',
-    top: 40,
+    fontSize: 14,
+    color: '#fe9818',
   },
   text: {
-    color: '#1E90FF',
-    fontSize: 16,
+    color: '#0975cd',
+    fontSize: 20,
     textAlign: 'center',
+  },
+  completed: {
+    fontSize: 10,
   },
   completedCount: {
     fontSize: 70,
-    color: '#1E90FF',
+    color: '#0975cd',
   },
   totalCount: {
     fontSize: 15,
-    color: '#1E90FF',
+    color: '#0975cd',
   },
 });
 
@@ -84,16 +85,16 @@ const CircularProgress = (props) => (
     chart={props.chart}
     Circular={({ chart }) => (
       <AnimatedCircularProgress
-        size={CONSTANTS.HEIGHT / 5.5}
-        width={10}
+        size={CONSTANTS.HEIGHT / 6}
+        width={6}
         fill={(chart.completed / chart.total) * 100 /* prettier-ignore */}
         tintColor="#1E90FF"
         backgroundColor="white"
       >
         {(fill) => (
-          <View style={styles.textBox}>
+          <View>
             <Text style={styles.text}>{Math.round(fill)}%</Text>
-            <Text style={styles.text}>completed</Text>
+            <Text style={[styles.text, styles.completed]}>completed</Text>
           </View>
         )}
       </AnimatedCircularProgress>
@@ -103,9 +104,12 @@ const CircularProgress = (props) => (
 
 const DashBoard = (props) => (
   <View style={styles.container}>
-    {[props.fasting, props.tarawih, props.surahRead].map((chart) => (
-      <CircularProgress chart={chart} key={chart.name} />
-    ))}
+    <CircularProgress chart={props.tarawih} />
+    <View style={styles.charts}>
+      {[props.fasting, props.surahRead].map((chart) => (
+        <TextProgress chart={chart} key={chart.name} />
+      ))}
+    </View>
   </View>
 );
 
