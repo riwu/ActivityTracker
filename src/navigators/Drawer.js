@@ -1,4 +1,5 @@
 import { DrawerNavigator } from 'react-navigation';
+import Drawer from '../components/Drawer';
 
 import CONSTANTS from '../constants';
 
@@ -24,12 +25,13 @@ const navs = [
   Credits,
 ];
 
-const Drawer = DrawerNavigator(
+const DrawerNav = DrawerNavigator(
   CONSTANTS.DRAWER_ORDER.reduce((acc, element, index) => {
     acc[element] = { screen: navs[index] };
     return acc;
   }, {}),
   {
+    contentComponent: Drawer,
     contentOptions: {
       itemStyle: {
         borderBottomWidth: 0.5,
@@ -39,4 +41,4 @@ const Drawer = DrawerNavigator(
   },
 );
 
-export default Drawer;
+export default DrawerNav;
