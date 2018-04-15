@@ -26,10 +26,10 @@ const styles = StyleSheet.create({
     paddingBottom: MARGIN,
   },
   createButton: {
-    backgroundColor: '#f08e83',
+    backgroundColor: '#ee7771',
   },
   profileButton: {
-    backgroundColor: '#fdd58f',
+    backgroundColor: '#fcce78',
   },
   listItem: {
     paddingBottom: MARGIN,
