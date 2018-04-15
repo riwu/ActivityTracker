@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     borderStyle: 'dashed',
     borderRadius: 0.001,
-    marginTop: 150,
+    marginTop: CONSTANTS.HEIGHT / 6,
     padding: 7,
   },
 });
