@@ -95,7 +95,17 @@ const MainScreen = (props) => (
                     );
                     return;
                   }
-                  props.deleteProfile(name);
+                  Alert.alert(`Remove ${name}`, `Are you sure you want to remove ${name}?`, [
+                    { text: 'Cancel', style: 'cancel' },
+                    {
+                      text: 'OK',
+                      style: 'destructive',
+                      onPress: () => {
+                        props.deleteProfile(name);
+                        Alert.alert('Success!', `${name} profile removed`);
+                      },
+                    },
+                  ]);
                 }}
               />
             </View>

@@ -18,7 +18,7 @@ import defaultPhoto from '../../assets/photo.jpg';
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 20,
+    paddingTop: 20,
   },
   photoButtons: {
     flexDirection: 'row',
