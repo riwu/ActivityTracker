@@ -1,3 +1,8 @@
+export const restoreProfiles = (data) => ({
+  type: 'RESTORE_PROFILES',
+  data,
+});
+
 export const updateChart = (data) => ({
   type: 'UPDATE_CHART',
   ...data,

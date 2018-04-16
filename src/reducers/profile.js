@@ -8,8 +8,8 @@ const getState = (length) =>
 
 const initialProfileState = {
   FastingDay: getState(31),
-  SurahDay: getState(31),
   TarawihDay: getState(31),
+  SurahDay: getState(31),
 };
 
 const initialState = {
@@ -21,6 +21,19 @@ const initialState = {
 
 const profile = (state = initialState, action) => {
   switch (action.type) {
+    case 'RESTORE_PROFILES': {
+      const arr = Object.entries(action.data);
+      return {
+        activeProfile: arr[0][0],
+        profiles: arr.reduce((acc, [name, data]) => {
+          acc[name] = {
+            ...initialProfileState,
+            ...data,
+          };
+          return acc;
+        }, {}),
+      };
+    }
     case 'CREATE_PROFILE': {
       if (state.activeProfile === '') {
         // replace with default user
