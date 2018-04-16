@@ -37,7 +37,7 @@ const CONSTANTS = {
   SURAH_CHART: 'Write / பேசுதல்',
   DU_A_LIST: 'Proverbs',
   PRAYER_TIMES: 'Activity',
-  BACKUP_AND_RECOVERY: 'Backup & Recovery',
+  BACKUP_AND_RECOVERY: 'Backup',
   CREDITS: 'Credits',
 
   BACK: 'backPress',

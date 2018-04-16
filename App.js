@@ -19,12 +19,16 @@ const migrations = {
     const { navigation, ...rest } = state;
     return rest;
   },
+  1: (state) => {
+    const { navigation, ...rest } = state;
+    return rest;
+  },
 };
 
 const config = {
   key: 'root',
   storage: AsyncStorage,
-  version: 0,
+  version: 1,
   migrate: createMigrate(migrations),
 };
 
