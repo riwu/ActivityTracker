@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     borderRightColor: 'white',
   },
   text: {
-    fontSize: Constants.WIDTH / 8.5,
+    fontSize: Constants.WIDTH / 10,
     textAlign: 'center',
     padding: 20,
   },
