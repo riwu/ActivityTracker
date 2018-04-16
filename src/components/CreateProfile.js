@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { ImagePicker } from 'expo';
+import { ImagePicker, FileSystem } from 'expo';
 import {
   View,
   TextInput,
@@ -63,6 +63,20 @@ const addState = withStateHandlers(
 );
 
 class CreateProfile extends React.Component {
+  setPhoto(action, options) {
+    return ImagePicker[action]({
+      ...options,
+      allowsEditing: true,
+      base64: true,
+    }).then((result) => {
+      console.log('data', { ...result, base64: result.base64.slice(0, 10) });
+      if (!result.cancelled) {
+        this.props.setPhoto({ uri: `data:image/png;base64,${result.base64}` });
+        FileSystem.deleteAsync(result.uri);
+      }
+    });
+  }
+
   render() {
     const { props } = this;
     return (
@@ -73,14 +87,8 @@ class CreateProfile extends React.Component {
             title="Select a photo"
             style={styles.pickButton}
             onPress={() =>
-              ImagePicker.launchImageLibraryAsync({
+              this.setPhoto('launchImageLibraryAsync', {
                 mediaType: ImagePicker.MediaTypeOptions.Images,
-                allowsEditing: true,
-              }).then((result) => {
-                console.log('data', result);
-                if (!result.cancelled) {
-                  props.setPhoto({ uri: result.uri });
-                }
               })
             }
           />
@@ -88,16 +96,7 @@ class CreateProfile extends React.Component {
           <Button
             title="Take a picture"
             style={styles.pickButton}
-            onPress={() =>
-              ImagePicker.launchCameraAsync({
-                allowsEditing: true,
-              }).then((result) => {
-                console.log('data', result);
-                if (!result.cancelled) {
-                  props.setPhoto({ uri: result.uri });
-                }
-              })
-            }
+            onPress={() => this.setPhoto('launchCameraAsync')}
           />
         </View>
         <TextInput
