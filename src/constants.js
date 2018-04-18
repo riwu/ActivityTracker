@@ -1,4 +1,4 @@
-import { Platform, NativeModules, Dimensions } from 'react-native';
+import { Dimensions } from 'react-native';
 
 import FastingChartPassed from '../assets/Fasting/passed.jpg';
 import FastingChartTried from '../assets/Fasting/tried.jpg';
@@ -36,11 +36,8 @@ const CONSTANTS = {
   TARAWIH_CHART: 'Speak / எழுதுதல்',
   SURAH_CHART: 'Write / பேசுதல்',
   DU_A_LIST: 'Proverbs',
-  PRAYER_TIMES: 'Activity',
   BACKUP_AND_RECOVERY: 'Backup',
   CREDITS: 'Credits',
-
-  BACK: 'backPress',
 
   NAV_BAR_HEIGHT: 55,
 };
@@ -52,7 +49,6 @@ CONSTANTS.DRAWER_ORDER = [
   CONSTANTS.TARAWIH_CHART,
   CONSTANTS.SURAH_CHART,
   CONSTANTS.DU_A_LIST,
-  CONSTANTS.PRAYER_TIMES,
   CONSTANTS.BACKUP_AND_RECOVERY,
   CONSTANTS.CREDITS,
 ];

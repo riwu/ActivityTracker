@@ -9,7 +9,6 @@ import FastingChartNav from './FastingChartNav';
 import TarawihChartNav from './TarawihChartNav';
 import SurahChartNav from './SurahChartNav';
 import DuaList from './DuaListNav';
-import PrayerTimes from './PrayerTimesNav';
 import BackupAndRecovery from './BackupAndRecoveryNav';
 import Credits from './CreditsNav';
 
@@ -20,7 +19,6 @@ const navs = [
   TarawihChartNav,
   SurahChartNav,
   DuaList,
-  PrayerTimes,
   BackupAndRecovery,
   Credits,
 ];
