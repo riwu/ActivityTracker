@@ -1,13 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { View, Text, StyleSheet, ScrollView, SafeAreaView, Image } from 'react-native';
-import { DrawerItems } from 'react-navigation';
-import { Constants } from 'expo';
+import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
+import { DrawerItems, SafeAreaView } from 'react-navigation';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: Constants.statusBarHeight,
   },
   profile: {
     padding: 10,
