@@ -48,6 +48,9 @@ const NavigationOptions = (navigation, title, isDrawerComponent = true) => {
     ),
     title,
     headerStyle: styles.headerStyle,
+    headerTitleStyle: {
+      marginHorizontal: 0,
+    },
   };
   if (isDrawerComponent) {
     options.drawerLabel = <Text style={textStyle}>{title}</Text>;
