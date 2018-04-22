@@ -37,8 +37,7 @@ const styles = StyleSheet.create({
   },
   input: {
     textAlign: 'center',
-    marginTop: 20,
-    marginBottom: 20,
+    marginVertical: 20,
     fontSize: 25,
   },
   text: {

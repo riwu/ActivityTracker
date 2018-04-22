@@ -4,8 +4,7 @@ import proverbs from '../data/proverbs.json';
 
 const styles = StyleSheet.create({
   container: {
-    paddingLeft: 10,
-    paddingRight: 10,
+    paddingHorizontal: 10,
   },
   header: {
     fontWeight: 'bold',

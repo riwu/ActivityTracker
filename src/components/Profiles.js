@@ -21,8 +21,7 @@ const styles = StyleSheet.create({
   createButtonContainer: {
     borderBottomColor: 'lightgrey',
     borderBottomWidth: 1,
-    marginTop: MARGIN,
-    marginBottom: MARGIN,
+    marginVertical: MARGIN,
     paddingBottom: MARGIN,
   },
   createButton: {

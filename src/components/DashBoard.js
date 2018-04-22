@@ -35,9 +35,8 @@ const styles = StyleSheet.create({
   chartTitleContainer: {
     flexDirection: 'row',
     backgroundColor: 'white',
-    padding: 5,
-    paddingTop: 10,
-    paddingBottom: 10,
+    paddingHorizontal: 5,
+    paddingVertical: 10,
     justifyContent: 'space-between',
     alignItems: 'center',
   },
