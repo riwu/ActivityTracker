@@ -10,43 +10,42 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
     height: CONSTANTS.NAV_BAR_HEIGHT,
   },
+  backgroundContainer: {
+    flex: 1,
+    flexDirection: 'row',
+  },
 });
 
 const textStyle = {
   margin: 15,
 };
 
-const COLORS = ['red', 'blue', 'green', 'yellow', 'orange'];
+const COLORS = [
+  '#c3e17f',
+  '#f6fccc',
+  '#ffcc70',
+  '#f0776c',
+  '#da9dbe',
+  '#c49bdd',
+  '#6999e1',
+  '#61c2e3',
+];
 
 const NavigationOptions = (navigation, title, isDrawerComponent = true) => {
   const options = {
-    // header: (props) => (
-    //   <View style={{ backgroundColor: 'transparent' }}>
-    //     <View
-    //       style={{
-    //         position: 'absolute',
-    //         height: '100%',
-    //         width: '100%',
-    //         backgroundColor: 'transparent',
-    //         flexDirection: 'row',
-    //         // zIndex: 1,
-    //         // opacity: 0.4,
-    //       }}
-    //     >
-    //       {COLORS.map((color) => (
-    //         <View
-    //           key={color}
-    //           style={{
-    //             backgroundColor: color,
-    //             opacity: 0.6,
-    //             width: CONSTANTS.WIDTH / COLORS.length,
-    //           }}
-    //         />
-    //       ))}
-    //     </View>
-    //     <Header {...props} style={{ backgroundColor: 'red' }} />
-    //   </View>
-    // ),
+    headerBackground: (
+      <View style={styles.backgroundContainer}>
+        {COLORS.map((color) => (
+          <View
+            key={color}
+            style={{
+              backgroundColor: color,
+              width: CONSTANTS.WIDTH / COLORS.length,
+            }}
+          />
+        ))}
+      </View>
+    ),
     title,
     headerStyle: styles.headerStyle,
   };
