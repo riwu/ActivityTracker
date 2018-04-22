@@ -3,15 +3,15 @@ import { connect } from 'react-redux';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { EvilIcons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo';
 import { NavigationActions } from 'react-navigation';
 import CONSTANTS from '../constants';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'space-around',
-    marginLeft: 10,
-    marginRight: 10,
+    justifyContent: 'center',
+    padding: 10,
   },
   progressContainer: {
     flexDirection: 'row',
@@ -22,26 +22,29 @@ const styles = StyleSheet.create({
   },
   charts: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
   },
   chart: {
-    margin: 5,
+    margin: 4,
     backgroundColor: '#e3f0f6',
     shadowOpacity: 0.3,
     elevation: 10,
+  },
+  bottomChart: {
+    flex: 1,
   },
   chartTitleContainer: {
     flexDirection: 'row',
     backgroundColor: 'white',
     padding: 5,
+    paddingTop: 10,
+    paddingBottom: 10,
     justifyContent: 'space-between',
     alignItems: 'center',
   },
   chartTitle: {
     fontWeight: 'bold',
     textAlign: 'center',
-    fontSize: 14,
+    fontSize: Math.min(CONSTANTS.WIDTH / 25, 20),
     color: '#fe9818',
   },
   text: {
@@ -64,8 +67,10 @@ const styles = StyleSheet.create({
 
 const TextProgress = connect(null, {
   navigate: (routeName) => NavigationActions.navigate({ routeName }),
-})(({ chart, Circular, navigate }) => (
-  <TouchableOpacity style={styles.chart} onPress={() => navigate(chart.route)}>
+})(({
+  chart, Circular, navigate, style,
+}) => (
+  <TouchableOpacity style={[styles.chart, style]} onPress={() => navigate(chart.route)}>
     <View style={styles.chartTitleContainer}>
       <Text style={styles.chartTitle}>{chart.name}</Text>
       <EvilIcons name="chevron-right" size={30} color="orange" />
@@ -103,14 +108,14 @@ const CircularProgress = (props) => (
 );
 
 const DashBoard = (props) => (
-  <View style={styles.container}>
+  <LinearGradient colors={['#7ebddc', '#dae9f1']} start={[1, 0]} style={styles.container}>
     <CircularProgress chart={props.tarawih} />
     <View style={styles.charts}>
       {[props.fasting, props.surahRead].map((chart) => (
-        <TextProgress chart={chart} key={chart.name} />
+        <TextProgress chart={chart} key={chart.name} style={styles.bottomChart} />
       ))}
     </View>
-  </View>
+  </LinearGradient>
 );
 
 const mapStateToProps = (state) => {
