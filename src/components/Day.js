@@ -36,13 +36,10 @@ class Day extends Component {
     super(props);
     const { images } = props;
     this.state = {
-      ...images.reduce(
-        (obj, image, index) => ({
-          ...obj,
-          [index]: new Animated.ValueXY(),
-        }),
-        {},
-      ),
+      ...images.reduce((acc, image, index) => {
+        acc[index] = new Animated.ValueXY();
+        return acc;
+      }, {}),
       selectedImageIndex: props.navigation.state.params.replace,
       selectedImagePos: new Animated.ValueXY(),
     };
@@ -93,7 +90,7 @@ class Day extends Component {
         }}
         style={styles.box}
       >
-        {this.state.selectedImageIndex === undefined ? null : (
+        {this.state.selectedImageIndex !== undefined && (
           <Animated.Image
             {...this.selectedImagePanResponder.panHandlers}
             style={[this.state.selectedImagePos.getLayout(), styles.enlargedImage]}

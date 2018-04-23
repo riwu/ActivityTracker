@@ -22,11 +22,11 @@ const styles = StyleSheet.create({
     height: Constants.WIDTH / 1.6543,
   },
   dataImage: {
-    width: Constants.WIDTH / ITEMS_PER_ROW,
-    height: Constants.WIDTH / ITEMS_PER_ROW,
+    flex: 1,
   },
   view: {
-    width: '25%',
+    width: Constants.WIDTH / ITEMS_PER_ROW,
+    height: Constants.WIDTH / ITEMS_PER_ROW,
   },
   borderRight: {
     borderRightWidth: 0.5,
