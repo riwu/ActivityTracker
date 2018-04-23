@@ -5,9 +5,6 @@ import CONSTANTS from '../constants';
 const marginTop = 20;
 const imageHeight = CONSTANTS.WIDTH / 4;
 const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-  },
   images: {
     marginTop,
     flexDirection: 'row',
@@ -30,6 +27,7 @@ const styles = StyleSheet.create({
     borderRadius: 0.001,
     marginTop: CONSTANTS.HEIGHT / 6,
     padding: 7,
+    alignSelf: 'center',
   },
 });
 
@@ -89,21 +87,19 @@ class Day extends Component {
 
   renderContainer() {
     return (
-      <View style={styles.container}>
-        <View
-          onLayout={(e) => {
-            this.dropZone = e.nativeEvent.layout;
-          }}
-          style={styles.box}
-        >
-          {this.state.selectedImageIndex === undefined ? null : (
-            <Animated.Image
-              {...this.selectedImagePanResponder.panHandlers}
-              style={[this.state.selectedImagePos.getLayout(), styles.enlargedImage]}
-              source={this.props.images[this.state.selectedImageIndex]}
-            />
-          )}
-        </View>
+      <View
+        onLayout={(e) => {
+          this.dropZone = e.nativeEvent.layout;
+        }}
+        style={styles.box}
+      >
+        {this.state.selectedImageIndex === undefined ? null : (
+          <Animated.Image
+            {...this.selectedImagePanResponder.panHandlers}
+            style={[this.state.selectedImagePos.getLayout(), styles.enlargedImage]}
+            source={this.props.images[this.state.selectedImageIndex]}
+          />
+        )}
       </View>
     );
   }
