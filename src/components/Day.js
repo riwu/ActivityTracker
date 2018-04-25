@@ -1,30 +1,35 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Animated, PanResponder } from 'react-native';
+import { View, StyleSheet, Animated, PanResponder, Platform } from 'react-native';
 import CONSTANTS from '../constants';
 
 const MARGIN_TOP = 20;
 const IMAGE_SIZE = CONSTANTS.WIDTH / 4;
 const BOX_SIZE = CONSTANTS.WIDTH / 2;
 const BOX_PADDING = 7;
+const BOX_MARGIN_TOP = CONSTANTS.HEIGHT / 6;
+
+const IS_IOS = Platform.OS === 'ios';
 
 const styles = StyleSheet.create({
   images: {
     marginTop: MARGIN_TOP,
     flexDirection: 'row',
     justifyContent: 'space-around',
+    ...(IS_IOS ? { zIndex: 1 } : undefined),
   },
   image: {
     width: IMAGE_SIZE,
     height: IMAGE_SIZE,
+    ...(IS_IOS ? undefined : { zIndex: 1 }),
   },
   enlargedImage: {
-    marginTop: CONSTANTS.HEIGHT / 6 + BOX_PADDING,
+    marginTop: BOX_MARGIN_TOP + BOX_PADDING,
     alignSelf: 'center',
     width: BOX_SIZE - BOX_PADDING * 2,
     height: BOX_SIZE - BOX_PADDING * 2,
   },
   boxBorder: {
-    marginTop: CONSTANTS.HEIGHT / 6,
+    marginTop: BOX_MARGIN_TOP,
     alignSelf: 'center',
     width: BOX_SIZE,
     height: BOX_SIZE,
@@ -45,7 +50,7 @@ class Day extends Component {
         acc[index] = new Animated.ValueXY();
         return acc;
       }, {}),
-      selectedImageIndex: 1 || props.navigation.state.params.replace,
+      selectedImageIndex: props.navigation.state.params.replace,
       selectedImagePos: new Animated.ValueXY(),
     };
 
