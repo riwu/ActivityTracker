@@ -2,32 +2,37 @@ import React, { Component } from 'react';
 import { View, StyleSheet, Animated, PanResponder } from 'react-native';
 import CONSTANTS from '../constants';
 
-const marginTop = 20;
-const imageHeight = CONSTANTS.WIDTH / 4;
+const MARGIN_TOP = 20;
+const IMAGE_SIZE = CONSTANTS.WIDTH / 4;
+const BOX_SIZE = CONSTANTS.WIDTH / 2;
+const BOX_PADDING = 7;
+
 const styles = StyleSheet.create({
   images: {
-    marginTop,
+    marginTop: MARGIN_TOP,
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
   image: {
-    width: imageHeight,
-    height: imageHeight,
+    width: IMAGE_SIZE,
+    height: IMAGE_SIZE,
   },
   enlargedImage: {
-    width: '100%',
-    height: '100%',
+    marginTop: CONSTANTS.HEIGHT / 6 + BOX_PADDING,
+    alignSelf: 'center',
+    width: BOX_SIZE - BOX_PADDING * 2,
+    height: BOX_SIZE - BOX_PADDING * 2,
   },
-  box: {
-    width: CONSTANTS.WIDTH / 2,
-    height: CONSTANTS.WIDTH / 2,
+  boxBorder: {
+    marginTop: CONSTANTS.HEIGHT / 6,
+    alignSelf: 'center',
+    width: BOX_SIZE,
+    height: BOX_SIZE,
     borderWidth: 1,
     borderColor: 'black',
     borderStyle: 'dashed',
     borderRadius: 0.001,
-    marginTop: CONSTANTS.HEIGHT / 6,
-    padding: 7,
-    alignSelf: 'center',
+    position: 'absolute',
   },
 });
 
@@ -40,7 +45,7 @@ class Day extends Component {
         acc[index] = new Animated.ValueXY();
         return acc;
       }, {}),
-      selectedImageIndex: props.navigation.state.params.replace,
+      selectedImageIndex: 1 || props.navigation.state.params.replace,
       selectedImagePos: new Animated.ValueXY(),
     };
 
@@ -56,7 +61,8 @@ class Day extends Component {
         ]),
         onPanResponderRelease: (e, gesture) => {
           const box = this.dropZone;
-          const boxY = box.y + CONSTANTS.NAV_BAR_HEIGHT + marginTop + imageHeight;
+          // the end position of the box
+          const boxY = box.y + CONSTANTS.NAV_BAR_HEIGHT + MARGIN_TOP + IMAGE_SIZE;
           if (
             (box.x <= gesture.moveX &&
               gesture.moveX <= box.x + box.width &&
@@ -84,12 +90,13 @@ class Day extends Component {
 
   renderContainer() {
     return (
-      <View
-        onLayout={(e) => {
-          this.dropZone = e.nativeEvent.layout;
-        }}
-        style={styles.box}
-      >
+      <View>
+        <View
+          onLayout={(e) => {
+            this.dropZone = e.nativeEvent.layout;
+          }}
+          style={styles.boxBorder}
+        />
         {this.state.selectedImageIndex !== undefined && (
           <Animated.Image
             {...this.selectedImagePanResponder.panHandlers}
