@@ -11,8 +11,6 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
     "react-native-scripts": "1.13.1",
-    "react-test-renderer": "16.3.1",
-    "remote-redux-devtools": "^0.5.12",
     "remotedev-server": "^0.2.4"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
@@ -21,11 +19,7 @@
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
-    "test": "node node_modules/jest/bin/jest.js --watch",
     "remotedev": "remotedev --hostname=0.0.0.0 --port=8000"
-  },
-  "jest": {
-    "preset": "jest-expo"
   },
   "dependencies": {
     "@expo/vector-icons": "^6.3.1",
@@ -39,6 +33,7 @@
     "react-redux": "^5.0.7",
     "recompose": "^0.26.0",
     "redux": "^3.7.2",
-    "redux-persist": "^5.9.1"
+    "redux-persist": "^5.9.1",
+    "remote-redux-devtools": "^0.5.12"
   }
 }
