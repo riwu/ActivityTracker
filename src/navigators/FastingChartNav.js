@@ -18,12 +18,17 @@ const FastingChartNav = StackNavigator({
   },
 });
 
-export default () => (
+const FastingChartScreen = (props) => (
   <FastingChartNav
     screenProps={{
       images: CONSTANTS.FASTING_CHART_IMAGES,
       mainImage: FastingChartImg,
       navPath: 'FastingDay',
     }}
+    navigation={props.navigation}
   />
 );
+
+FastingChartScreen.router = FastingChartNav.router;
+
+export default FastingChartScreen;

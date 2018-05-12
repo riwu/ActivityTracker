@@ -18,12 +18,17 @@ const SurahChartNav = StackNavigator({
   },
 });
 
-export default () => (
+const SurahChartScreen = (props) => (
   <SurahChartNav
     screenProps={{
       images: CONSTANTS.SURAH_CHART_IMAGES,
       mainImage: SurahChartImg,
       navPath: 'SurahDay',
     }}
+    navigation={props.navigation}
   />
 );
+
+SurahChartScreen.router = SurahChartNav.router;
+
+export default SurahChartScreen;

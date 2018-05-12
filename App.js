@@ -14,32 +14,27 @@ import { Updates } from 'expo';
 import reducer from './src/reducers';
 import AppNavigator from './src/navigators/AppNavigator';
 
-const migrations = {
-  0: (state) => {
+const REDUX_VERSION = 4;
+
+const migrations = [...Array(REDUX_VERSION + 1)].reduce((acc, e, i) => {
+  acc[i] = (state) => {
     const { navigation, ...rest } = state;
     return rest;
-  },
-  1: (state) => {
-    const { navigation, ...rest } = state;
-    return rest;
-  },
-  2: (state) => {
-    const { navigation, ...rest } = state;
-    return rest;
-  },
-};
+  };
+  return acc;
+}, {});
 
 const config = {
   key: 'root',
   storage: AsyncStorage,
-  version: 2,
+  version: REDUX_VERSION,
   migrate: createMigrate(migrations),
 };
 
 const middleware = createReactNavigationReduxMiddleware('root', (state) => state.navigation);
 export const addListener = createReduxBoundAddListener('root');
 
-export const store = createStore(
+const store = createStore(
   persistReducer(config, reducer),
   composeWithDevTools({ port: 8000 })(applyMiddleware(middleware)),
 );

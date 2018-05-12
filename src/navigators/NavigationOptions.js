@@ -2,7 +2,6 @@ import React from 'react';
 import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import CONSTANTS from '../constants';
-import { store } from '../../App';
 
 const styles = StyleSheet.create({
   headerStyle: {
@@ -55,9 +54,7 @@ const NavigationOptions = (navigation, title, isDrawerComponent = true) => {
   if (isDrawerComponent) {
     options.drawerLabel = <Text style={textStyle}>{title}</Text>;
     options.headerLeft = (
-      <TouchableOpacity
-        onPress={() => store.dispatch({ type: 'Navigation/NAVIGATE', routeName: 'DrawerOpen' })}
-      >
+      <TouchableOpacity onPress={() => navigation.navigate('DrawerOpen')}>
         <Ionicons name="ios-menu" size={30} />
       </TouchableOpacity>
     );

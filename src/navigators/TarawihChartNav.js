@@ -18,12 +18,17 @@ const TarawihChartNav = StackNavigator({
   },
 });
 
-export default () => (
+const TarawihChartScreen = (props) => (
   <TarawihChartNav
     screenProps={{
       images: CONSTANTS.TARAWIH_CHART_IMAGES,
       mainImage: TarawihChartImg,
       navPath: 'TarawihDay',
     }}
+    navigation={props.navigation}
   />
 );
+
+TarawihChartScreen.router = TarawihChartNav.router;
+
+export default TarawihChartScreen;
