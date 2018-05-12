@@ -15,6 +15,7 @@ import { createProfile } from '../actions';
 import Button from './Button';
 import commonStyles from './styles';
 import defaultPhoto from '../../assets/photo.jpg';
+import constants from '../constants';
 
 const styles = StyleSheet.create({
   container: {
@@ -79,7 +80,11 @@ class CreateProfile extends React.Component {
   render() {
     const { props } = this;
     return (
-      <KeyboardAvoidingView behavior="position" style={styles.container}>
+      <KeyboardAvoidingView
+        behavior="position"
+        style={styles.container}
+        keyboardVerticalOffset={constants.NAV_BAR_HEIGHT}
+      >
         <Image style={commonStyles.photo} source={props.photo} />
         <View style={styles.photoButtons}>
           <Button
