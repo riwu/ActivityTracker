@@ -154,19 +154,42 @@ const BackupAndRecovery = (props) => (
           title="RESTORE"
           style={styles.button}
           onPress={async () => {
-            const result = await DocumentPicker.getDocumentAsync({ type: '*/*' });
+            const result = await DocumentPicker.getDocumentAsync();
             if (result.type === 'cancel') return;
             console.log('uri', result.uri);
-            const content = await FileSystem.readAsStringAsync(result.uri);
-            await FileSystem.readAsStringAsync(result.uri);
-            console.log('content', content);
+            let uri;
+            try {
+              ({ uri } = await FileSystem.downloadAsync(
+                result.uri,
+                `${FileSystem.cacheDirectory}backup`,
+              ));
+            } catch (e) {
+              Alert.alert('Failed to download', e.message);
+              return;
+            }
+            console.log('result', uri);
+
+            const fileName = decodeURIComponent(result.uri.slice(result.uri.lastIndexOf('/') + 1));
+
+            let content;
+            try {
+              content = await FileSystem.readAsStringAsync(uri);
+            } catch (e) {
+              Alert.alert(`Failed to read ${fileName}`, "Make sure it's a valid text file");
+              return;
+            } finally {
+              FileSystem.deleteAsync(uri);
+            }
+
             try {
               const data = JSON.parse(content);
               props.restoreProfiles(data);
             } catch (e) {
               console.log('e', e);
               Alert.alert('Invalid file content', e.message);
+              return;
             }
+            Alert.alert('Success', `Profiles restored from\n${fileName}`);
           }}
         />
       </View>
