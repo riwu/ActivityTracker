@@ -1,8 +1,8 @@
 import React from 'react';
+import { Platform, AsyncStorage, AppState, Alert } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'remote-redux-devtools';
-import { AsyncStorage, AppState, Alert } from 'react-native';
 import { persistStore, persistReducer, createMigrate } from 'redux-persist';
 import { PersistGate } from 'redux-persist/es/integration/react';
 import {
@@ -59,7 +59,10 @@ if (process.env.NODE_ENV !== 'development') {
     if (newState !== 'active') return;
     Alert.alert(
       'Update available',
-      "It's adviced to reload now to get the latest bug fixes and improvements",
+      'Reload for the latest version.\n' +
+        `Some updates can only be delivered over ${
+          Platform.OS === 'ios' ? 'App Store' : 'Google Play'
+        }, look up for them!`,
       [{ text: 'Cancel', style: 'cancel' }, { text: 'Reload', onPress: () => Updates.reload() }],
     );
   });

@@ -94,6 +94,7 @@ class Day extends Component {
   }
 
   renderContainer() {
+    // see https://stackoverflow.com/questions/50013512/react-native-animated-component-gets-covered-on-panning
     return (
       <View>
         <View

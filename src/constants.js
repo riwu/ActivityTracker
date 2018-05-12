@@ -24,7 +24,7 @@ function deepFreeze(obj) {
 
 const { width, height } = Dimensions.get('window');
 
-const CONSTANTS = {
+const constants = {
   WIDTH: width,
   HEIGHT: height,
   FASTING_CHART_IMAGES: [FastingChartPassed, FastingChartTried, FastingChartFailed],
@@ -42,16 +42,16 @@ const CONSTANTS = {
   NAV_BAR_HEIGHT: 55,
 };
 
-CONSTANTS.DRAWER_ORDER = [
-  CONSTANTS.DASH_BOARD,
-  CONSTANTS.PROFILES,
-  CONSTANTS.FASTING_CHART,
-  CONSTANTS.TARAWIH_CHART,
-  CONSTANTS.SURAH_CHART,
-  CONSTANTS.DU_A_LIST,
-  CONSTANTS.BACKUP_AND_RECOVERY,
-  CONSTANTS.CREDITS,
+constants.DRAWER_ORDER = [
+  constants.DASH_BOARD,
+  constants.PROFILES,
+  constants.FASTING_CHART,
+  constants.TARAWIH_CHART,
+  constants.SURAH_CHART,
+  constants.DU_A_LIST,
+  constants.BACKUP_AND_RECOVERY,
+  constants.CREDITS,
 ];
 
-deepFreeze(CONSTANTS);
-export default CONSTANTS;
+deepFreeze(constants);
+export default constants;
