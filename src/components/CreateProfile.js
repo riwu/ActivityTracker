@@ -68,13 +68,19 @@ class CreateProfile extends React.Component {
       ...options,
       allowsEditing: true,
       base64: true,
-    }).then((result) => {
-      console.log('data', { ...result, base64: result.base64.slice(0, 10) });
-      if (!result.cancelled) {
-        this.props.setPhoto({ uri: `data:image/png;base64,${result.base64}` });
-        FileSystem.deleteAsync(result.uri);
-      }
-    });
+    })
+      .then((result) => {
+        console.log('data', { ...result, base64: result.base64.slice(0, 10) });
+        if (!result.cancelled) {
+          this.props.setPhoto({ uri: `data:image/png;base64,${result.base64}` });
+          FileSystem.deleteAsync(result.uri);
+        }
+      })
+      .catch((e) =>
+        Alert.alert(
+          `Failed to launch ${action === 'launchImageLibraryAsync' ? 'image picker' : 'camera'}`,
+          e.message,
+        ));
   }
 
   render() {
@@ -126,7 +132,8 @@ class CreateProfile extends React.Component {
               return;
             }
             props.createProfile(name, props.photo);
-            props.navigation.goBack();
+            // multiple CreateProfile in stack if app reloaded, so `goBack` not sufficient
+            props.navigation.navigate('AllProfiles');
           }}
         />
       </KeyboardAvoidingView>
