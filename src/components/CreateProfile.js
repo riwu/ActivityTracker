@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { ImagePicker, FileSystem } from 'expo';
+import { ImagePicker, FileSystem, Permissions } from 'expo';
 import {
   View,
   TextInput,
@@ -63,24 +63,38 @@ const addState = withStateHandlers(
 );
 
 class CreateProfile extends React.Component {
-  setPhoto(action, options) {
-    return ImagePicker[action]({
+  async setPhoto(action, options) {
+    const isImagePicker = action === 'launchImageLibraryAsync';
+    const permissions = [{ value: 'CAMERA_ROLL', label: 'Photo access' }];
+    if (!isImagePicker) {
+      permissions.push({ value: 'CAMERA', label: 'Camera' });
+    }
+    for (let i = 0; i < permissions.length; i += 1) {
+      const permission = permissions[i];
+      // eslint-disable-next-line no-await-in-loop
+      const { status } = await Permissions.askAsync(Permissions[permission.value]);
+      if (status !== 'granted') {
+        Alert.alert(
+          `${permission.label} permission not granted`,
+          'Please enable it in App settings',
+        );
+        return;
+      }
+    }
+
+    ImagePicker[action]({
       ...options,
       allowsEditing: true,
       base64: true,
     })
       .then((result) => {
-        console.log('data', { ...result, base64: result.base64.slice(0, 10) });
         if (!result.cancelled) {
           this.props.setPhoto({ uri: `data:image/png;base64,${result.base64}` });
           FileSystem.deleteAsync(result.uri);
         }
       })
       .catch((e) =>
-        Alert.alert(
-          `Failed to launch ${action === 'launchImageLibraryAsync' ? 'image picker' : 'camera'}`,
-          e.message,
-        ));
+        Alert.alert(`Failed to launch ${isImagePicker ? 'image picker' : 'camera'}`, e.message));
   }
 
   render() {
