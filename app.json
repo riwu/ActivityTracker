@@ -1,9 +1,11 @@
 {
   "expo": {
-    "sdkVersion": "26.0.0",
+    "sdkVersion": "27.0.0",
     "icon": "icon.png",
+    "orientation": "portrait",
     "ios": {
       "bundleIdentifier": "tamil.hot.house",
+      "bundleIdentifier": "riwu.tamil",
       "supportsTablet": true,
       "infoPlist": {
         "NSCameraUsageDescription": "Take a photo to use it as your profile picture"
@@ -15,9 +17,11 @@
       "permissions": ["com.android.launcher.permission.INSTALL_SHORTCUT"],
       "versionCode": 2
     },
-    "name": "tamil",
+    "name": "Tamil Hot House",
     "slug": "tamil",
-    "version": "0.0.2",
+    "name": "Tamil Learner",
+    "slug": "TamilLearner",
+    "version": "0.0.4",
     "assetBundlePatterns": ["assets/**", "node_modules/@expo/vector-icons/fonts/*.ttf"],
     "updates": {
       "checkAutomatically": "ON_ERROR_RECOVERY",
