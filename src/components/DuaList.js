@@ -3,9 +3,6 @@ import { Text, StyleSheet, SectionList, View } from 'react-native';
 import proverbs from '../data/proverbs.json';
 
 const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: 10,
-  },
   header: {
     fontWeight: 'bold',
     fontSize: 20,
@@ -16,6 +13,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-end',
+    paddingHorizontal: 10,
   },
   itemText: {
     fontSize: 15,
@@ -42,7 +40,6 @@ const COLORS = [
 
 const DuaList = () => (
   <SectionList
-    style={styles.container}
     sections={proverbs.map((proverb, index) => ({ ...proverb, index }))}
     renderItem={({ item, index }) => (
       <View style={styles.itemContainer}>

@@ -63,7 +63,10 @@ if (process.env.NODE_ENV !== 'development') {
         `Some updates can only be delivered over ${
           Platform.OS === 'ios' ? 'App Store' : 'Google Play'
         }, look up for them!`,
-      [{ text: 'Cancel', style: 'cancel' }, { text: 'Reload', onPress: () => Updates.reload() }],
+      [
+        { text: 'Cancel', style: 'cancel' },
+        { text: 'Reload', onPress: () => Updates.reloadFromCache() },
+      ],
     );
   });
 }

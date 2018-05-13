@@ -22,7 +22,11 @@
     "name": "Tamil Learner",
     "slug": "TamilLearner",
     "version": "0.0.4",
-    "assetBundlePatterns": ["assets/**", "node_modules/@expo/vector-icons/fonts/*.ttf"],
+    "assetBundlePatterns": [
+      "assets/**",
+      "node_modules/@expo/vector-icons/fonts/*.ttf",
+      "node_modules/react-navigation/src/**/*.png"
+    ],
     "updates": {
       "checkAutomatically": "ON_ERROR_RECOVERY",
       "fallbackToCacheTimeout": 0
