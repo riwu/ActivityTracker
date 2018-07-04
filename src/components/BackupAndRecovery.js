@@ -157,28 +157,17 @@ const BackupAndRecovery = (props) => (
             const result = await DocumentPicker.getDocumentAsync();
             if (result.type === 'cancel') return;
             console.log('uri', result.uri);
-            let uri;
-            try {
-              ({ uri } = await FileSystem.downloadAsync(
-                result.uri,
-                `${FileSystem.cacheDirectory}backup`,
-              ));
-            } catch (e) {
-              Alert.alert('Failed to download', e.message);
-              return;
-            }
-            console.log('result', uri);
 
             const fileName = decodeURIComponent(result.uri.slice(result.uri.lastIndexOf('/') + 1));
 
             let content;
             try {
-              content = await FileSystem.readAsStringAsync(uri);
+              content = await FileSystem.readAsStringAsync(result.uri);
             } catch (e) {
               Alert.alert(`Failed to read ${fileName}`, "Make sure it's a valid text file");
               return;
             } finally {
-              FileSystem.deleteAsync(uri);
+              FileSystem.deleteAsync(result.uri);
             }
 
             try {
