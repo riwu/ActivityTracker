@@ -50,24 +50,27 @@ const App = () => (
   </Provider>
 );
 
+const checkForUpdates = async () => {
+  const { isAvailable } = await Updates.checkForUpdateAsync();
+  if (!isAvailable) return;
+  await Updates.fetchUpdateAsync();
+  Alert.alert(
+    'Update available',
+    'Reload for the latest version.\n' +
+      `Some updates can only be delivered over ${
+        Platform.OS === 'ios' ? 'App Store' : 'Google Play'
+      }, look up for them!`,
+    [{ text: 'Reload', onPress: () => Updates.reloadFromCache() }],
+  );
+};
+
 if (process.env.NODE_ENV !== 'development') {
+  checkForUpdates();
+
   AppState.addEventListener('change', async (newState) => {
-    if (newState === 'inactive') return; // avoid repeated calls
-    const { isAvailable } = await Updates.checkForUpdateAsync();
-    if (!isAvailable) return;
-    await Updates.fetchUpdateAsync();
-    if (newState !== 'active') return;
-    Alert.alert(
-      'Update available',
-      'Reload for the latest version.\n' +
-        `Some updates can only be delivered over ${
-          Platform.OS === 'ios' ? 'App Store' : 'Google Play'
-        }, look up for them!`,
-      [
-        { text: 'Cancel', style: 'cancel' },
-        { text: 'Reload', onPress: () => Updates.reloadFromCache() },
-      ],
-    );
+    if (newState === 'active') {
+      checkForUpdates();
+    }
   });
 }
 
