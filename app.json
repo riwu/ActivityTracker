@@ -11,18 +11,18 @@
         "NSCameraUsageDescription": "Take a photo to use it as your profile picture",
         "NSPhotoLibraryUsageDescription": "Pick an image to use as your profile picture"
       },
-      "buildNumber": "5"
+      "buildNumber": "1"
     },
     "android": {
       "package": "riwu.tamil",
-      "permissions": ["com.android.launcher.permission.INSTALL_SHORTCUT"],
-      "versionCode": 2
+      "permissions": ["CAMERA", "WRITE_EXTERNAL_STORAGE"],
+      "versionCode": 6
     },
     "name": "Tamil Hot House",
     "slug": "tamil",
     "name": "Tamil Learner",
     "slug": "TamilLearner",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "assetBundlePatterns": [
       "assets/**",
       "node_modules/@expo/vector-icons/fonts/*.ttf",
