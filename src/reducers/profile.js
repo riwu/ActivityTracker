@@ -1,7 +1,7 @@
-const getState = (length) =>
-  Array(...{ length })
-    .map(Number.call, Number)
-    .reduce((acc, i) => {
+const getState = length =>
+  Array(length)
+    .fill()
+    .reduce((acc, e, i) => {
       acc[i] = { main: i + 1 };
       return acc;
     }, {});

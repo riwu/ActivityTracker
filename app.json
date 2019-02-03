@@ -1,6 +1,6 @@
 {
   "expo": {
-    "sdkVersion": "28.0.0",
+    "sdkVersion": "32.0.0",
     "icon": "icon.png",
     "orientation": "portrait",
     "privacy": "public",
@@ -8,6 +8,7 @@
       "bundleIdentifier": "tamil.hot.house",
       "bundleIdentifier": "riwu.tamil",
       "supportsTablet": true,
+      "usesIcloudStorage": true,
       "infoPlist": {
         "NSCameraUsageDescription": "Take a photo to use it as your profile picture",
         "NSPhotoLibraryUsageDescription": "Pick an image to use as your profile picture"
