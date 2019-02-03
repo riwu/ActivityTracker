@@ -81,14 +81,14 @@ const addState = withStateHandlers(
 );
 
 // returns false if all charts are unchecked (3 true values)
-const isProfileChecked = (uncheckedCharts) =>
-  Object.values(uncheckedCharts).filter((unchecked) => unchecked).length < 3;
+const isProfileChecked = uncheckedCharts =>
+  Object.values(uncheckedCharts).filter(unchecked => unchecked).length < 3;
 
-const BackupAndRecovery = (props) => (
+const BackupAndRecovery = props => (
   <View style={styles.container}>
     <FlatList
       data={Object.keys(props.profiles)}
-      keyExtractor={(name) => name}
+      keyExtractor={name => name}
       renderItem={({ item: name }) => {
         const profileChecked = isProfileChecked(props.uncheckedCharts[name] || {});
         return (
@@ -144,7 +144,7 @@ const BackupAndRecovery = (props) => (
 
             const url = `${FileSystem.cacheDirectory}TamilHotHouse.json`;
             await FileSystem.writeAsStringAsync(url, JSON.stringify(data));
-            await Share.share({ url, title: 'TamilHotHouse Backup' });
+            await Share.share({ url, title: 'Tamil Hot House Backup' });
             FileSystem.deleteAsync(url);
           }}
         />
@@ -156,10 +156,8 @@ const BackupAndRecovery = (props) => (
           onPress={async () => {
             const result = await DocumentPicker.getDocumentAsync();
             if (result.type === 'cancel') return;
-            console.log('uri', result.uri);
 
             const fileName = decodeURIComponent(result.uri.slice(result.uri.lastIndexOf('/') + 1));
-
             let content;
             try {
               content = await FileSystem.readAsStringAsync(result.uri);
@@ -174,7 +172,6 @@ const BackupAndRecovery = (props) => (
               const data = JSON.parse(content);
               props.restoreProfiles(data);
             } catch (e) {
-              console.log('e', e);
               Alert.alert('Invalid file content', e.message);
               return;
             }
@@ -186,4 +183,7 @@ const BackupAndRecovery = (props) => (
   </View>
 );
 
-export default connect((state) => ({ profiles: state.profile.profiles }), { restoreProfiles })(addState(BackupAndRecovery));
+export default connect(
+  state => ({ profiles: state.profile.profiles }),
+  { restoreProfiles },
+)(addState(BackupAndRecovery));

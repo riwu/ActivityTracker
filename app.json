@@ -18,13 +18,13 @@
     "android": {
       "package": "riwu.tamil",
       "permissions": ["CAMERA", "WRITE_EXTERNAL_STORAGE"],
-      "versionCode": 6
+      "versionCode": 8
     },
     "name": "Tamil Hot House",
     "slug": "tamil",
     "name": "Tamil Learner",
     "slug": "TamilLearner",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "assetBundlePatterns": [
       "assets/**",
       "node_modules/@expo/vector-icons/fonts/*.ttf",

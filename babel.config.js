@@ -1,10 +1,6 @@
-module.exports = function f(api) {
+module.exports = function (api) {
+  api.cache(true);
   return {
     presets: ['babel-preset-expo'],
-    ...(api.env('production') && {
-      env: {
-        plugins: ['transform-remove-console'],
-      },
-    }),
   };
 };
