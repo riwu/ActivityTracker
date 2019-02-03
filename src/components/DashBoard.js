@@ -5,7 +5,7 @@ import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { EvilIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo';
 import { NavigationActions } from 'react-navigation';
-import CONSTANTS from '../constants';
+import constants from '../constants';
 
 const styles = StyleSheet.create({
   container: {
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   chartTitle: {
     fontWeight: 'bold',
     textAlign: 'center',
-    fontSize: Math.min(CONSTANTS.WIDTH / 25, 20),
+    fontSize: Math.min(constants.WIDTH / 25, 20),
     color: '#fe9818',
   },
   text: {
@@ -64,12 +64,15 @@ const styles = StyleSheet.create({
   },
 });
 
-const TextProgress = connect(null, {
-  navigate: (routeName) => NavigationActions.navigate({ routeName }),
-})(({
+const TextProgress = connect(
+  null,
+  {
+    navigate: (routeName) => NavigationActions.navigate({ routeName }),
+  },
+)(({
   chart, Circular, navigate, style,
 }) => (
-  <TouchableOpacity style={[styles.chart, style]} onPress={() => navigate(chart.route)}>
+  <TouchableOpacity style={[styles.chart, style]} onPress={() => navigate(chart.name)}>
     <View style={styles.chartTitleContainer}>
       <Text style={styles.chartTitle}>{chart.name}</Text>
       <EvilIcons name="chevron-right" size={30} color="orange" />
@@ -89,7 +92,7 @@ const CircularProgress = (props) => (
     chart={props.chart}
     Circular={({ chart }) => (
       <AnimatedCircularProgress
-        size={CONSTANTS.HEIGHT / 6}
+        size={constants.HEIGHT / 6}
         width={6}
         fill={(chart.completed / chart.total) * 100 /* prettier-ignore */}
         tintColor="#1E90FF"
@@ -119,29 +122,25 @@ const DashBoard = (props) => (
 
 const mapStateToProps = (state) => {
   const profile = state.profile.profiles[state.profile.activeProfile];
-  const getCompleted = ({ name, chartKey, route }) => {
+  const getCompleted = ({ name, chartKey }) => {
     const values = Object.values(profile[chartKey]);
     return {
       name,
-      route,
       completed: values.filter((obj) => obj.replace !== undefined).length,
       total: values.length,
     };
   };
   return {
     fasting: getCompleted({
-      name: 'Read / வாசிப்பு',
-      route: CONSTANTS.FASTING_CHART,
+      name: constants.FASTING_CHART,
       chartKey: 'FastingDay',
     }),
     tarawih: getCompleted({
-      name: 'Speak / எழுதுதல்',
-      route: CONSTANTS.TARAWIH_CHART,
+      name: constants.TARAWIH_CHART,
       chartKey: 'TarawihDay',
     }),
     surahRead: getCompleted({
-      name: 'Write / பேசுதல்',
-      route: CONSTANTS.SURAH_CHART,
+      name: constants.SURAH_CHART,
       chartKey: 'SurahDay',
     }),
   };

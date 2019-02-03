@@ -14,7 +14,7 @@ import { Updates } from 'expo';
 import reducer from './src/reducers';
 import AppNavigator from './src/navigators/AppNavigator';
 
-const REDUX_VERSION = 4;
+const REDUX_VERSION = 5;
 
 const migrations = [...Array(REDUX_VERSION + 1)].reduce((acc, e, i) => {
   acc[i] = (state) => {

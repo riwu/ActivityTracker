@@ -6,17 +6,16 @@
     "ecmaVersion": 6,
     "sourceType": "module",
     "ecmaFeatures": {
-      "jsx": true,
+      "jsx": true
     }
   },
   "env": {
-      "es6": true
+    "es6": true
   },
   "parser": "babel-eslint",
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/prop-types": 0,
-    "no-console": 0,
-    "arrow-parens": ["error", "always"],
+    "no-console": 0
   }
 }
