@@ -53,10 +53,10 @@ const addState = withStateHandlers(
     photo: defaultPhoto,
   }),
   {
-    setName: () => (name) => ({
+    setName: () => name => ({
       name,
     }),
-    setPhoto: () => (photo) => ({
+    setPhoto: () => photo => ({
       photo,
     }),
   },
@@ -65,21 +65,17 @@ const addState = withStateHandlers(
 class CreateProfile extends React.Component {
   async setPhoto(action, options) {
     const isImagePicker = action === 'launchImageLibraryAsync';
-    const permissions = [{ value: 'CAMERA_ROLL', label: 'Photo access' }];
-    if (!isImagePicker) {
-      permissions.push({ value: 'CAMERA', label: 'Camera' });
-    }
-    for (let i = 0; i < permissions.length; i += 1) {
-      const permission = permissions[i];
-      // eslint-disable-next-line no-await-in-loop
-      const { status } = await Permissions.askAsync(Permissions[permission.value]);
-      if (status !== 'granted') {
-        Alert.alert(
-          `${permission.label} permission not granted`,
-          'Please enable it in App settings',
-        );
-        return;
-      }
+    const permissions = [Permissions.CAMERA_ROLL].concat(isImagePicker ? [] : Permissions.CAMERA);
+    const res = await Permissions.askAsync(...permissions);
+
+    if (res.status !== 'granted') {
+      Alert.alert(
+        `${
+          res.permissions.cameraRoll.status === 'granted' ? 'Camera' : 'Storage'
+        } permission not granted`,
+        'Please enable it in App settings',
+      );
+      return;
     }
 
     ImagePicker[action]({
@@ -93,7 +89,7 @@ class CreateProfile extends React.Component {
           FileSystem.deleteAsync(result.uri);
         }
       })
-      .catch((e) =>
+      .catch(e =>
         Alert.alert(`Failed to launch ${isImagePicker ? 'image picker' : 'camera'}`, e.message));
   }
 
@@ -155,8 +151,11 @@ class CreateProfile extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   profiles: state.profile.profiles,
 });
 
-export default connect(mapStateToProps, { createProfile })(addState(CreateProfile));
+export default connect(
+  mapStateToProps,
+  { createProfile },
+)(addState(CreateProfile));
