@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { View, Text, StyleSheet, Share, FlatList, Alert } from 'react-native';
+import { View, Text, StyleSheet, Share, FlatList, Alert, Platform } from 'react-native';
 import { FileSystem, DocumentPicker } from 'expo';
 import { withStateHandlers } from 'recompose';
+// import AndroidShare from 'react-native-share';
 import Button from './Button';
 import CheckBox from './CheckBox';
 import { restoreProfiles } from '../actions';
@@ -144,7 +145,19 @@ const BackupAndRecovery = props => (
 
             const url = `${FileSystem.cacheDirectory}TamilHotHouse.json`;
             await FileSystem.writeAsStringAsync(url, JSON.stringify(data));
-            await Share.share({ url, title: 'Tamil Hot House Backup' });
+
+            const shareData = { url, title: 'Tamil Hot House Backup' };
+            if (Platform.OS === 'ios') {
+              await Share.share(shareData);
+            } else {
+              try {
+                await AndroidShare.open(shareData);
+              } catch (e) {
+                if (process.env.NODE_ENV === 'development') {
+                  console.log('Rejected share', e);
+                }
+              }
+            }
             FileSystem.deleteAsync(url);
           }}
         />
